@@ -1,0 +1,57 @@
+
+.authorization {
+  width: 600px;
+  height: 328px;
+  position: relative;
+  margin: auto;
+  margin-top: 160px;
+  top: 0;
+  box-shadow: #273C83;
+  background-color: white;
+}
+form{
+  position: relative;
+  padding-top: 40px;
+  margin: auto;
+}
+li{
+  list-style: none;
+  margin-top: 20px;
+}
+input{
+  width: 224px;
+  height: 24px;
+  border-radius: 5px;
+  border: 1px solid #7D94DF;
+  font-size: 14px;
+  padding: 8px;
+}
+input::selection{
+  border: 1px solid #8A8282;
+}
+input::placeholder{
+  color: #8A8282;
+  font-size: 14px;
+}
+input[type = submit]{
+  width: 240px;
+  height: 40px;
+  background: linear-gradient(90deg,#7D94DF,#273C83);
+  color: white;
+  border: none;
+}
+
+.navigation{
+height: 40px;
+width: 100%;
+}
+
+.login{
+width: 200px;
+height: 100%;
+}
+
+.signin{
+width: 400px;
+height: 100%;
+}
