@@ -1,22 +1,25 @@
 import React from "react";
 import "./App.css";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Auth from "./pages/Auth";
-import Registration from "./pages/Registration"
-import Navbar from "./components/Navbar"
+import Registration from "./pages/Registration";
+import Search from "./pages/Search";
+import Orders from "./pages/Orders";
+import CreateOrder from "./pages/CreateOrder";
 
 function App() {
   return (
-    <Router>
-      <div className="authorization" style={{position:'flex', justifyContent: 'center'}}>
-      <Navbar/>
-        <Switch>
-          <Route path={'/auth'} exact component={Auth}/>
-          <Route path={'/reg'} component={Registration}/>
-        </Switch>
-      </div>
-    </Router>
-    );
+    <BrowserRouter>
+      <Switch>
+        <Route path={"/auth"} component={Auth} />
+        <Route path={"/reg"} component={Registration} />
+        <Route path={"/search"} component={Search} />
+        <Route path={"/orders"} component={Orders} />
+        <Route path={"/create-order"} component={CreateOrder}/>
+        <Redirect from="/" to="/search" />
+      </Switch>
+    </BrowserRouter>
+  );
 }
 
 export default App;
