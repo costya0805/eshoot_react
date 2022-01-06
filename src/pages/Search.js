@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from "react";
 import Header from "../components/Header";
 import SideMenu from "../components/SideMenu";
 import SearchFilter from "../components/SearchFilter";

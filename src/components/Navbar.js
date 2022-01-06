@@ -14,7 +14,7 @@ const styles = {
 
 function Navbar(page) {
      return (
-        <div style={styles.navbar}>
+        <div style={styles.navbar} className="navbar">
             <NavLink to="/auth">
                 <div className={page.active === "auth" ? "active" : "noactive"}>
                 Вход

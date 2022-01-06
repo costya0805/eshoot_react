@@ -1,0 +1,45 @@
+.selectType .noactive {
+  display: none;
+}
+.selectType .title{
+    margin: 0;
+}
+.selectType .selectData {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+  /* width: 593px; */
+}
+
+.selectType .circle {
+  width: 4px;
+  height: 4px;
+  background-color: #696969;
+  margin-top: 4px;
+}
+.selectType .circle:first-child {
+  margin-top: 0;
+}
+.selectType .separator {
+  margin: 0 10px;
+}
+
+.selectType .chooseType,
+.selectType .choosePodType {
+  width: 268px;
+  border: 2px solid #696969;
+}
+
+.selectType .chooseType:active {
+  border: 2px solid #7d94df;
+}
+
+.selectType input.choosePodType {
+  width: 252px;
+  height: 16px;
+}
+
+.selectType .chooseType:focus,
+.selectType .choosePodType:focus {
+  border: 2px solid #7d94df;
+}

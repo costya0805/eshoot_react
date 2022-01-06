@@ -97,6 +97,11 @@ input[type="submit"] {
   font-size: 12px;
 }
 
+.sup2 {
+  font-size: 14px;
+  font-weight: 500;
+}
+
 .avatar {
   border-radius: 50%;
 }

@@ -1,14 +1,14 @@
-div .noactive{
+.navbar div .noactive{
     display: inline-block;
     width: 200px;
     background-color: #CBD7FF;
     color: #798EE2;
 }
-.noactive:hover{
+.navbar .noactive:hover{
     color: black;
     background-color: white;
 }
-.active{
+.navbar .active{
     display: inline-block;
     width: 400px;
     color: black;
