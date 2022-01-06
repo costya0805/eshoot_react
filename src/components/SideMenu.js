@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import searchSvg from "../images/surch.svg"
-import messegesSvg from "../images/messeges.svg"
-import ordersSvg from "../images/orders.svg"
+import searchSvg from "../images/surchSideMenu.svg";
+import messegesSvg from "../images/messeges.svg";
+import ordersSvg from "../images/orders.svg";
+
+import "./SideMenu.css";
 
 function SideMenu() {
   return (
@@ -10,19 +12,19 @@ function SideMenu() {
       <ol>
         <li>
           <NavLink to="/search">
-            <img src={searchSvg} alt=""/>
+            <img src={searchSvg} alt="" />
             <span>Поиск</span>
           </NavLink>
         </li>
         <li>
           <NavLink to="/orders">
-            <img src={ordersSvg} alt=""/>
+            <img src={ordersSvg} alt="" />
             <span>Заказы</span>
           </NavLink>
         </li>
         <li>
           <NavLink to="/messeges">
-            <img src={messegesSvg} alt=""/>
+            <img src={messegesSvg} alt="" />
             <span>Диалоги</span>
           </NavLink>
         </li>

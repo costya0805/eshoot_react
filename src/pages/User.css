@@ -1,0 +1,54 @@
+.userCard{
+    width: 650px;
+    padding: 24px;
+    box-shadow: 0 2px 10px rgba(39, 60, 131, 0.15);
+    background-color:white;
+    border-radius: 5px;
+    padding-bottom: 40px;
+}
+.topInfo{
+    display: flex;
+    justify-content: left;
+}
+.avatarUser{
+    width: 96px;
+    height: 120px;
+    background-color: #7D94DF;
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mainInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+.mainInfoUser{
+    display: flex;
+    flex-direction: column;
+    color: black
+}
+
+.mainInfoUser span{
+    margin-top: 4px;
+}
+
+.mainInfoUser span:first-child{
+    margin: 0;
+}
+.action{
+    border-radius: 5px;
+    border: 0;
+    color: white;
+    background: linear-gradient(135deg, #7d94df, #273c83);
+    padding: 8px 12px;
+}
+.aboutUser{
+    margin-top: 12px;
+    margin-left: 12px;
+    display: flex;
+    flex-direction: column;
+}

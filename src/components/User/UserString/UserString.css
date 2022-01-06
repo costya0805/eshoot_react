@@ -1,0 +1,14 @@
+.string{
+    width: auto;
+    display: flex;
+    margin-top: 12px;
+}
+.string .title{
+    color: #8A8282;
+    font-weight: 700;
+    width: 128px;
+}
+.body{
+    width: 480px;
+    margin-left: 16px;
+}

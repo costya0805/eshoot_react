@@ -27,20 +27,28 @@ li {
   list-style: none;
   margin-top: 20px;
 }
-input, select{
+input {
   width: 224px;
   height: 24px;
   border-radius: 5px;
-  border: 1px solid #7d94df;
+  border: 1px solid #8a8282;
   font-size: 14px;
   padding: 8px;
 }
-input::selection {
-  border: 1px solid #8a8282;
+input:hover {
+  border: 1px solid #5c5656;
 }
-input::placeholder{
+input:focus {
+  outline: none;
+  border: 1px solid #7d94df;
+}
+
+input::placeholder {
   color: #8a8282;
   font-size: 14px;
+}
+.fill {
+  border: 1px solid #7d94df;
 }
 input[type="submit"] {
   width: 240px;
@@ -63,8 +71,8 @@ input[type="submit"] {
   height: 100%;
 }
 
-.button{
-  background: linear-gradient(90deg, #7d94df, #273c83);
+.button {
+  background: linear-gradient(135deg, #7d94df, #273c83);
   color: white;
   text-transform: uppercase;
   font-weight: 500;
@@ -76,15 +84,15 @@ input[type="submit"] {
   font-size: 20px;
   margin: 0;
 }
-
 .h5 {
   font-size: 24px;
 }
-
-.body1{
+.h4 {
+  font-size: 32px;
+}
+.body1 {
   font-size: 16px;
 }
-
 .caption {
   font-size: 12px;
 }
@@ -147,49 +155,13 @@ img.open {
   justify-content: left;
 }
 
-.pageBody{
+.pageBody {
   margin-left: 48px;
   display: flex;
   flex-direction: column;
 }
 
-.sideMenu {
-  width: 108px;
-}
-
-.sideMenu a{
-  display: flex;
-  width: 108px;
-  height: 24px;
-  text-decoration: none;
-  color: black;
-}
-
-.sideMenu ol {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sideMenu li{
-  margin: 0;
-  width: 108px;
-  height: 24px;
-  margin-bottom: 8px;
-}
-
-.sideMenu li span{
-  align-self: center;
-  margin-left: 15px;
-}
-
-.sideMenu li img{
-  align-self: center;
-  margin-left: 8px;
-  width: 16px;
-}
-
-input[type="checkbox"]{
+input[type="checkbox"] {
   display: none;
 }
 
@@ -204,16 +176,16 @@ input[type="checkbox"]{
 
 .slider {
   border-radius: 24px;
-  border: 1px solid #A0B0EF;
+  border: 1px solid #a0b0ef;
   position: absolute;
   cursor: pointer;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #CBD7FF;
-  -webkit-transition: .3s;
-  transition: .3s;
+  background-color: #cbd7ff;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .slider:before {
@@ -224,18 +196,17 @@ input[type="checkbox"]{
   width: 20px;
   left: 2px;
   bottom: 1px;
-  background-color: #798EE2;
-  -webkit-transition: .3s;
-  transition: .3s;
+  background-color: #798ee2;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 input:checked + .slider {
-  background-color: #798EE2;
+  background-color: #798ee2;
 }
 
-
 input:checked + .slider:before {
-  background-color: #CBD7FF;
+  background-color: #cbd7ff;
   -webkit-transform: translateX(22px);
   -ms-transform: translateX(22px);
   transform: translateX(22px);

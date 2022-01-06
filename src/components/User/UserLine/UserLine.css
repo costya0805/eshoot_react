@@ -1,0 +1,33 @@
+.line {
+  display: flex;
+  color: #696969;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 12px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.line_direction {
+  background-color: #696969;
+  height: 1px;
+  width: 100%;
+  margin-top: 1px;
+}
+
+.title {
+  margin: 0 8px;
+  width: auto;
+  white-space: nowrap;
+}
+
+.left {
+  border-top-left-radius: 1px;
+  border-bottom-left-radius: 1px;
+}
+
+.right {
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+}

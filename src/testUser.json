@@ -1,0 +1,30 @@
+{
+    "_id": "61d5af0c51361812ac681ff3",
+    "index": 0,
+    "guid": "d8f58b67-28b2-4fbf-a675-298ddb52eff6",
+    "isActive": false,
+    "balance": "$1,344.88",
+    "picture": "http://placehold.it/32x32",
+    "age": 35,
+    "eyeColor": "green",
+    "name": "Maura Baker",
+    "gender": "female",
+    "company": "AQUAMATE",
+    "email": "maurabaker@aquamate.com",
+    "phone": "+1 (959) 542-3049",
+    "address": "259 Devoe Street, Islandia, South Dakota, 6100",
+    "about": "Velit incididunt ullamco veniam anim elit veniam non deserunt qui. Anim Lorem magna quis dolor consectetur. Ipsum duis tempor aliquip enim voluptate ut eiusmod irure in nulla. Reprehenderit tempor cupidatat consequat anim pariatur qui dolore eiusmod tempor pariatur. Id sint culpa excepteur ex sunt ea labore adipisicing sint et velit enim officia Lorem.\r\n",
+    "registered": "2015-04-16T02:05:00 -05:00",
+    "latitude": -44.117727,
+    "longitude": -178.872641,
+    "tags": [
+      "qui",
+      "labore",
+      "aute",
+      "esse",
+      "fugiat",
+      "est",
+      "amet"
+    ],
+    "ok": true
+  }

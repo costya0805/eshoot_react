@@ -1,0 +1,34 @@
+.input::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 18px;
+  height: 20px;
+  background-image: url(/src/images/surch.svg);
+}
+
+.input input{
+    padding-left: 36px;
+}
+
+select {
+  padding: 8px;
+  appearance: none;
+  border-radius: 5px;
+  outline: none;
+  display: grid;
+  width: 180px;
+}
+
+select::after {
+  content: "";
+  width: 0.8em;
+  height: 0.5em;
+  background-color: black;
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+}
+
+option{
+    width: 40px;
+}

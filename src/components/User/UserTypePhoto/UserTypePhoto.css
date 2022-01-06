@@ -1,0 +1,25 @@
+.typePhoto .title{
+    margin-right: 8px;
+    white-space: nowrap;
+
+}
+.typePhoto{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 498px;
+    margin-top: 12px;
+}
+
+.typePhoto .line{
+    margin-top: 5px;
+    height: 1px;
+    border-radius: 1px;
+    width: 100%;
+    background-color: black;
+    opacity: .5;
+}
+
+.typePhoto .price{
+    white-space: nowrap;
+}
