@@ -46,8 +46,8 @@ function User() {
               <UserString title="Личный сайт" text="www.ivan_ivanov.ru" />
               <UserString title="Телефон" text="+7 (992) 100 54-48" />
               <UserLine title="типы съемок" />
-              <UserTypePhoto title="Портрет" minPrice="1000"/>
-              <UserTypePhoto title="Репортаж" minPrice="5000"/>
+              <UserTypePhoto title="Портрет" minPrice="1000" />
+              <UserTypePhoto title="Репортаж" minPrice="5000" />
             </div>
           </div>
         </div>

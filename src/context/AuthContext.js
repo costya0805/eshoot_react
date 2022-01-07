@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import Cookies from "universal-cookie";
 
-import userData from "../testUser.json"
+import userData from "../testUser.json";
 
 const cookies = new Cookies();
 const AuthContext = React.createContext();
@@ -14,6 +14,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
+  const [currentUserInfo, setCurrentUserInfo] = useState();
 
   const login = async (email, password) => {
     let params = new URLSearchParams();
@@ -29,47 +30,69 @@ export function AuthProvider({ children }) {
     };
 
     const response = await fetch(API_URL + "/token", postConfig);
-    // const response = userData
     const currentUser = await response.json();
-    // const currentUser = response
 
     if (!response.ok) {
       return { error: currentUser.error };
     }
 
-    setCurrentUser(currentUser);
-    cookies.set("currentUser", currentUser);
+    setCurrentUser(currentUser.access_token);
+    console.log(currentUser.access_token);
+    cookies.set("currentUser", currentUser.access_token);
+    await userInfo(currentUser.access_token);
   };
 
-  const signup = async(role, firstName, middleName, lastName, email, password) => {
-    let params = new URLSearchParams();
-    params.append("role",role);
-    params.append("first_name",firstName);
-    params.append("middle_name", middleName);
-    params.append("last_name", lastName);
-    params.append("email", email);
-    params.append("password", password);
-    params.append("create_date", new Date());
-    params.append("birthdate", new Date("2000-01-01"));
-    params.append("phone","")
+  const signup = async (
+    role,
+    firstName,
+    middleName,
+    lastName,
+    email,
+    password
+  ) => {
+    const params = {
+      first_name: firstName,
+      last_name: lastName,
+      middle_name: middleName,
+      email: email,
+      phone: "string",
+      birthdate: new Date("2000-01-01").toISOString(),
+      city: "string",
+      role: role,
+      created_date: new Date().toISOString(),
+      password: password,
+    };
 
     const postConfig = {
       method: "POST",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/json",
       },
-      body: params,
+      body: JSON.stringify(params),
     };
-    const API_URL_ROLE = role==="Photographer"?"photograrhers/":"customers/"
-    console.log(params)
-    const response = await fetch(API_URL+"/users/"+ API_URL_ROLE, postConfig)
+    const API_URL_ROLE =
+      role === "Photographer" ? "photograrhers/" : "customers/";
+    const response = await fetch(
+      API_URL + "/users/" + API_URL_ROLE,
+      postConfig
+    );
     const newUser = await response.json();
     if (!response.ok) {
       return { error: newUser.error };
     }
-    await login(email,password)
+    await login(email, password);
+  };
 
-  }
+  const userInfo = async (user) => {
+    const data = await fetch(API_URL + "/users/me", {
+      headers: {
+        Authorization: "Bearer " + user,
+      },
+    });
+    const text = await data.json();
+    console.log(text);
+    setCurrentUserInfo(text);
+  };
 
   useEffect(() => {
     const currentUserInCookies = cookies.get("currentUser");
@@ -79,30 +102,19 @@ export function AuthProvider({ children }) {
     setLoading(false);
   }, []);
 
-//   function signup(email, password) {
-//     return auth.createUserWithEmailAndPassword(email, password);
-//   }
-
   const logout = () => {
     setCurrentUser(null);
+    setCurrentUserInfo(null);
     cookies.remove("currentUser");
   };
 
-  const userRole = (user) => {
-    if (user.is_superuser) {
-        return "разработчик";
-    } else if (user.is_owner) {
-        return "владелец";
-    } else {
-        return "представитель заказчика";
-    }
-}
   const value = {
     currentUser,
+    currentUserInfo,
     login,
     signup,
-    userRole,
     logout,
+    userInfo,
   };
 
   return (

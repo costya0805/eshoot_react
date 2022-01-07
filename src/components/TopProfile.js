@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import arrowSvg from "../images/arrow.svg";
 import accountSvg from "../images/account.svg";
 import logOutSvg from "../images/logOut.svg";
 import settingsSvg from "../images/settings.svg";
+import { useAuth } from "../context/AuthContext";
+
 
 function TopProfile() {
   const [menu, setMenu] = useState(false);
 
+  const { currentUserInfo , logout} = useAuth();
+
   return (
     <div>
       <div style={styles.block} onClick={() => setMenu(!menu)}>
-        <span style={styles.secondName}>Константин</span>
+        <span style={styles.secondName}>{currentUserInfo.first_name}</span>
         <div className="avatar caption" style={styles.avatar}>
-          KK
+          КК
         </div>
         <img
           className={menu ? "open" : ""}
@@ -33,7 +37,7 @@ function TopProfile() {
           <span>Настройки</span>
         </NavLink>
         <hr />
-        <NavLink style={styles.point} to="/auth">
+        <NavLink style={styles.point} to="/auth" onClick={()=>logout()}>
           <img src={logOutSvg} style={{ height: 20, marginLeft: 9 }} alt="" />
           <span>Выход</span>
         </NavLink>
@@ -52,6 +56,7 @@ const styles = {
     color: "white",
     textAlign: "center",
     lineHeight: "32px",
+    textTransform: "uppercase",
   },
   block: {
     display: "flex",

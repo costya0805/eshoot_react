@@ -14,9 +14,6 @@ function Header({pageName}) {
           <span className="h5" style={styles.logoText}>Eshoot</span>
         </div>
         <span className="h6">
-          {/* {fetch("https://api.github.com/users/hacktivist123/repos")
-          .then(response => response.json())
-          .then(data => console.log(data))} */}
           {pageName.pageName}
           </span>
         <TopProfile />

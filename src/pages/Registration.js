@@ -45,7 +45,6 @@ export default function Registration() {
         return setError("Пароли не совпадают");
       }
       setLoading(true);
-      console.log("без ошибок 1")
       const checkLogin = await signup(
         reg.role ? "Photographer" : "Customer",
         reg.userName,
@@ -54,7 +53,6 @@ export default function Registration() {
         reg.email,
         reg.password
       );
-      console.log("без ошибок 2")
       setLoading(false);
       if (checkLogin && checkLogin.error) {
         return setError(checkLogin.error);
