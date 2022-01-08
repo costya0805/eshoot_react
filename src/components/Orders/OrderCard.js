@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Status from "./Status";
+import './OrderCard.css'
 
 function OrderCard({ order }) {
   return (
-    <div style={styles.body}>
+    <div style={styles.body} className="orderCard">
       <div style={styles.head}>
         <div style={styles.headInfo}>
           <div style={styles.ava} className="avatar"><span className="h6">ИИ</span></div>
@@ -32,7 +33,6 @@ const styles = {
     backgroundColor: "white",
     padding: 16,
     marginTop: 24,
-    boxShadow: "0 2px 10px rgba(39, 60, 131, 0.15)",
     borderRadius: 5,
   },
   head: {

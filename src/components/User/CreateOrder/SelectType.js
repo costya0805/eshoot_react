@@ -28,7 +28,6 @@ function SelectType() {
   ];
   const reportTypes = [{ id: 1, type: "wedding", text: "Свадьба" }];
 
-  console.log(type === "items" || type === "content" || type === "other");
   return (
     <div className="selectType">
       <span className="title body1">Вид съемки</span>
@@ -37,9 +36,17 @@ function SelectType() {
           className="chooseType"
           value={type}
           onChange={chengeSelectType}
-          style={type ? { border: "2px solid #7d94df" } : {}}
+          style={type ? { border: "2px solid #7d94df" } : { color: "#696969" }}
         >
-          <option key="0" value="" selected disabled style={{ display: "none" }} />
+          <option
+            key="100"
+            value=""
+            selected
+            disabled
+            style={{ display: "none" }}
+          >
+            Выберите тип
+          </option>
           {types.map((type) => (
             <option key={type.id} value={type.type}>
               {type.text}
@@ -47,8 +54,14 @@ function SelectType() {
           ))}
         </select>
         <div className={type ? "separator" : "noactive"}>
-          <div className="circle" />
-          <div className="circle" />
+          <div
+            className="circle"
+            style={type && podType ? { backgroundColor: "#7d94df" } : {}}
+          />
+          <div
+            className="circle"
+            style={type && podType ? { backgroundColor: "#7d94df" } : {}}
+          />
         </div>
         <select
           className={
@@ -60,7 +73,17 @@ function SelectType() {
           value={podType}
           style={podType ? { border: "2px solid #7d94df" } : {}}
         >
-          <option key="0" value="" selected disabled style={{ display: "none" }} />
+          <option
+            key="0"
+            value=""
+            selected
+            disabled
+            style={{ display: "none" }}
+          >
+            {type === "fotoset"
+              ? "Какая фотосессия вам нужна?"
+              : "Какой репортаж вам нужен?"}
+          </option>
           {type === "fotoset"
             ? fotosetTypes.map((type) => (
                 <option key={type.id} value={type.type}>
@@ -86,6 +109,9 @@ function SelectType() {
               ? "Для чего вам нужна съемка?"
               : "Какая съемка вам нужна?"
           }
+          onChange={chengeSelectPodType}
+          value={podType}
+          style={podType ? { border: "2px solid #7d94df" } : {}}
         ></input>
       </div>
     </div>

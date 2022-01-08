@@ -4,11 +4,11 @@
 .selectType .title{
     margin: 0;
 }
-.selectType .selectData {
+.selectType .selectData { 
   display: flex;
   align-items: center;
   margin-top: 12px;
-  /* width: 593px; */
+  /* width: 593px; */ 
 }
 
 .selectType .circle {
@@ -16,6 +16,7 @@
   height: 4px;
   background-color: #696969;
   margin-top: 4px;
+  border-radius: 2px;
 }
 .selectType .circle:first-child {
   margin-top: 0;
@@ -26,7 +27,8 @@
 
 .selectType .chooseType,
 .selectType .choosePodType {
-  width: 268px;
+  width: 284px;
+  height: 36px;
   border: 2px solid #696969;
 }
 
@@ -35,7 +37,7 @@
 }
 
 .selectType input.choosePodType {
-  width: 252px;
+  width: 264px;
   height: 16px;
 }
 

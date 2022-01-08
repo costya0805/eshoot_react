@@ -17,7 +17,7 @@ function TopProfile() {
       <div style={styles.block} onClick={() => setMenu(!menu)}>
         <span style={styles.secondName}>{currentUserInfo.first_name}</span>
         <div className="avatar caption" style={styles.avatar}>
-          КК
+        {currentUserInfo.first_name[0]}{currentUserInfo.middle_name[0]}
         </div>
         <img
           className={menu ? "open" : ""}
@@ -31,12 +31,12 @@ function TopProfile() {
           <img src={accountSvg} style={{ height: 20, marginLeft: 9 }} alt="" />
           <span>Личный кабинет</span>
         </NavLink>
-        <hr />
+        {/* <hr /> */}
         <NavLink style={styles.point} to="/settings">
           <img src={settingsSvg} style={{ height: 26, marginLeft: 5 }} alt="" />
           <span>Настройки</span>
         </NavLink>
-        <hr />
+        {/* <hr /> */}
         <NavLink style={styles.point} to="/auth" onClick={()=>logout()}>
           <img src={logOutSvg} style={{ height: 20, marginLeft: 9 }} alt="" />
           <span>Выход</span>
@@ -62,6 +62,7 @@ const styles = {
     display: "flex",
     width: "180px",
     cursor: "pointer",
+    justifyContent: "right"
   },
   arrow: {
     alignSelf: "center",

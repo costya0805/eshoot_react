@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "./FotographCard.css"
 
 function FotographCard(props) {
   return (
@@ -57,7 +58,6 @@ const styles = {
     borderRadius: 5,
     backgroundColor: "white",
     marginTop: 24,
-    boxShadow: "0 2px 10px rgba(39, 60, 131, 0.15)",
     padding: 24,
   },
   header: {
@@ -85,7 +85,7 @@ const styles = {
     marginTop: 16,
   },
   action: {
-    padding: "6px 8px",
+    padding: "8px 12px",
     borderRadius: 5,
     cursor: "pointer"
   },

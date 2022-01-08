@@ -1,8 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import Cookies from "universal-cookie";
 
-import userData from "../testUser.json";
-
 const cookies = new Cookies();
 const AuthContext = React.createContext();
 const API_URL = "http://localhost:8080";
@@ -14,7 +12,19 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
-  const [currentUserInfo, setCurrentUserInfo] = useState();
+  const [currentUserInfo, setCurrentUserInfo] = useState({
+    "first_name": "",
+    "last_name": "",
+    "middle_name": "",
+    "email": "",
+    "phone": "",
+    "birthdate": "",
+    "city": "",
+    "role": "",
+    "created_date": "",
+    "id": "",
+    "password": ""
+  });
 
   const login = async (email, password) => {
     let params = new URLSearchParams();
@@ -28,7 +38,6 @@ export function AuthProvider({ children }) {
       },
       body: params,
     };
-
     const response = await fetch(API_URL + "/token", postConfig);
     const currentUser = await response.json();
 
@@ -37,7 +46,6 @@ export function AuthProvider({ children }) {
     }
 
     setCurrentUser(currentUser.access_token);
-    console.log(currentUser.access_token);
     cookies.set("currentUser", currentUser.access_token);
     await userInfo(currentUser.access_token);
   };
@@ -71,7 +79,7 @@ export function AuthProvider({ children }) {
       body: JSON.stringify(params),
     };
     const API_URL_ROLE =
-      role === "Photographer" ? "photograrhers/" : "customers/";
+      role === "Photographer" ? "photographers/" : "customers/";
     const response = await fetch(
       API_URL + "/users/" + API_URL_ROLE,
       postConfig
@@ -90,7 +98,6 @@ export function AuthProvider({ children }) {
       },
     });
     const text = await data.json();
-    console.log(text);
     setCurrentUserInfo(text);
   };
 
@@ -98,6 +105,7 @@ export function AuthProvider({ children }) {
     const currentUserInCookies = cookies.get("currentUser");
     if (currentUserInCookies) {
       setCurrentUser(currentUserInCookies);
+      userInfo(currentUserInCookies);
     }
     setLoading(false);
   }, []);
