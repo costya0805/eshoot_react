@@ -109,11 +109,42 @@
 .inputDates .dedlineDate{
     margin-left: 24px;
 }
-.inputLocation{
+.inputLocation,.inputPrice{
     margin-top: 24px;
 }
 input.inputLocation{
     margin-top: 12px;
     width: 264px;
     height: 16px;
+}
+
+input.inputPrice{
+  width: 80px;
+  height: 16px;
+  margin-top: 12px;
+}
+
+.createOrder .actions{
+    align-self: flex-end;
+    margin-top: 32px;
+}
+
+button.sendOrder{
+  border-radius: 5px;
+  border: 0;
+  color: white;
+  background: linear-gradient(135deg, #7d94df, #273c83);
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-left: 16px;
+}
+
+button.goBack{
+  border-radius: 5px;
+  border: 0;
+  color: #8A8282;
+  background: #DBDBDB;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-left: 16px;
 }

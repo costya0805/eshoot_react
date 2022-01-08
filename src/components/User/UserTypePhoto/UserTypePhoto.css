@@ -7,17 +7,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 498px;
+    width: 220px;
     margin-top: 12px;
 }
 
 .typePhoto .line{
-    margin-top: 5px;
-    height: 1px;
+    margin-top: 13px;
     border-radius: 1px;
     width: 100%;
-    background-color: black;
     opacity: .5;
+    border-top: dotted 1px;
+    align-self: flex-end;
 }
 
 .typePhoto .price{

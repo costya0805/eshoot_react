@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import "./CreateOrder.css";
@@ -7,7 +7,43 @@ import Header from "../components/Header";
 import SideMenu from "../components/SideMenu";
 import SelectType from "../components/User/CreateOrder/SelectType";
 
-function CreateOrder() {
+import { useAuth } from "../context/AuthContext";
+
+function CreateOrder(params) {
+  const [photgrapher, setPhotographer] = useState({
+    first_name: "",
+    last_name: "",
+    middle_name: "",
+    email: "",
+    phone: "",
+    birthdate: "",
+    city: "",
+    role: "",
+    created_date: "",
+    id: "",
+    password: "",
+    experience: 0,
+    about: "",
+  });
+  const { currentUser } = useAuth();
+  useEffect(() => {
+    const fetchName = async () => {
+      try {
+        const data = await fetch(
+          `http://localhost:8080/users/photographers/${params.location.state.data}`,
+          {
+            headers: {
+              Authorization: "Bearer " + currentUser,
+            },
+          }
+        );
+        const text = await data.json();
+        setPhotographer(text);
+      } catch {}
+    };
+    fetchName();
+  }, []);
+
   const currentDate = new Date();
   const currentMoth =
     currentDate.getMonth() < 9
@@ -26,6 +62,7 @@ function CreateOrder() {
   const [shootingEndTime, setShootingEndTime] = useState();
   const [deadlineDate, setDeadlineDate] = useState();
   const [location, setLocation] = useState();
+  const [price, setPrice] = useState();
 
   const textareaRef = React.useRef(null);
   React.useLayoutEffect(() => {
@@ -116,25 +153,45 @@ function CreateOrder() {
             </div>
           </div>
           <div className="formFill inputPrice">
-            <span className="body1">Локация</span>
+            <span className="body1">Цена</span>
             <div className="writePrice">
               <input
                 className="inputPrice"
-                placeholder="Укажите место съемки"
-                value={location}
-                onChange={(event) => setLocation(event.target.value)}
-                style={location ? { border: "2px solid #7d94df" } : {}}
+                type="number"
+                value={price}
+                onChange={(event) => setPrice(event.target.value)}
+                style={price ? { border: "2px solid #7d94df" } : {}}
               ></input>
+              <span style={{marginLeft:8}} className="h6">₽</span>
             </div>
           </div>
+          <div className="actions">
+          <Link to='/search'> 
+            <button className="button goBack">
+              Отменить
+            </button>
+          </Link>
+          <Link to='/orders'> 
+            <button className="button sendOrder">
+              Отправить
+            </button>
+          </Link>
+          </div>
         </div>
-        <Link to="/user" className="photographCard">
+        <Link
+          to={{
+            pathname: "/user",
+            state: { id: photgrapher.id },
+          }}
+          className="photographCard"
+          style={photgrapher.id ? {} : { display: "none" }}
+        >
           <span className="sup2">Выбранный фотограф</span>
           <div className="photographInfo">
-            <div className="avatar">ИИ</div>
+            <div className="avatar">{photgrapher.first_name[0]}{photgrapher.middle_name[0]}</div>
             <div className="photographInfoText">
-              <div className="fi">Иванов Иван</div>
-              <div className="city caption">г. Екатеринбург</div>
+              <div className="fi">{photgrapher.middle_name} {photgrapher.first_name}</div>
+              <div className="city caption">г. {photgrapher.city}</div>
             </div>
           </div>
         </Link>

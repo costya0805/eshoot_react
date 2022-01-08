@@ -103,6 +103,8 @@ input[type="submit"] {
 
 .avatar {
   border-radius: 50%;
+  text-transform: uppercase;
+  flex-shrink: 0;
 }
 
 .openMenu {

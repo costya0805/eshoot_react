@@ -13,19 +13,20 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
   const [currentUserInfo, setCurrentUserInfo] = useState({
-    "first_name": "",
-    "last_name": "",
-    "middle_name": "",
-    "email": "",
-    "phone": "",
-    "birthdate": "",
-    "city": "",
-    "role": "",
-    "created_date": "",
-    "id": "",
-    "password": ""
+    first_name: "",
+    last_name: "",
+    middle_name: "",
+    email: "",
+    phone: "",
+    birthdate: "",
+    city: "",
+    role: "",
+    created_date: "",
+    id: "",
+    password: "",
   });
 
+  
   const login = async (email, password) => {
     let params = new URLSearchParams();
     params.append("username", email);

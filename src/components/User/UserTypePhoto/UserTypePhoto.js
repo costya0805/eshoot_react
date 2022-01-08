@@ -5,7 +5,7 @@ function UserTypePhoto(props){
     return(
         <div className="typePhoto">
             <div className="title">{props.title}</div>
-            <div className="line"></div>
+            <hr className="line underLine"/>
             <div className="price">от {props.minPrice} ₽/ч</div>
         </div>
     )

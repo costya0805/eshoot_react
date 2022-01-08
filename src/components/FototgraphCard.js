@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink , Link} from "react-router-dom";
 import "./FotographCard.css"
 
 function FotographCard(props) {
@@ -32,11 +32,11 @@ function FotographCard(props) {
           </div>
         </div>
         <div className="cardActions">
-          <NavLink to='/create-order'> 
+          <Link to={{pathname:'/create-order', state:{data:props.photographer.id}}}> 
             <button className="button" style={styles.action}>
               Предложить заказ
             </button>
-          </NavLink>
+          </Link>
         </div>
       </div>
       <div className="aboutFotograph" style={styles.about}>

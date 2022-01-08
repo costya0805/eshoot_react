@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import arrowSvg from "../images/arrow.svg";
 import accountSvg from "../images/account.svg";
 import logOutSvg from "../images/logOut.svg";
 import settingsSvg from "../images/settings.svg";
 import { useAuth } from "../context/AuthContext";
 
-
 function TopProfile() {
   const [menu, setMenu] = useState(false);
 
-  const { currentUserInfo , logout} = useAuth();
+  const { currentUser, currentUserInfo, logout } = useAuth();
 
   return (
     <div>
       <div style={styles.block} onClick={() => setMenu(!menu)}>
         <span style={styles.secondName}>{currentUserInfo.first_name}</span>
         <div className="avatar caption" style={styles.avatar}>
-        {currentUserInfo.first_name[0]}{currentUserInfo.middle_name[0]}
+          {currentUserInfo.first_name[0]}
+          {currentUserInfo.middle_name[0]}
         </div>
         <img
           className={menu ? "open" : ""}
@@ -27,17 +27,23 @@ function TopProfile() {
         ></img>
       </div>
       <div className="openMenu" style={!menu ? { display: "none" } : {}}>
-        <NavLink style={styles.point} to="/user">
+        <Link
+          style={styles.point}
+          to={{
+            pathname: "/user",
+            state: { id: currentUser },
+          }}
+        >
           <img src={accountSvg} style={{ height: 20, marginLeft: 9 }} alt="" />
           <span>Личный кабинет</span>
-        </NavLink>
+        </Link>
         {/* <hr /> */}
         <NavLink style={styles.point} to="/settings">
           <img src={settingsSvg} style={{ height: 26, marginLeft: 5 }} alt="" />
           <span>Настройки</span>
         </NavLink>
         {/* <hr /> */}
-        <NavLink style={styles.point} to="/auth" onClick={()=>logout()}>
+        <NavLink style={styles.point} to="/auth" onClick={() => logout()}>
           <img src={logOutSvg} style={{ height: 20, marginLeft: 9 }} alt="" />
           <span>Выход</span>
         </NavLink>
@@ -62,7 +68,7 @@ const styles = {
     display: "flex",
     width: "180px",
     cursor: "pointer",
-    justifyContent: "right"
+    justifyContent: "right",
   },
   arrow: {
     alignSelf: "center",
