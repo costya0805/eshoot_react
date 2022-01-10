@@ -4,6 +4,8 @@ import { useAuth } from "../context/AuthContext";
 
 import Navbar from "../components/Navbar";
 
+import "./Registration.css"
+
 export default function Registration() {
   const [reg, setReg] = useState(() => {
     return {

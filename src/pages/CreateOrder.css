@@ -3,6 +3,7 @@
   padding: 24px 32px;
   padding-bottom: 32px;
   background-color: white;
+  border-radius: 5px;
 }
 
 .createOrder .photographCard {
@@ -16,6 +17,7 @@
   display: flex;
   justify-content: left;
   flex-direction: column;
+  border-radius: 5px;
 }
 
 .photographCard .photographInfo {
@@ -60,76 +62,91 @@
 
 .orderForm {
   width: 572px;
+  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 .writeAbout {
   margin-top: 12px;
 }
 
+.about .orderForm {
+  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
 .inputDates {
-    display: flex;
-    /* width: 515px; */
+  display: flex;
+  /* width: 515px; */
 }
 
-.inputDates input[type=date]{
-    width: 130px;
-    height: 16px;
-    font-family: 'Roboto'
+.inputDates input[type="date"] {
+  width: 125px;
+  height: 16px;
+  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+    padding-right: 0;
 }
 
-.inputDate{
-    margin-top: 12px;
-    display: flex;
+.inputDate {
+  margin-top: 12px;
+  display: flex;
 }
 
-.inputDate .time{
-    margin-left: 4px;
+.inputDate .time {
+  margin-left: 4px;
 }
 .inputDate .time span,
-.inputDate .time input{
-    margin-left: 8px;
+.inputDate .time input {
+  margin-left: 8px;
 }
-.inputDate span{
-    margin-top: 12px;
-}
-
-.inputDates input[type=time]{
-    width: 65px;
-    height: 16px;
-    font-family: 'Roboto'
+.inputDate span {
+  margin-top: 12px;
 }
 
-.inputDates .separator{
-    height: auto;
-    width: 1px;
-    background-color: #696969;
-    margin-left: 24px;
+.inputDates input[type="time"] {
+  width: 70px;
+  height: 16px;
+  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
-.inputDates .dedlineDate{
-    margin-left: 24px;
-}
-.inputLocation,.inputPrice{
-    margin-top: 24px;
-}
-input.inputLocation{
-    margin-top: 12px;
-    width: 264px;
-    height: 16px;
+.inputDates .separator {
+  height: auto;
+  width: 1px;
+  background-color: #696969;
+  margin-left: 24px;
 }
 
-input.inputPrice{
+.inputDates .dedlineDate {
+  margin-left: 24px;
+}
+.inputLocation,
+.inputPrice {
+  margin-top: 24px;
+}
+input.inputLocation {
+  margin-top: 12px;
+  width: 264px;
+  height: 16px;
+}
+
+input.inputPrice {
   width: 80px;
   height: 16px;
   margin-top: 12px;
 }
 
-.createOrder .actions{
-    align-self: flex-end;
-    margin-top: 32px;
+input.inputPrice:focus{
+  border: 2px solid #7d94df
 }
 
-button.sendOrder{
+.createOrder .actions {
+  align-self: flex-end;
+  margin-top: 32px;
+}
+
+button.sendOrder {
   border-radius: 5px;
   border: 0;
   color: white;
@@ -139,11 +156,11 @@ button.sendOrder{
   margin-left: 16px;
 }
 
-button.goBack{
+button.goBack {
   border-radius: 5px;
   border: 0;
-  color: #8A8282;
-  background: #DBDBDB;
+  color: #8a8282;
+  background: #dbdbdb;
   padding: 8px 12px;
   cursor: pointer;
   margin-left: 16px;

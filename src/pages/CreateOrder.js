@@ -63,6 +63,7 @@ function CreateOrder(params) {
   const [deadlineDate, setDeadlineDate] = useState();
   const [location, setLocation] = useState();
   const [price, setPrice] = useState();
+  console.log(localStringToNumber(price));
 
   const textareaRef = React.useRef(null);
   React.useLayoutEffect(() => {
@@ -72,6 +73,10 @@ function CreateOrder(params) {
       44
     )}px`;
   }, [about]);
+
+  function localStringToNumber(s) {
+    return Number(String(s).replace(/,+/g, '.').replace(/[^0-9.-]+/g, ""));
+  }
 
   return (
     <div className="createOrder">
@@ -100,6 +105,7 @@ function CreateOrder(params) {
                 <input
                   type="date"
                   value={shootingDate}
+                  min={new Date()}
                   style={shootingDate ? { border: "2px solid #7d94df" } : {}}
                   onChange={(event) => setShotingDate(event.target.value)}
                 />
@@ -134,6 +140,7 @@ function CreateOrder(params) {
                 <input
                   type="date"
                   value={deadlineDate}
+                  min={shootingDate}
                   style={deadlineDate ? { border: "2px solid #7d94df" } : {}}
                   onChange={(event) => setDeadlineDate(event.target.value)}
                 />
@@ -157,25 +164,38 @@ function CreateOrder(params) {
             <div className="writePrice">
               <input
                 className="inputPrice"
-                type="number"
-                value={price}
-                onChange={(event) => setPrice(event.target.value)}
+                type="currency"
+                onFocus={(event) => {
+                  event.target.value = price || "";
+                }}
+                onBlur={(event) => {
+                  let value = event.target.value;
+                  let options = {
+                    maximumFractionDigits: 2,
+                    currency: "RUB",
+                    style: "currency",
+                    currencyDisplay: "symbol",
+                  };
+                  event.target.value =
+                    value || value === 0
+                      ? localStringToNumber(value).toLocaleString(
+                          undefined,
+                          options
+                        )
+                      : "";
+                  setPrice(localStringToNumber(event.target.value));
+                }}
                 style={price ? { border: "2px solid #7d94df" } : {}}
               ></input>
-              <span style={{marginLeft:8}} className="h6">₽</span>
             </div>
           </div>
           <div className="actions">
-          <Link to='/search'> 
-            <button className="button goBack">
-              Отменить
-            </button>
-          </Link>
-          <Link to='/orders'> 
-            <button className="button sendOrder">
-              Отправить
-            </button>
-          </Link>
+            <Link to="/search">
+              <button className="button goBack">Отменить</button>
+            </Link>
+            <Link to="/orders">
+              <button className="button sendOrder">Отправить</button>
+            </Link>
           </div>
         </div>
         <Link
@@ -188,9 +208,14 @@ function CreateOrder(params) {
         >
           <span className="sup2">Выбранный фотограф</span>
           <div className="photographInfo">
-            <div className="avatar">{photgrapher.first_name[0]}{photgrapher.middle_name[0]}</div>
+            <div className="avatar">
+              {photgrapher.first_name[0]}
+              {photgrapher.middle_name[0]}
+            </div>
             <div className="photographInfoText">
-              <div className="fi">{photgrapher.middle_name} {photgrapher.first_name}</div>
+              <div className="fi">
+                {photgrapher.middle_name} {photgrapher.first_name}
+              </div>
               <div className="city caption">г. {photgrapher.city}</div>
             </div>
           </div>

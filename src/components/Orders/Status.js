@@ -12,7 +12,8 @@ const styles ={
         padding: "4px 8px",
         marginLeft: 16,
         height: 24-8,
-        borderRadius: 5
+        borderRadius: 5,
+        width:"fit-content"
     }
 }
 

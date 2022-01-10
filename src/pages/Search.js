@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import SideMenu from "../components/SideMenu";
 import SearchFilter from "../components/SearchFilter";
 import FotographCard from "../components/FototgraphCard";
+import { NavLink, Link } from "react-router-dom";
 
 import { useAuth } from "../context/AuthContext";
 

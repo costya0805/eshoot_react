@@ -1,0 +1,11 @@
+.order .pageBody{
+    width: 623px;
+    padding: 24px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.order .mainInfoOrder{
+    display: flex;
+    align-content: center;
+}
