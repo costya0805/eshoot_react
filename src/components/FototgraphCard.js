@@ -1,18 +1,21 @@
 import React from "react";
-import { NavLink , Link} from "react-router-dom";
-import "./FotographCard.css"
+import { NavLink, Link } from "react-router-dom";
+import "./FotographCard.css";
+
+import Avatar from "./Avatar/Avatar";
 
 function FotographCard(props) {
   return (
     <div className="photographCard" style={styles.body}>
       <div className="cardHead" style={styles.header}>
         <div className="mainInformation" style={styles.mainInformation}>
-          <div className="avatar" style={styles.avatar}>
-            <span className="h5">
-              {props.photographer.first_name[0]}
-              {props.photographer.middle_name[0]}
-            </span>
-          </div>
+          <Avatar
+            userName={props.photographer.first_name}
+            userSecondname={props.photographer.middle_name}
+            userID={props.photographer.id}
+            style={styles.avatar}
+            className="h5"
+          />
           <div
             className="mainTextInformation"
             style={styles.mainTextInformation}
@@ -32,7 +35,12 @@ function FotographCard(props) {
           </div>
         </div>
         <div className="cardActions">
-          <Link to={{pathname:'/create-order', state:{data:props.photographer.id}}}> 
+          <Link
+            to={{
+              pathname: "/create-order",
+              state: { data: props.photographer.id },
+            }}
+          >
             <button className="button" style={styles.action}>
               Предложить заказ
             </button>
@@ -68,7 +76,7 @@ const styles = {
     display: "flex",
   },
   avatar: {
-    backgroundColor: "#7D94DF",
+    // backgroundColor: "#7D94DF",
     width: 60,
     height: 60,
     display: "flex",
@@ -87,7 +95,7 @@ const styles = {
   action: {
     padding: "8px 12px",
     borderRadius: 5,
-    cursor: "pointer"
+    cursor: "pointer",
   },
 };
 export default FotographCard;

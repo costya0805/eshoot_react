@@ -6,6 +6,12 @@
   border-radius: 5px;
 }
 
+.createOrder .pageBody form{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
 .createOrder .photographCard {
   margin-left: 32px;
   background-color: white;
@@ -32,7 +38,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #7d94df;
   color: white;
 }
 .photographInfo .photographInfoText {
@@ -150,7 +155,7 @@ button.sendOrder {
   border-radius: 5px;
   border: 0;
   color: white;
-  background: linear-gradient(135deg, #7d94df, #273c83);
+  background: #7d94df;
   padding: 8px 12px;
   cursor: pointer;
   margin-left: 16px;

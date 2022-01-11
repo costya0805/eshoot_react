@@ -8,23 +8,8 @@ import { NavLink, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 function Search() {
-  const [photographers, setPhotographers] = useState([
-    {
-      first_name: "",
-      last_name: "",
-      middle_name: "",
-      email: "",
-      phone: "",
-      birthdate: "",
-      city: "",
-      role: "",
-      created_date: "",
-      id: "",
-      password: "",
-      experience: 0,
-      about: "",
-    },
-  ]);
+  const [photographers, setPhotographers] = useState();
+  const [loadingPhotographs, setLoadingPhotographs] = useState(true);
   const { currentUser } = useAuth();
   useEffect(() => {
     const fetchName = async () => {
@@ -34,23 +19,30 @@ function Search() {
             Authorization: "Bearer " + currentUser,
           },
         });
-        const text = await data.json();
+        const text = await data.json();       
         setPhotographers(text);
+        setLoadingPhotographs(false);
       } catch {}
     };
-    fetchName();
-  }, []);
+    if (currentUser) {
+      fetchName();
+    }
+  }, [currentUser]);
   return (
     <div>
       <Header pageName={{ pageName: "Поиск фотографов" }} />
       <div className="pageLayout">
         <SideMenu />
-        <div className="pageBody">
-          <SearchFilter />
-          {photographers.map((photographer) => (
-            <FotographCard photographer={photographer} />
-          ))}
-        </div>
+        {loadingPhotographs || !currentUser ? (
+          <></>
+        ) : (
+          <div className="pageBody">
+            <SearchFilter />
+            {photographers.map((photographer) => (
+              <FotographCard photographer={photographer} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

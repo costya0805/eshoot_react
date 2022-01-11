@@ -26,7 +26,6 @@ export function AuthProvider({ children }) {
     password: "",
   });
 
-  
   const login = async (email, password) => {
     let params = new URLSearchParams();
     params.append("username", email);
@@ -122,6 +121,7 @@ export function AuthProvider({ children }) {
     signup,
     logout,
     userInfo,
+    loading,
   };
 
   return (

@@ -5,6 +5,7 @@ import accountSvg from "../images/account.svg";
 import logOutSvg from "../images/logOut.svg";
 import settingsSvg from "../images/settings.svg";
 import { useAuth } from "../context/AuthContext";
+import Avatar from "./Avatar/Avatar";
 
 function TopProfile() {
   const [menu, setMenu] = useState(false);
@@ -15,10 +16,18 @@ function TopProfile() {
     <div>
       <div style={styles.block} onClick={() => setMenu(!menu)}>
         <span style={styles.secondName}>{currentUserInfo.first_name}</span>
-        <div className="avatar caption" style={styles.avatar}>
+        {/* <div className="avatar caption" style={styles.avatar}>
           {currentUserInfo.first_name[0]}
           {currentUserInfo.middle_name[0]}
-        </div>
+        </div> */}
+        {currentUserInfo && (
+          <Avatar
+            userName={currentUserInfo.first_name}
+            userSecondname={currentUserInfo.middle_name}
+            userID={currentUserInfo.id}
+            style={styles.avatar}
+          />
+        )}
         <img
           className={menu ? "open" : ""}
           style={styles.arrow}
@@ -37,12 +46,10 @@ function TopProfile() {
           <img src={accountSvg} style={{ height: 20, marginLeft: 9 }} alt="" />
           <span>Личный кабинет</span>
         </Link>
-        {/* <hr /> */}
         <NavLink style={styles.point} to="/settings">
           <img src={settingsSvg} style={{ height: 26, marginLeft: 5 }} alt="" />
           <span>Настройки</span>
         </NavLink>
-        {/* <hr /> */}
         <NavLink style={styles.point} to="/auth" onClick={() => logout()}>
           <img src={logOutSvg} style={{ height: 20, marginLeft: 9 }} alt="" />
           <span>Выход</span>
@@ -56,13 +63,12 @@ const styles = {
   avatar: {
     width: "32px",
     height: "32px",
-    backgroundColor: "#7D94DF",
     alignSelf: "center",
     marginLeft: "16px",
     color: "white",
     textAlign: "center",
     lineHeight: "32px",
-    textTransform: "uppercase",
+    fontSize: "12px"
   },
   block: {
     display: "flex",

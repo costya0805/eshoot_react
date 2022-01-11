@@ -1,5 +1,20 @@
 .new{
-    border: 1px solid #2EA624;
-    background-color: #B8FF9F;
-    color: #3C8A20;
+    background-color: #B1F4B9;
+    color: #269734;
+}
+.plan{
+    background-color: #FFE9B9;
+    color: #A67F2A;
+}
+.cansle{
+    background-color: #FFBDB9;
+    color: #A6302A;
+}
+.wait{
+    background-color: #B5C3EF;
+    color: #294191;
+}
+.done{
+    background-color: #B5C3EF;
+    color: #294191;
 }

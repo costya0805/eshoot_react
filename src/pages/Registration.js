@@ -4,12 +4,12 @@ import { useAuth } from "../context/AuthContext";
 
 import Navbar from "../components/Navbar";
 
-import "./Registration.css"
+import "./Registration.css";
 
 export default function Registration() {
   const [reg, setReg] = useState(() => {
     return {
-      role: false,
+      role: "Customer",
       userSurname: "",
       userName: "",
       userFathername: "",
@@ -21,16 +21,10 @@ export default function Registration() {
 
   const changeInputReg = (event) => {
     setReg((prev) => {
-      if (event.target.name === "role")
-        return {
-          ...prev,
-          [event.target.name]: event.target.checked,
-        };
-      else
-        return {
-          ...prev,
-          [event.target.name]: event.target.value,
-        };
+      return {
+        ...prev,
+        [event.target.name]: event.target.value,
+      };
     });
   };
 
@@ -48,7 +42,7 @@ export default function Registration() {
       }
       setLoading(true);
       const checkLogin = await signup(
-        reg.role ? "Photographer" : "Customer",
+        reg.role,
         reg.userName,
         reg.userSurname,
         reg.userFathername,
@@ -78,25 +72,39 @@ export default function Registration() {
           onSubmit={handleSubmit}
         >
           <ul style={{ padding: "0" }}>
-            <li style={{ display: "flex", justifyContent: "center" }}>
-              <span className="body1" style={{ alignSelf: "center" }}>
-                Пользователь
-              </span>
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  name="role"
-                  checked={reg.role}
-                  onChange={changeInputReg}
-                />
-                <span className="slider"></span>
-              </label>
-              <span className="body1" style={{ alignSelf: "center" }}>
-                Фотограф
-              </span>
+            <li>
+              <fieldset
+                className="selectRole"
+                value={reg.role}
+                onChange={changeInputReg}
+              >
+                <div
+                  className="form_radio_group-item"
+                  style={{ marginRight: 16 }}
+                >
+                  <input
+                    id="radio-1"
+                    type="radio"
+                    name="role"
+                    value="Customer"
+                    defaultChecked
+                  />
+                  <label htmlFor="radio-1">Заказчик</label>
+                </div>
+                <div className="form_radio_group-item">
+                  <input
+                    id="radio-2"
+                    type="radio"
+                    name="role"
+                    value="Photographer"
+                  />
+                  <label htmlFor="radio-2">Фотограф</label>
+                </div>
+              </fieldset>
             </li>
             <li>
               <input
+                className={reg.userSurname && "fill"}
                 type="userSurname"
                 id="userSurname"
                 name="userSurname"
@@ -107,6 +115,7 @@ export default function Registration() {
             </li>
             <li>
               <input
+                className={reg.userName && "fill"}
                 type="userName"
                 id="userName"
                 name="userName"
@@ -117,6 +126,7 @@ export default function Registration() {
             </li>
             <li>
               <input
+                className={reg.userFathername && "fill"}
                 type="userFathername"
                 id="userFathername"
                 name="userFathername"
@@ -127,6 +137,7 @@ export default function Registration() {
             </li>
             <li>
               <input
+                className={reg.email && "fill"}
                 type="email"
                 id="email"
                 name="email"
@@ -137,6 +148,7 @@ export default function Registration() {
             </li>
             <li>
               <input
+                className={reg.password && "fill"}
                 type="password"
                 id="password"
                 name="password"
@@ -147,6 +159,7 @@ export default function Registration() {
             </li>
             <li>
               <input
+                className={reg.password2 && "fill"}
                 type="password"
                 id="password2"
                 name="password2"

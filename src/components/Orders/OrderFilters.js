@@ -17,7 +17,7 @@ function OrderFilters() {
         <input type="text" className="filter" style={styles.input} placeholder="Поиск" />
         </div>
         <select type="text" className="filter" style={styles.select} placeholder="Статус">
-          <option key="0" value="" disabled selected style={{display:"none"}}>Один из вариантов</option>
+          <option key="0" value="" disabled selected style={{display:"none"}}>Статус</option>
           {status.map(status => <option key={status.id} value={status.value} >{status.text}</option>)}
         </select>
       </form>
@@ -40,7 +40,7 @@ const styles = {
   select:{
     border: "none",
     marginLeft: 16,
-    paddingLeft: 12,
+    paddingLeft: 16,
   },
   form:{
       display: "flex",

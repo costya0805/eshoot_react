@@ -1,0 +1,14 @@
+.orderString{
+    margin-top: 24px;
+}
+.orderString:first-child{
+    margin-top: 0px;
+}
+.orderString .title{
+    color: #8A8282;
+    margin: 0;
+}
+
+.orderString .text{
+    margin-top: 10px;
+}

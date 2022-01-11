@@ -40,6 +40,11 @@ function User(params) {
       fetchName();
     }
   }, [currentUserInfo]);
+
+  let user_id_arr = loading?[0]: user.id.split('')
+  let user_type = ""
+  user_id_arr.forEach(element => parseInt(element)?user_type += element:null);
+
   return (
     <div>
       <Header pageName={{ pageName: "Личный кабинет" }} />
@@ -51,7 +56,7 @@ function User(params) {
           ) : (
             <div className="userCard">
               <div className="topInfo">
-                <div className="avatarUser h4">
+                <div className={`type${user_type % 3} avatarUser h4`}>
                   {user.first_name[0]}
                   {user.middle_name[0]}
                 </div>

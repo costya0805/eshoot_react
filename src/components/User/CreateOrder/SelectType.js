@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import "./SelectType.css";
 
-function SelectType() {
+function SelectType({ selectType }) {
   const [type, setType] = useState("");
   const [podType, setPodType] = useState("");
 
   function chengeSelectType(event) {
     setType(event.target.value);
     setPodType("");
+    selectType(event.target.value, "");
   }
 
   function chengeSelectPodType(event) {
     setPodType(event.target.value);
+    selectType(type, event.target.value);
   }
 
   const types = [
@@ -39,7 +41,7 @@ function SelectType() {
           style={type ? { border: "2px solid #7d94df" } : { color: "#696969" }}
         >
           <option
-            key="100"
+            key="0"
             value=""
             selected
             disabled
@@ -48,7 +50,7 @@ function SelectType() {
             Выберите тип
           </option>
           {types.map((type) => (
-            <option key={type.id} value={type.type}>
+            <option key={type.id} value={type.type} style={{ color: "black" }}>
               {type.text}
             </option>
           ))}
@@ -71,7 +73,9 @@ function SelectType() {
           }
           onChange={chengeSelectPodType}
           value={podType}
-          style={podType ? { border: "2px solid #7d94df" } : {}}
+          style={
+            podType ? { border: "2px solid #7d94df" } : { color: "#696969" }
+          }
         >
           <option
             key="0"
@@ -86,12 +90,20 @@ function SelectType() {
           </option>
           {type === "fotoset"
             ? fotosetTypes.map((type) => (
-                <option key={type.id} value={type.type}>
+                <option
+                  key={type.id}
+                  value={type.type}
+                  style={{ color: "black" }}
+                >
                   {type.text}
                 </option>
               ))
             : reportTypes.map((type) => (
-                <option key={type.id} value={type.type}>
+                <option
+                  key={type.id}
+                  value={type.type}
+                  style={{ color: "black" }}
+                >
                   {type.text}
                 </option>
               ))}

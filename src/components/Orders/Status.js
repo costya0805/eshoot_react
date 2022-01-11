@@ -2,8 +2,15 @@ import React, { useState } from "react";
 import "./Status.css"
 
 function Status({ status }) {
+    const statusText = {
+        new: "Новый заказ",
+        plan: "Ожидается результат",
+        cansle: "Заказ отменен",
+        wait: "Ожидается результат",
+        done: "Заказ выполнен"
+    }
     return(
-        <div style={styles.body} className="new">Новый заказ</div>
+        <div style={styles.body} className={status}>{statusText[status]}</div>
     )
 }
 

@@ -19,8 +19,8 @@ li {
   margin-top: 20px;
 }
 input {
-  width: 224px;
-  height: 24px;
+  width: 222px;
+  height: 22px;
   border-radius: 5px;
   border: 1px solid #8a8282;
   font-size: 14px;
@@ -63,7 +63,7 @@ input[type="submit"] {
 }
 
 .button {
-  background: linear-gradient(135deg, #7d94df, #273c83);
+  background: #7d94df;
   color: white;
   font-weight: 500;
   letter-spacing: 1px;
@@ -156,6 +156,7 @@ img.open {
   margin-left: 48px;
   display: flex;
   flex-direction: column;
+  padding-bottom: 80px;
 }
 
 textarea {
@@ -165,4 +166,9 @@ textarea {
   padding: 8px;
   outline: none;
   -moz-appearance: none;
+}
+
+a{
+  text-decoration: none;
+  color: black;
 }
