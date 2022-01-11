@@ -13,3 +13,28 @@
 .order .bodyInfo{
     margin-top: 20px;
 }
+
+.order .bodyInfo .dates{
+    margin-top: 24px;
+    display: flex;
+}
+
+.order .bodyInfo .separator{
+    width: 1px;
+    background-color: #696969;
+    margin-left: 24px;
+}
+
+.order .photographCard{
+    margin-left: 32px;
+    background-color: white;
+    padding: 20px;
+    width: 152px;
+    height: fit-content;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    border-radius: 5px;
+}

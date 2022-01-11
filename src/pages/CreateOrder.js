@@ -288,10 +288,6 @@ function CreateOrder(params) {
           >
             <span className="sup2">Выбранный фотограф</span>
             <div className="photographInfo">
-              {/* <div className="avatar">
-                {photgrapher.first_name[0]}
-                {photgrapher.middle_name[0]}
-              </div> */}
               <Avatar
                 userName={photgrapher.first_name}
                 userSecondname={photgrapher.middle_name}

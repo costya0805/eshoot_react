@@ -41,9 +41,11 @@ function User(params) {
     }
   }, [currentUserInfo]);
 
-  let user_id_arr = loading?[0]: user.id.split('')
-  let user_type = ""
-  user_id_arr.forEach(element => parseInt(element)?user_type += element:null);
+  let user_id_arr = loading ? [0] : user.id.split("");
+  let user_type = "";
+  user_id_arr.forEach((element) =>
+    parseInt(element) ? (user_type += element) : null
+  );
 
   return (
     <div>
@@ -75,7 +77,8 @@ function User(params) {
                         state: { data: user.id },
                       }}
                       style={
-                        currentUser === params.location.state.id
+                        currentUser === params.location.state.id ||
+                        user.role !== "Photographer"
                           ? { display: "none" }
                           : {}
                       }
@@ -86,26 +89,53 @@ function User(params) {
                 </div>
               </div>
               <div className="aboutUser">
+                {user.about ? (
+                  <UserString
+                    title="О себе"
+                    text="Профессионально занимаюсь предметной, свадебной и детской фотосъемкой. Учту все Ваши пожелания и покажу что получается во время съемки, чтобы вы могли сразу подкорректировать нюансы и мы получили Ваши прекрасные фотографии."
+                  />
+                ) : (
+                  <></>
+                )}
+                {user.experience ? (
+                  <UserString title="Опыт работы" text={user.experience} />
+                ) : (
+                  <></>
+                )}
+                {user.birthdate ? (
+                  <UserString title="Возраст" text="34 года" />
+                ) : (
+                  <></>
+                )}
+                {user.contact_time ? (
+                  <UserString title="Время для связи" text="10:00-19:00" />
+                ) : (
+                  <></>
+                )}
+                <UserLine title="контакты" />
+                {user.email ? (
+                  <UserString title="E-mail" text="8 лет" />
+                ) : (
+                  <></>
+                )}
+                {user.email ? (
+                  <UserString title="Соцсети" text="inst: @ivan_photo" />
+                ) : (
+                  <></>
+                )}
+                {user.phone ? (
+                  <UserString title="Телефон" text="+7 (992) 100 54-48" />
+                ) : (
+                  <></>
+                )}
                 {user.role === "Photographer" ? (
                   <div>
-                    <UserString
-                      title="О себе"
-                      text="Профессионально занимаюсь предметной, свадебной и детской фотосъемкой. Учту все Ваши пожелания и покажу что получается во время съемки, чтобы вы могли сразу подкорректировать нюансы и мы получили Ваши прекрасные фотографии."
-                    />
-                    <UserString title="Опыт работы" text={user.experience} />
-                    <UserString title="Возраст" text="34 года" />
-                    <UserString title="Время для связи" text="10:00-19:00" />
-                    <UserLine title="контакты" />
-                    <UserString title="E-mail" text="8 лет" />
-                    <UserString title="Соцсети" text="inst: @ivan_photo" />
-                    <UserString title="Личный сайт" text="www.ivan_ivanov.ru" />
-                    <UserString title="Телефон" text="+7 (992) 100 54-48" />
                     <UserLine title="типы съемок" />
                     <UserTypePhoto title="Портрет" minPrice="1000" />
                     <UserTypePhoto title="Репортаж" minPrice="5000" />
                   </div>
                 ) : (
-                  <div></div>
+                  <></>
                 )}
               </div>
             </div>

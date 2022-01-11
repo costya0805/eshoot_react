@@ -1,3 +1,6 @@
 .photographCard:hover{
  box-shadow: 0 2px 10px rgba(39, 60, 131, 0.15)
 }
+.photographCard .cardActions a:hover button{
+    opacity: 0.7;
+}

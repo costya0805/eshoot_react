@@ -12,7 +12,7 @@
 }
 .avatarUser{
     width: 96px;
-    height: 120px;
+    height: 96px;
     color: white;
     border-radius: 5px;
     display: flex;
@@ -32,7 +32,7 @@
 }
 
 .mainInfoUser span{
-    margin-top: 4px;
+    margin-top: 2px;
 }
 
 .mainInfoUser span:first-child{
@@ -48,7 +48,7 @@
 }
 .aboutUser{
     margin-top: 12px;
-    margin-left: 12px;
+    /* margin-left: 12px; */
     display: flex;
     flex-direction: column;
 }

@@ -19,7 +19,7 @@ function Search() {
             Authorization: "Bearer " + currentUser,
           },
         });
-        const text = await data.json();       
+        const text = await data.json();
         setPhotographers(text);
         setLoadingPhotographs(false);
       } catch {}
@@ -39,7 +39,14 @@ function Search() {
           <div className="pageBody">
             <SearchFilter />
             {photographers.map((photographer) => (
-              <FotographCard photographer={photographer} />
+              <Link
+                to={{
+                  pathname: "/user",
+                  state: { id: photographer.id },
+                }}
+              >
+                <FotographCard photographer={photographer} />
+              </Link>
             ))}
           </div>
         )}

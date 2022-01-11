@@ -161,6 +161,10 @@ button.sendOrder {
   margin-left: 16px;
 }
 
+button.sendOrder:hover{
+  opacity: 0.7;
+}
+
 button.goBack {
   border-radius: 5px;
   border: 0;
@@ -169,4 +173,7 @@ button.goBack {
   padding: 8px 12px;
   cursor: pointer;
   margin-left: 16px;
+}
+button.goBack:hover{
+  opacity: 0.7;
 }
