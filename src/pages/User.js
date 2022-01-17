@@ -16,10 +16,12 @@ function User(params) {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    if (currentUser === params.location.state.id) {
+    if (currentUserInfo.id === params.location.state.id) {
+      // console.log("зашел я", currentUserInfo.id, params.location.state.id);
       setUser(currentUserInfo);
       setLoading(false);
     } else {
+      // console.log("зашел не я", currentUserInfo.id, params.location.state.id);
       const fetchName = async () => {
         try {
           const data = await fetch(
@@ -46,10 +48,27 @@ function User(params) {
   user_id_arr.forEach((element) =>
     parseInt(element) ? (user_type += element) : null
   );
-
+  // console.log(params)
   return (
     <div>
-      <Header pageName={{ pageName: "Личный кабинет" }} />
+      {user ? (
+        <Header
+          pageName={{
+            pageName:
+              currentUserInfo.id === params.location.state.id
+                ? "Моя страница"
+                : user.role === "Photographer"
+                ? "Страница фотографа"
+                : "Страница заказчика",
+          }}
+        />
+      ) : (
+        <Header
+          pageName={{
+            pageName: "Загрузка",
+          }}
+        />
+      )}
       <div className="pageLayout">
         <SideMenu />
         <div className="pageBody">
@@ -57,35 +76,40 @@ function User(params) {
             <div>Загрузка</div>
           ) : (
             <div className="userCard">
-              <div className="topInfo">
-                <div className={`type${user_type % 3} avatarUser h4`}>
-                  {user.first_name[0]}
-                  {user.middle_name[0]}
+              <div className="topCard">
+                <div className="topInfo">
+                  <div className={`type${user_type % 3} avatarUser h4`}>
+                    {user.first_name[0]}
+                    {user.middle_name[0]}
+                  </div>
+                  <div className="mainInfo">
+                    <div className="mainInfoUser">
+                      <span className="fio h6">
+                        {user.middle_name} {user.first_name} {user.last_name}
+                      </span>
+                      <span className="city">г. {user.city}</span>
+                      {user.role === "Photographer"?<span className="tags">свадьбы, дети, предметная</span>:<></>}
+                    </div>
+                    <div className="actions">
+                      <Link
+                        to={{
+                          pathname: "/create-order",
+                          state: { data: user.id },
+                        }}
+                        style={
+                          currentUserInfo.id !== params.location.state.id &&
+                          user.role === "Photographer"
+                            ? {}
+                            : { display: "none" }
+                        }
+                      >
+                        <button className="action">Предложить заказ</button>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-                <div className="mainInfo">
-                  <div className="mainInfoUser">
-                    <span className="fio h6">
-                      {user.middle_name} {user.first_name} {user.last_name}
-                    </span>
-                    <span className="city">г. {user.city}</span>
-                    <span className="tags">свадьбы, дети, предметная</span>
-                  </div>
-                  <div className="actions">
-                    <Link
-                      to={{
-                        pathname: "/create-order",
-                        state: { data: user.id },
-                      }}
-                      style={
-                        currentUser === params.location.state.id ||
-                        user.role !== "Photographer"
-                          ? { display: "none" }
-                          : {}
-                      }
-                    >
-                      <button className="action">Предложить заказ</button>
-                    </Link>
-                  </div>
+                <div className="userRole caption">
+                  {user.role === "Photographer" ? "Фотограф" : "Заказчик"}
                 </div>
               </div>
               <div className="aboutUser">
@@ -114,7 +138,7 @@ function User(params) {
                 )}
                 <UserLine title="контакты" />
                 {user.email ? (
-                  <UserString title="E-mail" text="8 лет" />
+                  <UserString title="E-mail" text={user.email} />
                 ) : (
                   <></>
                 )}

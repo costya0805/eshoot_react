@@ -2,19 +2,19 @@
     background-color: #B1F4B9;
     color: #269734;
 }
-.plan{
+.in_progress{
     background-color: #FFE9B9;
     color: #A67F2A;
 }
-.cansle{
+.canceled{
     background-color: #FFBDB9;
     color: #A6302A;
 }
-.wait{
+.waiting{
     background-color: #B5C3EF;
     color: #294191;
 }
-.done{
+.closed{
     background-color: #B5C3EF;
     color: #294191;
 }

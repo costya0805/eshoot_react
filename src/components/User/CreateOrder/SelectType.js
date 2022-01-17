@@ -32,7 +32,7 @@ function SelectType({ selectType }) {
 
   return (
     <div className="selectType">
-      <span className="title body1">Вид съемки</span>
+      <span className="title body1 required">Вид съемки</span>
       <div className="selectData">
         <select
           className="chooseType"

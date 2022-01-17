@@ -38,16 +38,18 @@ function Search() {
         ) : (
           <div className="pageBody">
             <SearchFilter />
-            {photographers.map((photographer) => (
-              <Link
-                to={{
-                  pathname: "/user",
-                  state: { id: photographer.id },
-                }}
-              >
-                <FotographCard photographer={photographer} />
-              </Link>
-            ))}
+            {photographers
+              .filter((photographer) => photographer.email !== currentUser)
+              .map((photographer) => (
+                <Link
+                  to={{
+                    pathname: "/user",
+                    state: { id: photographer.id },
+                  }}
+                >
+                  <FotographCard photographer={photographer} />
+                </Link>
+              ))}
           </div>
         )}
       </div>

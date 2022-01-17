@@ -16,10 +16,6 @@ function TopProfile() {
     <div>
       <div style={styles.block} onClick={() => setMenu(!menu)}>
         <span style={styles.secondName}>{currentUserInfo.first_name}</span>
-        {/* <div className="avatar caption" style={styles.avatar}>
-          {currentUserInfo.first_name[0]}
-          {currentUserInfo.middle_name[0]}
-        </div> */}
         {currentUserInfo && (
           <Avatar
             userName={currentUserInfo.first_name}
@@ -39,8 +35,9 @@ function TopProfile() {
         <Link
           style={styles.point}
           to={{
-            pathname: "/user",
-            state: { id: currentUser },
+            pathname: `/user/${currentUserInfo.id}`,
+            state: { id: currentUserInfo.id },
+            // hash: `user:${currentUser}`
           }}
         >
           <img src={accountSvg} style={{ height: 20, marginLeft: 9 }} alt="" />

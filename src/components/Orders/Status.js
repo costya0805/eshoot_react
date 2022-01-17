@@ -4,10 +4,10 @@ import "./Status.css"
 function Status({ status }) {
     const statusText = {
         new: "Новый заказ",
-        plan: "Ожидается результат",
-        cansle: "Заказ отменен",
-        wait: "Ожидается результат",
-        done: "Заказ выполнен"
+        in_progress: "Планируется съемка",
+        canceled: "Заказ отменен",
+        waiting: "Ожидается результат",
+        closed: "Заказ выполнен"
     }
     return(
         <div style={styles.body} className={status}>{statusText[status]}</div>

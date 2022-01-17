@@ -32,42 +32,103 @@ function CreateOrder(params) {
       } catch {}
     };
     fetchName();
-  }, []);
+  }, [currentUser, params.location.state.data]);
 
   const currentDate = new Date();
-  const currentMoth =
-    currentDate.getMonth() < 9
-      ? `0${currentDate.getMonth() + 1}`
-      : currentDate.getMonth() + 1;
-  const currentDay =
-    currentDate.getDate() < 10
-      ? `0${currentDate.getDate()}`
-      : currentDate.getDate();
 
   const [type, setType] = useState({
     type: "",
     podType: "",
   });
   const [about, setAbout] = useState();
+  const [needModel, setNeedModel] = useState(false);
+  const [model, setModel] = useState();
   const [shootingDate, setShotingDate] = useState(
-    `${currentDate.getFullYear()}-${currentMoth}-${currentDay}`
+    currentDate.toLocaleString().slice(0, 10).split(".").reverse().join("-")
   );
   const [shootingStartTime, setShootingStartTime] = useState();
   const [shootingEndTime, setShootingEndTime] = useState();
   const [deadlineDate, setDeadlineDate] = useState();
   const [location, setLocation] = useState();
   const [price, setPrice] = useState();
+  const [orientation, setOrientation] = useState({
+    albom: false,
+    book: false,
+  });
+  const [proportions, setProportions] = useState({
+    square: false,
+    twoTothree: false,
+    threeToFour: false,
+    fullFrame: false,
+  });
+  const [format, setFormat] = useState({
+    JPG: false,
+    PNG: false,
+    RAW: false,
+    TIFF: false,
+  });
+  const [postrocess, setPostprocess] = useState({
+    defects: false,
+    color: false,
+    backround: false,
+  });
+
+  const handleSubmitOrientation = (event) => {
+    const newOrientationState = {};
+    for (let key in orientation) {
+      key === event.target.name
+        ? (newOrientationState[key] = !orientation[key])
+        : (newOrientationState[key] = orientation[key]);
+    }
+    setOrientation(newOrientationState);
+  };
+
+  const handleSubmitProportions = (event) => {
+    const newProportionsState = {};
+    for (let key in proportions) {
+      key === event.target.name
+        ? (newProportionsState[key] = !proportions[key])
+        : (newProportionsState[key] = proportions[key]);
+    }
+    setProportions(newProportionsState);
+  };
+
+  const handleSubmitFormat = (event) => {
+    const newFormatState = {};
+    for (let key in format) {
+      key === event.target.name
+        ? (newFormatState[key] = !format[key])
+        : (newFormatState[key] = format[key]);
+    }
+    setFormat(newFormatState);
+  };
+
+  const handleSubmitPostprocess = (event) => {
+    const newPostrocessState = {};
+    for (let key in postrocess) {
+      key === event.target.name
+        ? (newPostrocessState[key] = !postrocess[key])
+        : (newPostrocessState[key] = postrocess[key]);
+    }
+    setPostprocess(newPostrocessState);
+  };
 
   const [error, setError] = useState();
 
   const textareaRef = React.useRef(null);
+  const textareaRefModel = React.useRef(null);
   React.useLayoutEffect(() => {
     textareaRef.current.style.height = "inherit";
+    textareaRefModel.current.style.height = "inherit";
     textareaRef.current.style.height = `${Math.max(
       textareaRef.current.scrollHeight - 16,
       44
     )}px`;
-  }, [about]);
+    textareaRefModel.current.style.height = `${Math.max(
+      textareaRefModel.current.scrollHeight - 16,
+      44
+    )}px`;
+  }, [about, model]);
 
   function localStringToNumber(s) {
     return Number(
@@ -86,19 +147,22 @@ function CreateOrder(params) {
   const typeToString = {
     fotoset: "Фотосессия",
     report: "Репортаж",
-    items: "Предметная",
-    content: "Контентная",
+    items: "предметная",
+    content: "контентная",
     other: "Другое",
-    portret: "Портретная",
+    portret: "портретная",
     loveStory: "Love story",
-    wedding: "Свадьба",
+    wedding: "свадьба",
   };
 
   async function handleSubmit(e) {
     const paramsInfo = {
       type: typeToString[type.type],
-      subtype: typeToString[type.podType],
-      description: about,
+      subtype:
+        type.type === "fotoset" || type.type === "report"
+          ? typeToString[type.podType]
+          : type.podType,
+      description: about? about: "Не указано",
       date: shootingDate,
       start_time: new Date(`August 19, 1975 ${shootingStartTime}`)
         .toISOString()
@@ -109,8 +173,8 @@ function CreateOrder(params) {
       address: location,
       price: price,
       deadline: new Date(deadlineDate).toISOString(),
+      models: model,
     };
-
     const postConfig = {
       method: "POST",
       headers: {
@@ -127,14 +191,12 @@ function CreateOrder(params) {
         `http://localhost:8080/users/${photgrapher.id}/orders`,
         postConfig
       );
-      console.log(postConfig);
       setLoadFotograph(false);
       const newOrder = await response.json();
-      console.log(newOrder);
       if (!response.ok) {
         return setError(newOrder.error);
       }
-      history.push("/search");
+      history.push("/orders");
     } catch (error) {
       setLoadFotograph(false);
       setError("Ошибка при создании заказа");
@@ -143,7 +205,6 @@ function CreateOrder(params) {
 
   return (
     <div className="createOrder">
-      {error && alert(error)}
       <Header pageName={{ pageName: "Составление заказа" }} />
       <div className="pageLayout">
         <SideMenu />
@@ -152,6 +213,7 @@ function CreateOrder(params) {
         ) : (
           <div className="pageBody">
             <form onSubmit={handleSubmit}>
+              {error && <div className="error">Ошибка</div>}
               <SelectType selectType={onSelectType} />
               <div className="formFill inputAbout">
                 <span className="body1">Описание</span>
@@ -168,12 +230,17 @@ function CreateOrder(params) {
               </div>
               <div className="formFill inputDates">
                 <div className="shootingDate">
-                  <span className="body1">Дата и время съемки</span>
+                  <span className="body1 required">Дата и время съемки</span>
                   <div className="inputDate">
                     <input
                       type="date"
                       value={shootingDate}
-                      min={new Date()}
+                      min={currentDate
+                        .toLocaleString()
+                        .slice(0, 10)
+                        .split(".")
+                        .reverse()
+                        .join("-")}
                       style={
                         shootingDate ? { border: "2px solid #7d94df" } : {}
                       }
@@ -209,7 +276,7 @@ function CreateOrder(params) {
                 </div>
                 <div className="separator" />
                 <div className="dedlineDate">
-                  <span className="body1">Дата сдачи съемки</span>
+                  <span className="body1 required">Дата сдачи съемки</span>
                   <div className="inputDate">
                     <input
                       type="date"
@@ -235,12 +302,236 @@ function CreateOrder(params) {
                   ></input>
                 </div>
               </div>
+              <div className="formFill inputModel">
+                <div className="titleModel">
+                  <span className="body1">Модели</span>
+                  <input
+                    type="checkbox"
+                    className="switcher_input"
+                    id="switcher"
+                    checked={needModel}
+                    onChange={() => setNeedModel(!needModel)}
+                  />
+                  <label className="switcher_label" htmlFor="switcher" />
+                </div>
+                <div className="writeModels">
+                  <div className="writeAbout">
+                    <textarea
+                      value={model}
+                      onChange={(e) => setModel(e.target.value)}
+                      style={
+                        !needModel
+                          ? { display: "none" }
+                          : model
+                          ? { border: "2px solid #7d94df" }
+                          : {}
+                      }
+                      className="model orderForm"
+                      ref={textareaRefModel}
+                      placeholder="Опишите, какие нужны модели"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div className="formFill inputTechnicalTask">
+                <span className="body1">Технические требования</span>
+                <div className="photoSize technicalTaskBlock">
+                  <div className="orientation checkList">
+                    <span>Ориентация</span>
+                    <div className="checkInput">
+                      <input
+                        type="checkbox"
+                        id="albom"
+                        name="albom"
+                        className="techickalCheck"
+                        checked={orientation.albom}
+                        onChange={handleSubmitOrientation}
+                      />
+                      <label
+                        id="albom"
+                        className="techickalLabel first"
+                        htmlFor="albom"
+                      >
+                        Альбомная
+                      </label>
+                      <input
+                        type="checkbox"
+                        id="book"
+                        name="book"
+                        className="techickalCheck"
+                        checked={orientation.book}
+                        onChange={handleSubmitOrientation}
+                      />
+                      <label
+                        id="book"
+                        className="techickalLabel"
+                        htmlFor="book"
+                      >
+                        Книжная
+                      </label>
+                    </div>
+                  </div>
+                  <div className="proportions checkList">
+                    <span>Пропорции</span>
+                    <div className="checkInput">
+                      <input
+                        type="checkbox"
+                        id="square"
+                        name="square"
+                        className="techickalCheck"
+                        checked={proportions.square}
+                        onChange={handleSubmitProportions}
+                      />
+                      <label
+                        id="square"
+                        className="techickalLabel first"
+                        htmlFor="square"
+                      >
+                        1x1
+                      </label>
+                      <input
+                        type="checkbox"
+                        id="twoTothree"
+                        name="twoTothree"
+                        className="techickalCheck"
+                        checked={proportions.twoTothree}
+                        onChange={handleSubmitProportions}
+                      />
+                      <label
+                        id="twoTothree"
+                        className="techickalLabel"
+                        htmlFor="twoTothree"
+                      >
+                        2x3
+                      </label>
+                      <input
+                        type="checkbox"
+                        id="threeToFour"
+                        name="threeToFour"
+                        className="techickalCheck"
+                        checked={proportions.threeToFour}
+                        onChange={handleSubmitProportions}
+                      />
+                      <label
+                        id="threeToFour"
+                        className="techickalLabel"
+                        htmlFor="threeToFour"
+                      >
+                        3x4
+                      </label>
+                      <input
+                        type="checkbox"
+                        id="fullFrame"
+                        name="fullFrame"
+                        className="techickalCheck"
+                        checked={proportions.fullFrame}
+                        onChange={handleSubmitProportions}
+                      />
+                      <label
+                        id="fullFrame"
+                        className="techickalLabel"
+                        htmlFor="fullFrame"
+                      >
+                        16x9
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div className="photoFormat technicalTaskBlock">
+                  <span>Формат</span>
+                  <div className="checkInput">
+                    <input
+                      type="checkbox"
+                      id="JPG"
+                      name="JPG"
+                      className="techickalCheck"
+                      checked={format.JPG}
+                      onChange={handleSubmitFormat}
+                    />
+                    <label className="techickalLabel first" htmlFor="JPG">
+                      JPG
+                    </label>
+                    <input
+                      type="checkbox"
+                      id="PNG"
+                      name="PNG"
+                      className="techickalCheck"
+                      checked={format.PNG}
+                      onChange={handleSubmitFormat}
+                    />
+                    <label className="techickalLabel" htmlFor="PNG">
+                      PNG
+                    </label>
+                    <input
+                      type="checkbox"
+                      id="RAW"
+                      name="RAW"
+                      className="techickalCheck"
+                      checked={format.RAW}
+                      onChange={handleSubmitFormat}
+                    />
+                    <label className="techickalLabel" htmlFor="RAW">
+                      RAW
+                    </label>
+                    <input
+                      type="checkbox"
+                      id="TIFF"
+                      name="TIFF"
+                      className="techickalCheck"
+                      checked={format.TIFF}
+                      onChange={handleSubmitFormat}
+                    />
+                    <label className="techickalLabel" htmlFor="TIFF">
+                      TIFF
+                    </label>
+                  </div>
+                </div>
+                <div className="photoFormat technicalTaskBlock">
+                  <span>Формат</span>
+                  <div className="checkInput">
+                    <input
+                      type="checkbox"
+                      id="defects"
+                      name="defects"
+                      className="techickalCheck"
+                      checked={postrocess.defects}
+                      onChange={handleSubmitPostprocess}
+                    />
+                    <label className="techickalLabel first" htmlFor="defects">
+                      Удаление дефектов
+                    </label>
+                    <input
+                      type="checkbox"
+                      id="color"
+                      name="color"
+                      className="techickalCheck"
+                      checked={postrocess.color}
+                      onChange={handleSubmitPostprocess}
+                    />
+                    <label className="techickalLabel" htmlFor="color">
+                      Цветокоррекция
+                    </label>
+                    <input
+                      type="checkbox"
+                      id="backround"
+                      name="backround"
+                      className="techickalCheck"
+                      checked={postrocess.backround}
+                      onChange={handleSubmitPostprocess}
+                    />
+                    <label className="techickalLabel" htmlFor="backround">
+                      Удаление фона
+                    </label>
+                  </div>
+                </div>
+              </div>
               <div className="formFill inputPrice">
-                <span className="body1">Цена</span>
+                <span className="body1 required">Цена</span>
                 <div className="writePrice">
                   <input
                     className="inputPrice"
                     type="currency"
+                    placeholder="Укажите цену в рублях"
                     onFocus={(event) => {
                       event.target.value = price || "";
                     }}
@@ -269,7 +560,19 @@ function CreateOrder(params) {
                 <Link to="/search">
                   <button className="button goBack">Отменить</button>
                 </Link>
-                <button disabled={loadFotograph} className="button sendOrder">
+                <button
+                  disabled={
+                    loadFotograph ||
+                    !type.type ||
+                    !type.podType ||
+                    !shootingDate ||
+                    !shootingStartTime ||
+                    !shootingEndTime ||
+                    !price ||
+                    !deadlineDate
+                  }
+                  className="button sendOrder"
+                >
                   Отправить
                 </button>
               </div>
@@ -281,7 +584,7 @@ function CreateOrder(params) {
         ) : (
           <Link
             to={{
-              pathname: "/user",
+              pathname: `/user/${photgrapher.id}`,
               state: { id: photgrapher.id },
             }}
             className="photographCard"
@@ -298,7 +601,7 @@ function CreateOrder(params) {
                 <div className="fi">
                   {photgrapher.middle_name} {photgrapher.first_name}
                 </div>
-                <div className="city caption">г. {photgrapher.city}</div>
+                {/* <div className="city caption">г. {photgrapher.city}</div> */}
               </div>
             </div>
           </Link>

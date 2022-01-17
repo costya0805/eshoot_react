@@ -16,7 +16,7 @@ function Auth() {
   const history = useHistory();
 
   const changeInputAuth = (event) => {
-    setAuth((prev) => {
+    setAuth(prev => {
       return {
         ...prev,
         [event.target.name]: event.target.value,

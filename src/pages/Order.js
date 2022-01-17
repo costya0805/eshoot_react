@@ -17,10 +17,34 @@ function Order(params) {
   const [loadingSecondUser, setLoadingaSecondUser] = useState(true);
   const [secondUser, setSecondUser] = useState(true);
   const [secondUserRole, setSecondUserRole] = useState();
+  const [needRefresh, setNeedRefresh] = useState(false)
 
   const { currentUser, currentUserInfo, loading } = useAuth();
 
+  const [error, setError] = useState();
+
   const order_id = params.location.state.order_id;
+
+  const actions = {
+    Customer: {
+      new: [{ canceled: "Отклонить" }],
+      in_progress: [{ canceled: "Отклонить" }],
+    },
+    Photographer: {
+      new: [
+        { canceled: "Отклонить" },
+        { in_progress: "Принять" },
+      ],
+      in_progress: [
+        { canceled: "Отклонить" },
+        { waiting: "Съемка проведена" },
+      ],
+      waiting: [
+        { canceled: "Отклонить" },
+        { closed: "Фотографии сданы" },
+      ],
+    },
+  };
 
   useEffect(() => {
     const fetchName = async () => {
@@ -37,13 +61,14 @@ function Order(params) {
           const text = await data.json();
           setOrder(text);
           setLoadingOrder(false);
+          setNeedRefresh(false);
         }
       } catch {}
     };
     if (currentUserInfo.id) {
       fetchName();
     }
-  }, [currentUserInfo]);
+  }, [currentUserInfo, needRefresh]);
 
   useEffect(() => {
     const fetchSecondUser = async () => {
@@ -77,6 +102,30 @@ function Order(params) {
     }
   }, [order]);
 
+  async function changeStatus(e) {
+    const newStatus = { status: e.target.value };
+    const postConfig = {
+      method: "PATCH",
+      headers: {
+        Authorization: "Bearer " + currentUser,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newStatus),
+    };
+    e.preventDefault();
+    try {
+      setError("");
+      const response = await fetch(
+        `http://localhost:8080/users/${currentUserInfo.id}/orders/${order_id}`,
+        postConfig
+      );
+      setNeedRefresh(true)
+      if (response.ok) {
+        setLoadingOrder(false);
+      }
+    } catch {}
+  }
+
   return (
     <div className="order">
       <Header pageName={{ pageName: "Заказ" }} />
@@ -88,7 +137,7 @@ function Order(params) {
           <div className="pageBody">
             <div className="mainInfoOrder">
               <span className="h6 name">
-                {order.type} {order.subtype} от{" "}
+                {order.type} - {order.subtype} от{" "}
                 {new Date(order.created_date).toLocaleString().slice(0, 10)}
               </span>
               <Status status={order.status} />
@@ -130,7 +179,28 @@ function Order(params) {
               ) : (
                 <></>
               )}
+              {order.models ? (
+                <OrderString title="Требования к моделям" text={order.models} />
+              ) : (
+                <></>
+              )}
+              {order.price ? (
+                <OrderString title="Цена" text={order.price + " ₽"} />
+              ) : (
+                <></>
+              )}
             </div>
+            {actions[currentUserInfo.role][order.status] || needRefresh ? (
+              <div className="actions">
+                {actions[currentUserInfo.role][order.status].map((action) => (
+                  <button className="changeStatus" onClick={changeStatus} value={Object.keys(action)[0]}>
+                    {action[Object.keys(action)[0]]}
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         )}
         {loadingSecondUser ? (
@@ -143,7 +213,7 @@ function Order(params) {
             }}
             className="photographCard"
           >
-            <span className="sup2" style={{ textAlign: "center" }}>
+            <span className="sup2">
               {secondUserRole === "photographers" ? "Фотограф" : "Заказчик"}
             </span>
             <div className="photographInfo">
@@ -157,7 +227,7 @@ function Order(params) {
                 <div className="fi">
                   {secondUser.middle_name} {secondUser.first_name}
                 </div>
-                <div className="city caption">г. {secondUser.city}</div>
+                {/* <div className="city caption">г. {secondUser.city}</div> */}
               </div>
             </div>
           </Link>

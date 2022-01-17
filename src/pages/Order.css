@@ -1,40 +1,61 @@
-.order .pageBody{
-    width: 623px;
-    padding: 24px;
-    background-color: white;
-    border-radius: 5px;
+.order .pageBody {
+  width: 623px;
+  padding: 24px;
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 24px;
 }
 
-.order .mainInfoOrder{
-    display: flex;
-    align-content: center;
+.order .mainInfoOrder {
+  display: flex;
+  align-content: center;
 }
 
-.order .bodyInfo{
-    margin-top: 20px;
+.order .actions {
+  align-self: flex-end;
+  margin-top: 20px;
 }
 
-.order .bodyInfo .dates{
-    margin-top: 24px;
-    display: flex;
+.order .changeStatus {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  background-color: #7d94df;
+  border-radius: 5px;
+  border: none;
+  padding: 8px 16px;
+  color: white;
+  cursor: pointer;
+  margin-left: 18px;
+}
+.order .changeStatus:hover {
+  opacity: 0.7;
 }
 
-.order .bodyInfo .separator{
-    width: 1px;
-    background-color: #696969;
-    margin-left: 24px;
+.order .bodyInfo {
+  margin-top: 20px;
 }
 
-.order .photographCard{
-    margin-left: 32px;
-    background-color: white;
-    padding: 20px;
-    width: 152px;
-    height: fit-content;
-    text-decoration: none;
-    color: black;
-    display: flex;
-    justify-content: left;
-    flex-direction: column;
-    border-radius: 5px;
+.order .bodyInfo .dates {
+  margin-top: 24px;
+  display: flex;
+}
+
+.order .bodyInfo .separator {
+  width: 1px;
+  background-color: #696969;
+  margin-left: 24px;
+}
+
+.order .photographCard {
+  margin-left: 32px;
+  background-color: white;
+  padding: 20px;
+  width: 152px;
+  height: fit-content;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  border-radius: 5px;
 }

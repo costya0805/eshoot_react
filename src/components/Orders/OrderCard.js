@@ -57,7 +57,7 @@ function OrderCard({ order, currentUserRole }) {
                 {otherMen.first_name} {otherMen.middle_name}
               </span>
               <span style={{ marginTop: 8 }}>
-                {order.type}, {order.subtype}
+                {order.type} - {order.subtype}
               </span>
             </div>
             <Status status={order.status}/>
@@ -72,7 +72,7 @@ function OrderCard({ order, currentUserRole }) {
           {order.start_time.slice(0, 5)}-{order.end_time.slice(0, 5)}
         </span>
         <span style={styles.dopInfoSpan}>
-          <strong>Срок сдачи:</strong>{" "}
+          <strong>Дата сдачи:</strong>{" "}
           {new Date(order.deadline).toLocaleString().slice(0, 10)}
         </span>
         {order.address && (

@@ -8,7 +8,7 @@ import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
 function Orders() {
-  const [orders, setOrders] = useState();
+  const [orders, setOrders] = useState([]);
   const [loadingOrders, setLoadingOrders] = useState(true);
 
   const { currentUser, currentUserInfo, loading } = useAuth();
@@ -36,25 +36,33 @@ function Orders() {
     }
   }, [currentUserInfo]);
 
+  // !loadingOrders && console.log(orders.reverse().reverse());
+
   return (
     <div>
       <Header pageName={{ pageName: "Заказы" }} />
       <div className="pageLayout">
+        {/* {console.log(orders.sort((order) => order.created_date).reverse())} */}
         <SideMenu />
         <div className="pageBody">
           <OrderFilters />
           {loadingOrders || loading ? (
             <></>
           ) : (
-            orders.map((order) => (
-              <Link to={{ pathname: "/order", state: { order_id: order.id } }}>
-                <OrderCard
-                  order={order}
-                  currentUserRole={currentUserInfo.role}
-                  key={order.id}
-                />
-              </Link>
-            ))
+            orders
+              .filter((order) => order.id !== 0)
+              .reverse()
+              .map((order) => (
+                <Link
+                  to={{ pathname: "/order", state: { order_id: order.id } }}
+                >
+                  <OrderCard
+                    order={order}
+                    currentUserRole={currentUserInfo.role}
+                    key={order.id}
+                  />
+                </Link>
+              ))
           )}
         </div>
       </div>
