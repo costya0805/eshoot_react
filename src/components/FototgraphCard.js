@@ -11,7 +11,7 @@ function FotographCard(props) {
         <div className="mainInformation" style={styles.mainInformation}>
           <Avatar
             userName={props.photographer.first_name}
-            userSecondname={props.photographer.middle_name}
+            userSecondname={props.photographer.last_name}
             userID={props.photographer.id}
             style={styles.avatar}
             className="h5"
@@ -21,7 +21,7 @@ function FotographCard(props) {
             style={styles.mainTextInformation}
           >
             <span className="h6 fi">
-              {props.photographer.first_name} {props.photographer.middle_name}
+              {props.photographer.first_name} {props.photographer.last_name}
             </span>
             <span className="city" style={{ color: "#2E2E2E", marginTop: 4 }}>
               г. {props.photographer.city}

@@ -155,6 +155,30 @@ function CreateOrder(params) {
     wedding: "свадьба",
   };
 
+  const techickalTaskToString = {
+    albom: "Альбомная",
+    book: "Книжная",
+    square: "1x1",
+    twoTothree: "2x3",
+    threeToFour: "3x4",
+    fullFrame: "16x9",
+    JPG: "JPG",
+    PNG: "PNG",
+    RAW: "RAW",
+    TIFF: "TIFF",
+    defects: "Удаление дефектов",
+    color: "Цветокоррекция",
+    backround: "Удаление фона",
+  }
+
+  function objectToString(object) {
+    let selectedObjects = [];
+    for (let key in object) {
+      if (object[key]) selectedObjects.push(techickalTaskToString[key]);
+    }
+    return selectedObjects.join(", ");
+  }
+
   async function handleSubmit(e) {
     const paramsInfo = {
       type: typeToString[type.type],
@@ -162,7 +186,7 @@ function CreateOrder(params) {
         type.type === "fotoset" || type.type === "report"
           ? typeToString[type.podType]
           : type.podType,
-      description: about? about: "Не указано",
+      description: about ? about : "Не указано",
       date: shootingDate,
       start_time: new Date(`August 19, 1975 ${shootingStartTime}`)
         .toISOString()
@@ -174,6 +198,10 @@ function CreateOrder(params) {
       price: price,
       deadline: new Date(deadlineDate).toISOString(),
       models: model,
+      orientation: objectToString(orientation),
+      proportions: objectToString(proportions),
+      file_format: objectToString(format),
+      post_processing: objectToString(postrocess),
     };
     const postConfig = {
       method: "POST",
@@ -487,7 +515,7 @@ function CreateOrder(params) {
                   </div>
                 </div>
                 <div className="photoFormat technicalTaskBlock">
-                  <span>Формат</span>
+                  <span>Постобработка</span>
                   <div className="checkInput">
                     <input
                       type="checkbox"
@@ -593,13 +621,13 @@ function CreateOrder(params) {
             <div className="photographInfo">
               <Avatar
                 userName={photgrapher.first_name}
-                userSecondname={photgrapher.middle_name}
+                userSecondname={photgrapher.last_name}
                 userID={photgrapher.id}
                 style={{}}
               />
               <div className="photographInfoText">
                 <div className="fi">
-                  {photgrapher.middle_name} {photgrapher.first_name}
+                  {photgrapher.last_name} {photgrapher.first_name}
                 </div>
                 {/* <div className="city caption">г. {photgrapher.city}</div> */}
               </div>

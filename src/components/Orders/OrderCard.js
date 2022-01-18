@@ -47,14 +47,14 @@ function OrderCard({ order, currentUserRole }) {
           <div style={styles.headInfo}>
             <Avatar
             userName={otherMen.first_name}
-            userSecondname={otherMen.middle_name}
+            userSecondname={otherMen.last_name}
             userID={otherMen.id}
             style={styles.ava}
             className="h6"
           />
             <div style={styles.mainInfo}>
               <span className="h6">
-                {otherMen.first_name} {otherMen.middle_name}
+                {otherMen.first_name} {otherMen.last_name}
               </span>
               <span style={{ marginTop: 8 }}>
                 {order.type} - {order.subtype}

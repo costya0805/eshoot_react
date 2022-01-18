@@ -17,11 +17,11 @@ function Order(params) {
   const [loadingSecondUser, setLoadingaSecondUser] = useState(true);
   const [secondUser, setSecondUser] = useState(true);
   const [secondUserRole, setSecondUserRole] = useState();
-  const [needRefresh, setNeedRefresh] = useState(false)
+  const [needRefresh, setNeedRefresh] = useState(false);
 
   const { currentUser, currentUserInfo, loading } = useAuth();
 
-  const [error, setError] = useState();
+  const [, setError] = useState();
 
   const order_id = params.location.state.order_id;
 
@@ -31,18 +31,9 @@ function Order(params) {
       in_progress: [{ canceled: "Отклонить" }],
     },
     Photographer: {
-      new: [
-        { canceled: "Отклонить" },
-        { in_progress: "Принять" },
-      ],
-      in_progress: [
-        { canceled: "Отклонить" },
-        { waiting: "Съемка проведена" },
-      ],
-      waiting: [
-        { canceled: "Отклонить" },
-        { closed: "Фотографии сданы" },
-      ],
+      new: [{ canceled: "Отклонить" }, { in_progress: "Принять" }],
+      in_progress: [{ canceled: "Отклонить" }, { waiting: "Съемка проведена" }],
+      waiting: [{ canceled: "Отклонить" }, { closed: "Фотографии сданы" }],
     },
   };
 
@@ -68,7 +59,7 @@ function Order(params) {
     if (currentUserInfo.id) {
       fetchName();
     }
-  }, [currentUserInfo, needRefresh]);
+  }, [currentUser, currentUserInfo, needRefresh, order_id]);
 
   useEffect(() => {
     const fetchSecondUser = async () => {
@@ -100,7 +91,7 @@ function Order(params) {
     if (order) {
       fetchSecondUser();
     }
-  }, [order]);
+  }, [currentUser, currentUserInfo.id, order]);
 
   async function changeStatus(e) {
     const newStatus = { status: e.target.value };
@@ -119,7 +110,7 @@ function Order(params) {
         `http://localhost:8080/users/${currentUserInfo.id}/orders/${order_id}`,
         postConfig
       );
-      setNeedRefresh(true)
+      setNeedRefresh(true);
       if (response.ok) {
         setLoadingOrder(false);
       }
@@ -189,11 +180,35 @@ function Order(params) {
               ) : (
                 <></>
               )}
+              {order.orientation ? (
+                <OrderString title="Ориентация" text={order.orientation} />
+              ) : (
+                <></>
+              )}
+              {order.proportions ? (
+                <OrderString title="Пропорции" text={order.proportions} />
+              ) : (
+                <></>
+              )}
+              {order.file_format ? (
+                <OrderString title="Формат" text={order.file_format} />
+              ) : (
+                <></>
+              )}
+              {order.post_processing ? (
+                <OrderString title="Постобработка" text={order.post_processing} />
+              ) : (
+                <></>
+              )}
             </div>
-            {actions[currentUserInfo.role][order.status] || needRefresh ? (
+            {actions[currentUserInfo.role][order.status] && !needRefresh ? (
               <div className="actions">
                 {actions[currentUserInfo.role][order.status].map((action) => (
-                  <button className="changeStatus" onClick={changeStatus} value={Object.keys(action)[0]}>
+                  <button
+                    className="changeStatus"
+                    onClick={changeStatus}
+                    value={Object.keys(action)[0]}
+                  >
                     {action[Object.keys(action)[0]]}
                   </button>
                 ))}
@@ -219,13 +234,13 @@ function Order(params) {
             <div className="photographInfo">
               <Avatar
                 userName={secondUser.first_name}
-                userSecondname={secondUser.middle_name}
+                userSecondname={secondUser.last_name}
                 userID={secondUser.id}
                 style={{}}
               />
               <div className="photographInfoText">
                 <div className="fi">
-                  {secondUser.middle_name} {secondUser.first_name}
+                  {secondUser.last_name} {secondUser.first_name}
                 </div>
                 {/* <div className="city caption">г. {secondUser.city}</div> */}
               </div>

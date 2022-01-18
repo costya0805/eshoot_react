@@ -44,8 +44,8 @@ export default function Registration() {
       const checkLogin = await signup(
         reg.role,
         reg.userName,
-        reg.userSurname,
         reg.userFathername,
+        reg.userSurname,
         reg.email,
         reg.password
       );

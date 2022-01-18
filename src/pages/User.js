@@ -17,11 +17,9 @@ function User(params) {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (currentUserInfo.id === params.location.state.id) {
-      // console.log("зашел я", currentUserInfo.id, params.location.state.id);
       setUser(currentUserInfo);
       setLoading(false);
     } else {
-      // console.log("зашел не я", currentUserInfo.id, params.location.state.id);
       const fetchName = async () => {
         try {
           const data = await fetch(
@@ -41,14 +39,13 @@ function User(params) {
       };
       fetchName();
     }
-  }, [currentUserInfo]);
+  }, [currentUser, currentUserInfo, params]);
 
   let user_id_arr = loading ? [0] : user.id.split("");
   let user_type = "";
   user_id_arr.forEach((element) =>
     parseInt(element) ? (user_type += element) : null
   );
-  // console.log(params)
   return (
     <div>
       {user ? (
@@ -80,12 +77,12 @@ function User(params) {
                 <div className="topInfo">
                   <div className={`type${user_type % 3} avatarUser h4`}>
                     {user.first_name[0]}
-                    {user.middle_name[0]}
+                    {user.last_name[0]}
                   </div>
                   <div className="mainInfo">
                     <div className="mainInfoUser">
                       <span className="fio h6">
-                        {user.middle_name} {user.first_name} {user.last_name}
+                        {user.last_name} {user.first_name} {user.middle_name}
                       </span>
                       <span className="city">г. {user.city}</span>
                       {user.role === "Photographer"?<span className="tags">свадьбы, дети, предметная</span>:<></>}
