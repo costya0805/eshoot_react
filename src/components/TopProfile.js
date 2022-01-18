@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import arrowSvg from "../images/arrow.svg";
 import accountSvg from "../images/account.svg";
@@ -10,7 +10,7 @@ import Avatar from "./Avatar/Avatar";
 function TopProfile() {
   const [menu, setMenu] = useState(false);
 
-  const { currentUser, currentUserInfo, logout } = useAuth();
+  const { currentUserInfo, logout } = useAuth();
 
   return (
     <div>
@@ -19,7 +19,7 @@ function TopProfile() {
         {currentUserInfo && (
           <Avatar
             userName={currentUserInfo.first_name}
-            userSecondname={currentUserInfo.middle_name}
+            userSecondname={currentUserInfo.last_name}
             userID={currentUserInfo.id}
             style={styles.avatar}
           />
