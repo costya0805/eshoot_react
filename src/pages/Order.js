@@ -18,6 +18,8 @@ function Order(params) {
   const [secondUser, setSecondUser] = useState(true);
   const [secondUserRole, setSecondUserRole] = useState();
   const [needRefresh, setNeedRefresh] = useState(false);
+  const [canceledText, setCanceledText] = useState();
+  const [showModal, setShowModal] = useState(false);
 
   const { currentUser, currentUserInfo, loading } = useAuth();
 
@@ -31,9 +33,12 @@ function Order(params) {
       in_progress: [{ canceled: "Отклонить" }],
     },
     Photographer: {
-      new: [{ canceled: "Отклонить" }, { in_progress: "Принять" }],
-      in_progress: [{ canceled: "Отклонить" }, { waiting: "Съемка проведена" }],
-      waiting: [{ canceled: "Отклонить" }, { closed: "Фотографии сданы" }],
+      new: [{ canceled: "Отказаться" }, { in_progress: "Принять" }],
+      in_progress: [
+        { canceled: "Отказаться" },
+        { waiting: "Съемка проведена" },
+      ],
+      waiting: [{ canceled: "Отказаться" }, { closed: "Фотографии сданы" }],
     },
   };
 
@@ -94,7 +99,10 @@ function Order(params) {
   }, [currentUser, currentUserInfo.id, order]);
 
   async function changeStatus(e) {
-    const newStatus = { status: e.target.value };
+    setShowModal(false);
+    const newStatus = canceledText
+      ? { status: e.target.value, reason_for_rejection: canceledText }
+      : { status: e.target.value };
     const postConfig = {
       method: "PATCH",
       headers: {
@@ -119,6 +127,50 @@ function Order(params) {
 
   return (
     <div className="order">
+      {showModal ? (
+        <div
+          className="modal"
+          onClick={() => setShowModal(false)}
+          style={{ cursor: "pointer" }}
+        >
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+            style={{ cursor: "default" }}
+          >
+            <div className="modal-header">
+              <span className="h6">Отказ от заказа</span>
+            </div>
+            <div className="modal-body">
+              <span>Укажите причину</span>
+              <textarea
+                value={canceledText}
+                onChange={(e) => setCanceledText(e.target.value)}
+              />
+            </div>
+            <div className="modal-footer">
+              <button
+                className="button goBack"
+                onClick={() => {
+                  setShowModal(false);
+                  setCanceledText();
+                }}
+              >
+                Отмена
+              </button>
+              <button
+                className="button changeStatus"
+                value="canceled"
+                onClick={changeStatus}
+              >
+                Отказаться
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
       <Header pageName={{ pageName: "Заказ" }} />
       <div className="pageLayout">
         <SideMenu />
@@ -134,6 +186,14 @@ function Order(params) {
               <Status status={order.status} />
             </div>
             <div className="bodyInfo">
+              {order.status === "canceled" && order.reason_for_rejection ? (
+                <div className="orderString reason_for_rejection">
+                  <div className="title body1">Причина отказа</div>
+                  <div className="text">{order.reason_for_rejection}</div>
+                </div>
+              ) : (
+                <></>
+              )}
               {order.description ? (
                 <OrderString title="Описание" text={order.description} />
               ) : (
@@ -196,7 +256,10 @@ function Order(params) {
                 <></>
               )}
               {order.post_processing ? (
-                <OrderString title="Постобработка" text={order.post_processing} />
+                <OrderString
+                  title="Постобработка"
+                  text={order.post_processing}
+                />
               ) : (
                 <></>
               )}
@@ -206,7 +269,12 @@ function Order(params) {
                 {actions[currentUserInfo.role][order.status].map((action) => (
                   <button
                     className="changeStatus"
-                    onClick={changeStatus}
+                    onClick={
+                      currentUserInfo.role === "Photographer" &&
+                      Object.keys(action)[0] === "canceled"
+                        ? () => setShowModal(true)
+                        : changeStatus
+                    }
                     value={Object.keys(action)[0]}
                   >
                     {action[Object.keys(action)[0]]}
@@ -228,7 +296,7 @@ function Order(params) {
             }}
             className="photographCard"
           >
-            <span className="sup2">
+            <span className="sup2" style={{ textAlign: "center" }}>
               {secondUserRole === "photographers" ? "Фотограф" : "Заказчик"}
             </span>
             <div className="photographInfo">

@@ -4,6 +4,8 @@ import SideMenu from "../components/SideMenu";
 import OrderFilters from "../components/Orders/OrderFilters";
 import OrderCard from "../components/Orders/OrderCard";
 
+import "./Orders.css";
+
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
@@ -34,15 +36,20 @@ function Orders() {
     if (currentUserInfo.id) {
       fetchName();
     }
-  }, [currentUserInfo]);
+  }, [currentUser, currentUserInfo]);
 
-  // !loadingOrders && console.log(orders.reverse().reverse());
+  const new_orders = orders.filter((order) => order.status === "new");
+  const in_progress_orders = orders.filter(
+    (order) => order.status === "in_progress"
+  );
+  const canceled_orders = orders.filter((order) => order.status === "canceled");
+  const waiting_orders = orders.filter((order) => order.status === "waiting");
+  const closed_orders = orders.filter((order) => order.status === "closed");
 
   return (
     <div>
       <Header pageName={{ pageName: "Заказы" }} />
       <div className="pageLayout">
-        {/* {console.log(orders.sort((order) => order.created_date).reverse())} */}
         <SideMenu />
         <div className="pageBody">
           <OrderFilters />
@@ -55,16 +62,57 @@ function Orders() {
               .map((order) => (
                 <Link
                   to={{ pathname: "/order", state: { order_id: order.id } }}
+                  key={order.id}
                 >
                   <OrderCard
                     order={order}
                     currentUserRole={currentUserInfo.role}
-                    key={order.id}
                   />
                 </Link>
               ))
           )}
         </div>
+        {orders.length > 0 && currentUserInfo.role === "Photographer" && (
+          <div className="stats">
+            <strong>Статистика</strong>
+            <div className="stats_status">
+              {new_orders.length > 0 && (
+                <div className="stats_num">
+                  <div className="number new">{new_orders.length}</div>
+                  <span>Новых</span>
+                </div>
+              )}
+              {in_progress_orders.length > 0 && (
+                <div className="stats_num">
+                  <div className="number in_progress">
+                    {in_progress_orders.length}
+                  </div>
+                  <span>Планируюшихся</span>
+                </div>
+              )}
+              {waiting_orders.length > 0 && (
+                <div className="stats_num">
+                  <div className="number waiting">{waiting_orders.length}</div>
+                  <span>В обработке</span>
+                </div>
+              )}
+              {closed_orders.length > 0 && (
+                <div className="stats_num">
+                  <div className="number closed">{closed_orders.length}</div>
+                  <span>Закрытых</span>
+                </div>
+              )}
+              {canceled_orders.length > 0 && (
+                <div className="stats_num">
+                  <div className="number canceled">
+                    {canceled_orders.length}
+                  </div>
+                  <span>Отмененных</span>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

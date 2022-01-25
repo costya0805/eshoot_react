@@ -29,11 +29,11 @@
 .selectType .choosePodType {
   width: 284px;
   height: 36px;
-  border: 2px solid #696969;
+  border: 1px solid #696969;
 }
 
 .selectType .chooseType:active {
-  border: 2px solid #7d94df;
+  border: 1px solid #7d94df;
 }
 
 .selectType input.choosePodType {
@@ -43,5 +43,5 @@
 
 .selectType .chooseType:focus,
 .selectType .choosePodType:focus {
-  border: 2px solid #7d94df;
+  border: 1px solid #7d94df;
 }

@@ -1,10 +1,15 @@
-.type1{
-    background-color: #7D94DF;
-
+.type1 {
+  background-color: #7d94df;
 }
-.type2{
-    background-color: #A879DF;
+.type2 {
+  background-color: #a879df;
 }
-.type0{
-    background-color: #6FDDBF;
+.type0 {
+  background-color: #6fddbf;
+}
+.avatar {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }

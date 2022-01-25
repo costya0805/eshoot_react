@@ -151,8 +151,14 @@ function CreateOrder(params) {
     content: "контентная",
     other: "Другое",
     portret: "портретная",
-    loveStory: "Love story",
+    loveStory: "love story",
+    family: "семейная",
+    children: "детская",
+    art: "креативная",
+    pregment: "для беременных",
     wedding: "свадьба",
+    corparate: "корпоратив",
+    party_children: "детский праздник",
   };
 
   const techickalTaskToString = {
@@ -169,7 +175,7 @@ function CreateOrder(params) {
     defects: "Удаление дефектов",
     color: "Цветокоррекция",
     backround: "Удаление фона",
-  }
+  };
 
   function objectToString(object) {
     let selectedObjects = [];
@@ -249,7 +255,7 @@ function CreateOrder(params) {
                   <textarea
                     value={about}
                     onChange={(e) => setAbout(e.target.value)}
-                    style={about ? { border: "2px solid #7d94df" } : {}}
+                    style={about ? { border: "1px solid #7d94df" } : {}}
                     className="about orderForm"
                     ref={textareaRef}
                     placeholder="Укажите, что нужно сделать в рамках заказа. Для фотографа может быть важна информация о целях съемки, концепции, количестве людей и многом другом"
@@ -270,7 +276,7 @@ function CreateOrder(params) {
                         .reverse()
                         .join("-")}
                       style={
-                        shootingDate ? { border: "2px solid #7d94df" } : {}
+                        shootingDate ? { border: "1px solid #7d94df" } : {}
                       }
                       onChange={(event) => setShotingDate(event.target.value)}
                     />
@@ -281,7 +287,7 @@ function CreateOrder(params) {
                         value={shootingStartTime}
                         style={
                           shootingStartTime
-                            ? { border: "2px solid #7d94df" }
+                            ? { border: "1px solid #7d94df" }
                             : {}
                         }
                         onChange={(event) =>
@@ -293,7 +299,7 @@ function CreateOrder(params) {
                         type="time"
                         value={shootingEndTime}
                         style={
-                          shootingEndTime ? { border: "2px solid #7d94df" } : {}
+                          shootingEndTime ? { border: "1px solid #7d94df" } : {}
                         }
                         onChange={(event) =>
                           setShootingEndTime(event.target.value)
@@ -311,7 +317,7 @@ function CreateOrder(params) {
                       value={deadlineDate}
                       min={shootingDate}
                       style={
-                        deadlineDate ? { border: "2px solid #7d94df" } : {}
+                        deadlineDate ? { border: "1px solid #7d94df" } : {}
                       }
                       onChange={(event) => setDeadlineDate(event.target.value)}
                     />
@@ -326,7 +332,7 @@ function CreateOrder(params) {
                     placeholder="Укажите место съемки"
                     value={location}
                     onChange={(event) => setLocation(event.target.value)}
-                    style={location ? { border: "2px solid #7d94df" } : {}}
+                    style={location ? { border: "1px solid #7d94df" } : {}}
                   ></input>
                 </div>
               </div>
@@ -351,7 +357,7 @@ function CreateOrder(params) {
                         !needModel
                           ? { display: "none" }
                           : model
-                          ? { border: "2px solid #7d94df" }
+                          ? { border: "1px solid #7d94df" }
                           : {}
                       }
                       className="model orderForm"
@@ -580,7 +586,7 @@ function CreateOrder(params) {
                           : "";
                       setPrice(localStringToNumber(event.target.value));
                     }}
-                    style={price ? { border: "2px solid #7d94df" } : {}}
+                    style={price ? { border: "1px solid #7d94df" } : {}}
                   ></input>
                 </div>
               </div>

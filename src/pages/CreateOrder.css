@@ -56,14 +56,14 @@
 }
 
 .createOrder input {
-  border: 2px solid #8a8282;
+  border: 1px solid #8a8282;
 }
 
 .createOrder textarea {
-  border: 2px solid #8a8282;
+  border: 1px solid #8a8282;
 }
 .createOrder textarea:focus {
-  border: 2px solid #7d94df;
+  border: 1px solid #7d94df;
 }
 
 .orderForm {
@@ -144,7 +144,7 @@ input.inputPrice {
 }
 
 input.inputPrice:focus {
-  border: 2px solid #7d94df;
+  border: 1px solid #7d94df;
 }
 
 .createOrder .actions {
@@ -179,7 +179,7 @@ button.sendOrder:disabled:hover{
 
 button.goBack {
   border-radius: 5px;
-  border: 2px solid #7d94df;
+  border: 1px solid #7d94df;
   color: black;
   background: white;
   padding: 6px 12px;
@@ -228,7 +228,7 @@ button.goBack:hover {
   border-radius: 50%;
   position: absolute;
   top: 2px;
-  left: 4px;
+  left: 3px;
   z-index: 2;
   transition: 0.25s ease-out;
 }
@@ -237,7 +237,7 @@ button.goBack:hover {
   background-color: #7d94df;
 }
 .switcher_input:checked + .switcher_label::after {
-  transform: translateX(23px);
+  transform: translateX(25px);
   background-color: #e9ebf3;
 }
 
@@ -253,7 +253,7 @@ button.goBack:hover {
 
 .inputTechnicalTask .techickalLabel {
   padding: 8px;
-  border: 2px solid #8a8282;
+  border: 1px solid #8a8282;
   border-radius: 5px;
   color: #8a8282;
   cursor: pointer;
@@ -277,7 +277,7 @@ button.goBack:hover {
   display: flex;
 }
 .techickalCheck:checked + .techickalLabel {
-  border: 2px solid #a0b0ef;
+  border: 1px solid #a0b0ef;
   background-color: #cbd7ff;
   color: #798ee2;
 }

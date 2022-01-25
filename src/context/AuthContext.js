@@ -63,7 +63,7 @@ export function AuthProvider({ children }) {
       last_name: lastName,
       middle_name: middleName,
       email: email,
-      birthdate: new Date("2000-01-01").toISOString(),
+      birthdate: new Date("1900-01-01").toISOString(),
       role: role,
       created_date: new Date().toISOString(),
       password: password,

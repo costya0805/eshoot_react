@@ -32,3 +32,11 @@ select::after {
 option{
     width: 40px;
 }
+.serchFilters .status{
+  width: 182px;
+  height: 40px;
+  color: black;
+  background-color: white;
+  border: none;
+  font-size: 14px;
+}

@@ -85,7 +85,11 @@ function User(params) {
                         {user.last_name} {user.first_name} {user.middle_name}
                       </span>
                       <span className="city">г. {user.city}</span>
-                      {user.role === "Photographer"?<span className="tags">свадьбы, дети, предметная</span>:<></>}
+                      {user.role === "Photographer" ? (
+                        <span className="tags">свадьбы, дети, предметная</span>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                     <div className="actions">
                       <Link
@@ -105,16 +109,10 @@ function User(params) {
                     </div>
                   </div>
                 </div>
-                <div className="userRole caption">
-                  {user.role === "Photographer" ? "Фотограф" : "Заказчик"}
-                </div>
               </div>
               <div className="aboutUser">
                 {user.about ? (
-                  <UserString
-                    title="О себе"
-                    text="Профессионально занимаюсь предметной, свадебной и детской фотосъемкой. Учту все Ваши пожелания и покажу что получается во время съемки, чтобы вы могли сразу подкорректировать нюансы и мы получили Ваши прекрасные фотографии."
-                  />
+                  <UserString title="О себе" text={user.about} />
                 ) : (
                   <></>
                 )}

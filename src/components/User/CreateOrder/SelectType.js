@@ -27,8 +27,18 @@ function SelectType({ selectType }) {
   const fotosetTypes = [
     { id: 1, type: "portret", text: "Портретная" },
     { id: 2, type: "loveStory", text: "Love story" },
+    { id: 3, type: "family", text: "Семейная" },
+    { id: 4, type: "children", text: "Детская" },
+    { id: 5, type: "art", text: "Креативная" },
+    { id: 6, type: "pregment", text: "Для беременных" },
+    { id: 7, type: "other", text: "Другое" },
   ];
-  const reportTypes = [{ id: 1, type: "wedding", text: "Свадьба" }];
+  const reportTypes = [
+    { id: 1, type: "wedding", text: "Свадьба" },
+    { id: 2, type: "corparate", text: "Корпоратив" },
+    { id: 3, type: "party_children", text: "Детский праздник" },
+    { id: 4, type: "other", text: "Другое" },
+  ];
 
   return (
     <div className="selectType">
@@ -38,7 +48,7 @@ function SelectType({ selectType }) {
           className="chooseType"
           value={type}
           onChange={chengeSelectType}
-          style={type ? { border: "2px solid #7d94df" } : { color: "#696969" }}
+          style={type ? { border: "1px solid #7d94df" } : { color: "#696969" }}
         >
           <option
             key="0"
@@ -74,7 +84,7 @@ function SelectType({ selectType }) {
           onChange={chengeSelectPodType}
           value={podType}
           style={
-            podType ? { border: "2px solid #7d94df" } : { color: "#696969" }
+            podType ? { border: "1px solid #7d94df" } : { color: "#696969" }
           }
         >
           <option

@@ -47,14 +47,11 @@ function FotographCard(props) {
           </Link>
         </div>
       </div>
-      <div className="aboutFotograph" style={styles.about}>
-        <span>
-          Профессионально занимаюсь предметной, свадебной и детской фотосъемкой.
-          Учту все Ваши пожелания и покажу что получается во время съемки, чтобы
-          вы могли сразу подкорректировать нюансы и мы получили Ваши прекрасные
-          фотографии.
-        </span>
-      </div>
+      {props.photographer.about && (
+        <div className="aboutFotograph" style={styles.about}>
+          <span>{props.photographer.about}</span>
+        </div>
+      )}
     </div>
   );
 }

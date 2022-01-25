@@ -46,6 +46,7 @@ function Search() {
                     pathname: "/user",
                     state: { id: photographer.id },
                   }}
+                  key={photographer.id}
                 >
                   <FotographCard photographer={photographer} />
                 </Link>
