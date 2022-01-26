@@ -15,6 +15,7 @@ import CreateOrder from "./pages/CreateOrder";
 import Messeges from "./pages/Messeges";
 import User from "./pages/User";
 import Order from "./pages/Order";
+import EditOrder from "./pages/EditOrder/EditOrder";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <PrivateRoute path={"/search"} component={Search} />
           <PrivateRoute path={"/orders"} component={Orders} />
           <PrivateRoute path={"/order"} component={Order} />
+          <PrivateRoute path={"/edit-order"} component={EditOrder}/>
           <PrivateRoute path={"/messeges"} component={Messeges} />
           <PrivateRoute path={"/create-order"} component={CreateOrder} />
           <PrivateRoute path={"/user"} component={User}/>

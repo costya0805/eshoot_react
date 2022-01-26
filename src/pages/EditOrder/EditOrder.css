@@ -1,0 +1,30 @@
+.editOrder .content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 780px;
+    border-radius: 5px;
+    padding: 24px;
+    background-color: white;
+    margin-left: 48px;
+}
+
+.editOrder .content span{
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.editOrder .content img{
+    margin-bottom: 48px;
+    width: 200px;
+}
+
+.editOrder .content .button{
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 24px;
+    cursor: pointer;
+}
+.editOrder .content .button:hover{
+    opacity: 0.7;
+}

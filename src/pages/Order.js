@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import Header from "../components/Header";
 import SideMenu from "../components/SideMenu";
 import Status from "../components/Orders/Status";
 import OrderString from "../components/Orders/OrderString";
 import Avatar from "../components/Avatar/Avatar";
+
+import editSvg from "../images/edit.svg";
 
 import { useAuth } from "../context/AuthContext";
 
@@ -20,6 +22,8 @@ function Order(params) {
   const [needRefresh, setNeedRefresh] = useState(false);
   const [canceledText, setCanceledText] = useState();
   const [showModal, setShowModal] = useState(false);
+
+  const history = useHistory();
 
   const { currentUser, currentUserInfo, loading } = useAuth();
 
@@ -179,11 +183,26 @@ function Order(params) {
         ) : (
           <div className="pageBody">
             <div className="mainInfoOrder">
-              <span className="h6 name">
-                {order.type} - {order.subtype} от{" "}
-                {new Date(order.created_date).toLocaleString().slice(0, 10)}
-              </span>
-              <Status status={order.status} />
+              <div className="aboutOrder">
+                <span className="h6 name">
+                  {order.type} - {order.subtype} от{" "}
+                  {new Date(order.created_date).toLocaleString().slice(0, 10)}
+                </span>
+                <Status status={order.status} />
+              </div>
+              {currentUserInfo.role === "Customer" &&
+                !(order.status === "canceled" || order.status === "closed") && (
+                  <div
+                    className="img"
+                    onClick={() => history.push({pathname:"/edit-order", state: {order_id: order_id}})}
+                  >
+                    <img
+                      src={editSvg}
+                      alt=""
+                      style={{ width: 24, height: 24 }}
+                    />
+                  </div>
+                )}
             </div>
             <div className="bodyInfo">
               {order.status === "canceled" && order.reason_for_rejection ? (
