@@ -8,8 +8,31 @@
   background-color: #6fddbf;
 }
 .avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+  border-radius: 50%;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  color: white;
+}
+
+.small{
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+.medium{
+  width: 40px;
+  height: 40px;
+}
+
+.big{
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
 }

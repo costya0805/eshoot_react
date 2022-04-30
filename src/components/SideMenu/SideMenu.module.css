@@ -1,0 +1,41 @@
+.sideMenu {
+  width: 108px;
+}
+
+.sideMenu a {
+  display: flex;
+  width: 108px;
+  height: 24px;
+  text-decoration: none;
+  color: black;
+  border-radius: 5px;
+}
+
+.sideMenu a:hover {
+background-color: white;
+}
+
+.sideMenu ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sideMenu li {
+  margin: 0;
+  width: 108px;
+  height: 24px;
+  margin-bottom: 8px;
+}
+
+.sideMenu li span {
+  align-self: center;
+  margin-left: 15px;
+  color: #273C83
+}
+
+.sideMenu li img, .sideMenu li svg{
+  align-self: center;
+  margin-left: 8px;
+  width: 16px;
+}

@@ -1,0 +1,28 @@
+.new{
+    background-color: #B1F4B9;
+    color: #269734;
+}
+.in_progress{
+    background-color: #FFE9B9;
+    color: #A67F2A;
+}
+.canceled{
+    background-color: #FFBDB9;
+    color: #A6302A;
+}
+.waiting{
+    background-color: #B5C3EF;
+    color: #294191;
+}
+.closed{
+    background-color: #B5C3EF;
+    color: #294191;
+}
+
+.body{
+    padding: 4px 8px;
+    margin-left: 16px;
+    height: 16px;
+    border-radius: 5px;
+    width: fit-content;
+}

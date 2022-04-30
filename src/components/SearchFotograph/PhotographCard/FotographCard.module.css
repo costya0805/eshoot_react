@@ -1,0 +1,52 @@
+.photographCard:hover {
+  box-shadow: 0 2px 10px rgba(39, 60, 131, 0.15);
+}
+
+.photographCard {
+  transition: 0.25s ease-out;
+  width: 732px;
+  height: auto;
+  border-radius: 5px;
+  background-color: white;
+  margin-top: 24px;
+  padding: 24px;
+}
+
+.cardHead{
+  display: flex;
+  justify-content: space-between;
+}
+
+.mainInformation{
+  display: flex;
+}
+
+.mainTextInformation{
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutFotograph{
+  margin-top: 16px;
+}
+
+.action{
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.action:hover{
+  opacity: 0.7;
+}
+
+.city{
+  color: #2E2E2E; 
+  margin-top: 4px;
+}
+
+.tags{
+  color: #575757; 
+  margin-top: 2px
+}

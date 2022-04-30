@@ -1,7 +1,0 @@
-.orderCard:hover {
-  box-shadow: 0 2px 10px rgba(39, 60, 131, 0.15);
-}
-
-.orderCard {
-  transition: 0.25s ease-out;
-}

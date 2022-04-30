@@ -1,0 +1,40 @@
+.orderCard:hover {
+  box-shadow: 0 2px 10px rgba(39, 60, 131, 0.15);
+}
+
+.orderCard {
+  transition: 0.25s ease-out;
+  background-color: white;
+  padding: 24px;
+  margin-top: 24px;
+  border-radius: 5px;
+}
+
+.head{
+  display: flex;
+  justify-content: space-between;
+}
+
+.headInfo{
+  display: flex;
+}
+
+.mainInfo{
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dopInfo{
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dopInfoSpan{
+  margin-bottom: 12px;
+}
+
+.dopInfoSpan:last-child{
+  margin-bottom: 0;
+}

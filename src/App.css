@@ -1,23 +1,14 @@
-.authorization {
-  width: 600px;
-  height: 328px;
-  position: relative;
-  margin: auto;
-  margin-top: 80px;
-  top: 0;
-  box-shadow: 0 2px 10px rgba(39, 60, 131, 0.15);
-  background-color: white;
-}
-
 form {
   position: relative;
   padding-top: 40px;
   margin: auto;
 }
+
 li {
   list-style: none;
   margin-top: 20px;
 }
+
 input {
   width: 222px;
   height: 22px;
@@ -26,6 +17,17 @@ input {
   font-size: 14px;
   padding: 8px;
 }
+
+input[type="radio"] {
+  display: none;
+}
+
+/* input[type="radio"]:hover + label {
+  outline: none;
+  background-color: #e8ecfa;
+  border: 1px solid #7d94df;
+} */
+
 input:hover {
   border: 1px solid #5c5656;
 }
@@ -47,7 +49,7 @@ input[type="submit"] {
   border: none;
   cursor: pointer;
 }
-input[type="submit"]:hover{
+input[type="submit"]:hover {
   opacity: 0.7;
 }
 
@@ -90,7 +92,11 @@ input[type="submit"]:hover{
 .caption {
   font-size: 12px;
 }
-.caption, .body1, .h4, .h5, .h6{
+.caption,
+.body1,
+.h4,
+.h5,
+.h6 {
   color: #212121;
 }
 .sup2 {
@@ -98,62 +104,10 @@ input[type="submit"]:hover{
   font-weight: 500;
 }
 
-strong{
+strong {
   font-weight: 500;
 }
 
-.avatar {
-  border-radius: 50%;
-  text-transform: uppercase;
-  flex-shrink: 0;
-}
-
-.openMenu {
-  background: white;
-  position: relative;
-  width: 180px;
-  height: auto;
-  box-shadow: 0 2px 10px rgba(39, 60, 131, 0.15);
-  margin-top: 25px;
-  z-index: 999;
-}
-.openMenu::before {
-  content: "";
-  position: absolute;
-  top: -30px;
-  right: 20px;
-  border: 14px solid transparent;
-  border-bottom: 19px solid white;
-}
-
-.openMenu hr {
-  margin: 0 8px;
-  height: 1px;
-  border: 0;
-  color: black;
-  background-color: black;
-}
-.openMenu a {
-  text-decoration: none;
-  color: black;
-  height: 40px;
-  display: flex;
-  justify-content: left;
-}
-.openMenu a img,
-.openMenu a span {
-  align-self: center;
-  line-height: 40px;
-}
-
-.openMenu a span {
-  position: absolute;
-  left: 36px;
-}
-
-img.open {
-  transform: rotate(180deg);
-}
 .pageLayout {
   width: 1044px;
   margin: auto;
@@ -178,7 +132,28 @@ textarea {
   -moz-appearance: none;
 }
 
-a{
+a {
   text-decoration: none;
   color: black;
+}
+
+.new{
+  background-color: #B1F4B9;
+  color: #269734;
+}
+.in_progress{
+  background-color: #FFE9B9;
+  color: #A67F2A;
+}
+.canceled{
+  background-color: #FFBDB9;
+  color: #A6302A;
+}
+.waiting{
+  background-color: #B5C3EF;
+  color: #294191;
+}
+.closed{
+  background-color: #B5C3EF;
+  color: #294191;
 }

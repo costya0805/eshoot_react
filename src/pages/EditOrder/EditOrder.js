@@ -2,8 +2,8 @@ import React from "react";
 
 import { useHistory } from "react-router-dom";
 
-import Header from "../../components/Header";
-import SideMenu from "../../components/SideMenu";
+import Header from "../../components/Header/Header";
+import SideMenu from "../../components/SideMenu/SideMenu";
 import defaultPng from "../../images/default.png";
 import "./EditOrder.css";
 

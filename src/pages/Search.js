@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Header from "../components/Header";
-import SideMenu from "../components/SideMenu";
+import Header from "../components/Header/Header";
+import SideMenu from "../components/SideMenu/SideMenu";
 import SearchFilter from "../components/SearchFilter";
-import FotographCard from "../components/FototgraphCard";
-import { Link } from "react-router-dom";
+import FotographCard from "../components/SearchFotograph/PhotographCard/FototgraphCard";
+import { Link, NavLink } from "react-router-dom";
 
 import { useAuth } from "../context/AuthContext";
 
@@ -28,14 +28,13 @@ function Search() {
       fetchName();
     }
   }, [currentUser]);
+
   return (
     <div>
       <Header pageName={{ pageName: "Поиск фотографов" }} />
       <div className="pageLayout">
         <SideMenu />
-        {loadingPhotographs || !currentUser ? (
-          <></>
-        ) : (
+        {!loadingPhotographs && currentUser && (
           <div className="pageBody">
             <SearchFilter />
             {photographers
@@ -43,7 +42,7 @@ function Search() {
               .map((photographer) => (
                 <Link
                   to={{
-                    pathname: "/user",
+                    pathname: `/user/${photographer.id}`,
                     state: { id: photographer.id },
                   }}
                   key={photographer.id}

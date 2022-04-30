@@ -1,0 +1,51 @@
+.form_radio_group {
+  width: 100%;
+}
+
+.form_radio_group:first-child {
+  margin-right: 8px;
+}
+
+.form_radio_group_label {
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+  height: 50px;
+  width: 100%;
+  border: 1px solid var(--botton);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form_radio_group_label img {
+  margin-right: 8px;
+  fill: var(--botton);
+}
+
+.form_radio_group_radio:checked + .form_radio_group_label,
+.form_radio_group_radio:checked:hover + .form_radio_group_label {
+  outline: none;
+  color: white;
+  background-color: var(--botton);
+}
+
+.form_radio_group_radio:checked + .form_radio_group_label img {
+  color: white;
+  fill: var(--white);
+}
+
+.form_radio_group_radio:hover + .form_radio_group_label {
+  outline: none;
+  background-color: #e8ecfa;
+}
+
+.selectRole {
+  padding: 0;
+  border: 0;
+  margin: 0px 0px 20px;
+  display: flex;
+  width: 100%;
+  height: 50px;
+  justify-content: space-between;
+  color: var(--botton);
+}

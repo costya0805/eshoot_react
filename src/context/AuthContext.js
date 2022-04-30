@@ -40,9 +40,10 @@ export function AuthProvider({ children }) {
     };
     const response = await fetch(API_URL + "/token", postConfig);
     const currentUser = await response.json();
+    debugger;
 
     if (!response.ok) {
-      return { error: currentUser.error };
+      return { error: "Ошибка при входе" };
     }
 
     setCurrentUser(currentUser.access_token);
@@ -84,7 +85,7 @@ export function AuthProvider({ children }) {
     );
     const newUser = await response.json();
     if (!response.ok) {
-      return { error: newUser.error };
+      return { error: "Ошибка при регистрации" };
     }
     await login(email, password);
   };

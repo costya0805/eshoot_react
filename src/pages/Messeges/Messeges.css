@@ -1,0 +1,27 @@
+.messegesBody .pageBody {
+  display: grid;
+  width: 880px;
+  padding-bottom: 0;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 40px 1fr;
+  height: max-content;
+}
+.messegesBody .filter {
+  width: 256px;
+  border: 0;
+  border-radius: 0;
+}
+.messegesBody .search {
+  position: relative;
+}
+.messegesBody .messegeHeader {
+  background-color: #f4f5f9;
+  line-height: 40px;
+}
+.messegeHeader span{
+    margin-left: 16px;
+}
+.messegesUser{
+  background-color: white;
+  height: 560px; 
+}

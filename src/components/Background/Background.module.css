@@ -1,0 +1,52 @@
+.rightRectangle {
+  height: 100%;
+  right: 0;
+  top: 0;
+}
+
+.leftRectangle {
+  left: 0px;
+  top: calc(100% - 100px);
+}
+.leftRectangle,
+.rightRectangle {
+  position: absolute;
+  z-index: -2;
+}
+.picture {
+  position: absolute;
+  z-index: -1;
+  border-radius: 20%;
+  filter: drop-shadow(0px 11px 10px rgba(39, 60, 131, 0.45));
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.27),
+      rgba(255, 255, 255, 0.27)
+    ),
+    linear-gradient(144.18deg, #ffffff -25.98%, #4568dc 185.07%);
+}
+
+.first {
+  width: 45vh;
+  right: 17vw;
+  bottom: 10vh;
+}
+
+.second {
+  width: 33vh;
+  bottom: 37vh;
+  right: 3vw;
+}
+
+.third {
+  width: 22vh;
+  right: 25vw;
+  bottom: 65vh;
+}
+
+@media screen and (max-width: 1180px) {
+  .rightRectangle,
+  .picture {
+    display: none;
+  }
+}
