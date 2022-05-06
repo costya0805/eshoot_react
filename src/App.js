@@ -5,7 +5,7 @@ import "./App.css";
 
 import { AuthProvider } from "./context/AuthContext";
 
-import PrivateRoute from "./components/PriveteRoute";
+import PrivateRoute from "./components/PriveteRoute/PriveteRoute";
 
 import Auth from "./pages/Auth/Auth";
 import Registration from "./pages/Registration/Registration";
@@ -20,6 +20,7 @@ import Settings from "./pages/Settings/Settings";
 
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
+import Photographers from "./pages/PhotographersList/Photographers";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path={"/reg"} component={Registration} />
           <Route path={"/login"} component={Login} />
           <Route path={"/signup"} component={SignUp} />
+          <PrivateRoute path={"/photographers"} component={Photographers}/>
           <PrivateRoute path={"/search"} component={Search} />
           <PrivateRoute path={"/orders"} component={Orders} />
           <PrivateRoute path={"/order"} component={Order} />

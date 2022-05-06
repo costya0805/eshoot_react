@@ -1,0 +1,23 @@
+.rc-slider .rc-slider-rail {
+  background-color: #273c83;
+  left: -8px;
+  width: calc(100% + 16px);
+}
+
+.rc-slider .rc-slider-track {
+  background-color: var(--botton);
+}
+.rc-slider
+  .rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
+  box-shadow: none;
+  border: none;
+}
+
+.rc-slider .rc-slider-handle {
+  width: 20px;
+  height: 20px;
+  background: var(--easy-gradient);
+  border: none;
+  opacity: 1;
+  margin-top: -8px;
+}

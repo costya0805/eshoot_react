@@ -1,0 +1,13 @@
+.wrapper{
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 1210px;
+    display: flex;
+    justify-content: center;
+}
+.body{
+    max-width: 1210px;
+    width: 100%;
+    padding: 0 15px;
+    position: relative;
+}

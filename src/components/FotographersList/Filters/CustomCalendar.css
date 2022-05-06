@@ -1,0 +1,92 @@
+.react-calendar.react-calendar {
+  border: none;
+  box-shadow: 0 0 10px rgba(39, 60, 131, 0.3);
+  border-radius: 3px;
+  font-family: "Roboto", sans-serif;
+  transition: none;
+}
+.react-calendar .react-calendar__month-view__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr);
+}
+.react-calendar .react-calendar__tile--now {
+  background: white;
+  border-radius: 5px;
+}
+.react-calendar .react-calendar__tile--now:enabled:hover {
+  background: #e6e6e6;
+  border-radius: 5px;
+}
+.react-calendar .react-calendar__navigation__prev2-button,
+.react-calendar .react-calendar__navigation__next2-button {
+  display: none;
+}
+.react-calendar .react-calendar__tile--active,
+.react-calendar .react-calendar__tile--active:focus,
+.react-calendar .react-calendar__tile--active:enabled:focus {
+  background: white;
+  border: 2px solid var(--botton);
+  color: black;
+  border-radius: 5px;
+}
+.react-calendar .react-calendar__month-view__days__day--weekend {
+  color: black;
+}
+.react-calendar .react-calendar__month-view__days__day--neighboringMonth {
+  color: #757575;
+}
+.react-calendar .react-calendar__tile.react-calendar__month-view__days__day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  font-size: 12px;
+  padding: 0;
+  margin-bottom: 2px;
+  flex: 0 !important;
+  border-radius: 5px;
+  transition: none;
+}
+.react-calendar .react-calendar__month-view__weekdays {
+  text-transform: capitalize;
+  text-decoration: none;
+}
+.react-calendar .react-calendar__tile--active:enabled:hover {
+  background: white;
+}
+.react-calendar .react-calendar__navigation__label {
+  pointer-events: none;
+}
+.react-calendar .react-calendar__viewContainer {
+  padding: 5px;
+  padding-bottom: 12px;
+  padding-top: 0px;
+}
+
+.react-calendar .react-calendar__navigation {
+  margin-bottom: 16px;
+  padding-top: 8px;
+  height: auto;
+}
+
+.react-calendar .react-calendar__navigation button {
+  min-width: 16px;
+  height: 16px;
+  line-height: 16px;
+
+}
+.react-calendar .react-calendar__navigation__next-button {
+  margin-right: 8px;
+  box-shadow: 1px 1px 3px rgba(39, 60, 131, 0.3);
+  border-radius: 3px;
+}
+
+.react-calendar .react-calendar__navigation__prev-button {
+  margin-left: 8px;
+  box-shadow: 1px 1px 3px rgba(39, 60, 131, 0.3);
+  border-radius: 3px;
+}
+.react-calendar .react-calendar__tile:disabled{
+  color: #757575;
+}

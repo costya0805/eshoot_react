@@ -1,0 +1,38 @@
+.settingsBody form{
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+}
+.settingsBody label{
+    margin-right: 20px;
+}
+
+.settingsBody .pageBody{
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+}
+.settingsBody form button{
+    margin: auto;
+    margin-top: 15px;
+    border: 0;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.body{
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputData{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.inputData label{
+    margin-bottom: 8px;
+}

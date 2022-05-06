@@ -1,36 +1,4 @@
-.settingsBody form{
-    display: flex;
-    flex-direction: column;
-    padding-top: 0;
-}
-.settingsBody label{
-    margin-right: 20px;
-}
 
-.settingsBody form div{
-    margin-bottom: 10px;
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    line-height: 40px;
-}
-.settingsBody form div label{
-    padding-left: 8px;
-}
-.settingsBody .pageBody{
-    background-color: white;
-    padding: 20px;
-    border-radius: 20px;
-}
-.settingsBody form button{
-    margin: auto;
-    margin-top: 15px;
-    border: 0;
-    color: black;
-    padding: 10px 20px;
-    border-radius: 5px;
-}
 
-.settingsBody form button:hover{
-    background-color: grey;
-    color: white;
-}
+
+

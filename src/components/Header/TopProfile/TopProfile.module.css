@@ -1,9 +1,13 @@
 .block {
   display: flex;
-  width: 180px;
   cursor: pointer;
   justify-content: right;
   align-items: center;
+  margin-left: 24px;
+}
+
+.main{
+  position: relative;
 }
 
 .arrow {
@@ -13,12 +17,12 @@
   rotate: 180deg;
 }
 
-.secondName {
-  margin-left: 22px;
-}
-
 .point {
   height: 40px;
+}
+.menu{
+  position: absolute;
+  right: 0;
 }
 
 .openMenu {
