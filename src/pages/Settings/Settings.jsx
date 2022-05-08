@@ -1,33 +1,34 @@
 import React, { useState, useEffect } from "react";
-
-import "./Settings.css";
-
 import Header from "../../components/Header/Header";
-import SideMenu from "../../components/SideMenu/SideMenu";
-
 import { useAuth } from "../../context/AuthContext";
-
-import firebase from "../../firebase";
-import ReactModal from "react-modal";
+import firebase, { uploadImage } from "../../firebase";
+import Modal from "react-modal";
 import s from "./Settings.module.css";
+import user from "../../store/currentUser";
+import { observer } from "mobx-react-lite";
 
-// import { storage } from "../../firebase";
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
+import Cropper from "react-easy-crop";
+// import "react-easy-crop/react-easy-crop.css";
 
-function Settings(params) {
-  const { currentUser, currentUserInfo } = useAuth();
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+
+import Avatar from "../../components/Avatar/Avatar";
+import getCroppedImg from "../../store/cropImage";
+
+const Settings = observer(() => {
+  // console.log(user.user);
+  const { currentUserInfo } = useAuth();
   const [userSettings, setUserSettings] = useState();
   const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
     let birthdate_user;
     if (currentUserInfo.birthdate) {
       birthdate_user = new Date(currentUserInfo.birthdate);
-      birthdate_user = `${birthdate_user.getFullYear()}-${birthdate_user.getMonth()}-${birthdate_user.getDate()}`;
+      birthdate_user = `${birthdate_user.getFullYear()}-${
+        birthdate_user.getMonth() + 1
+      }-${birthdate_user.getDate()}`;
     }
 
     setUserSettings({
@@ -52,41 +53,102 @@ function Settings(params) {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
       setShowImage(URL.createObjectURL(e.target.files[0]));
-      setShowModal(true);
+      user.openModal();
     }
   };
 
-  console.log(firebase);
+  // console.log(firebase);
 
-  const handleUpload = (e) => {
+  const handleUpload = async (e) => {
     e.preventDefault();
-    console.log(image);
-    const storage = getStorage();
-    const metadata = {
-      contentType: "image/jpeg",
-    };
-    const storageRef = ref(storage, "images/" + image.name);
-    const uploadTask = uploadBytesResumable(storageRef, image, metadata);
-    debugger;
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log("File available at", downloadURL);
-        });
-      }
-    );
+    user.updateAvatar(croppedImage.file, `${currentUserInfo.id}/avatar/${image.name}`);
   };
+
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
+  const [croppedImage, setCroppedImage] = useState(null);
+  const cropImage = async () => {
+    try {
+      const croppedImage = await getCroppedImg(showImage, croppedAreaPixels, 0);
+      console.log(croppedImage)
+      setCroppedImage(croppedImage);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const onCropComplete = (croppedArea, croppedAreaPixels) => {
+    console.log(croppedArea, croppedAreaPixels);
+    setCroppedAreaPixels(croppedAreaPixels);
+  };
+
   return (
     <div className={s.settingsBody}>
       <Header />
       <div className={s.body}>
         {userSettings && userSettings.id && (
-          <form>
+          <>
+            <div className={s.updateAvatar}>
+              {user.showLoading ? (
+                <div style={{ width: 50, height: 50 }}>
+                  <CircularProgressbar
+                    value={user.progress}
+                    text={user.progress}
+                  />
+                </div>
+              ) : (
+                <Avatar
+                  userName={user.user.first_name}
+                  userSecondname={user.user.last_name}
+                  userID={user.user.id}
+                  size="big"
+                  image={user.user.avatar}
+                />
+              )}
+              <input
+                className={s.updateAvatar}
+                id="avatar"
+                type="file"
+                onChange={handleChange}
+              />
+              <label htmlFor="avatar">Обновить аватар</label>
+            </div>
+            <Modal
+              isOpen={user.showModal}
+              onRequestClose={() => {
+                user.closeModal();
+              }}
+              shouldCloseOnOverlayClick={true}
+              className={s.modal}
+              overlayClassName={s.overlay}
+              ariaHideApp={false}
+            >
+              <div className={s.cropper}>
+                <Cropper
+                  image={showImage}
+                  aspect={1 / 1}
+                  crop={crop}
+                  zoom={zoom}
+                  onCropChange={setCrop}
+                  onCropComplete={onCropComplete}
+                  onZoomChange={setZoom}
+                  cropShape={"round"}
+                  // disableAutomaticStylesInjection={true}
+                />
+              </div>
+              <input
+                type="range"
+                value={zoom}
+                min={1}
+                max={3}
+                step={0.1}
+                onChange={(e) => setZoom(e.target.value)}
+              ></input>
+              <button onClick={cropImage}>Обрезать</button>
+              <button onClick={handleUpload}>Обновить аватар</button>
+            </Modal>
+
             <div className={s.inputData}>
               <label htmlFor="first_name">Имя</label>
               <input
@@ -137,25 +199,20 @@ function Settings(params) {
                 onChange={() => {}}
               />
             </div>
-            <button>Обновить</button>
-            <input type="file" onChange={handleChange}></input>
-            <ReactModal
-              isOpen={showModal}
-              onRequestClose={() => {
-                setShowModal(false);
-              }}
-              shouldCloseOnOverlayClick={true}
-              className={s.modal}
-              overlayClassName={s.overlay}
-            >
-              <img src={showImage} style={{ height: "90%" }} />
-            </ReactModal>
-            <button onClick={handleUpload}>Upload</button>
-          </form>
+            <div className={s.inputData}>
+              <label htmlFor="">Время свзяи</label>
+              <input></input>
+            </div>
+            <div className={`${s.aboutUser} ${s.inputData}`}>
+              <label htmlFor="about">О себе</label>
+              <textarea id="about" />
+            </div>
+            <button className={s.upgrade}>Обновить</button>
+          </>
         )}
       </div>
     </div>
   );
-}
+});
 
 export default Settings;

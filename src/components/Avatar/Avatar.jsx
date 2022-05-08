@@ -8,7 +8,8 @@ export default function Avatar({
   userID,
   style,
   className,
-  size
+  size,
+  image,
 }) {
   let user_arr = userID.split("");
   let user_type = "";
@@ -16,14 +17,20 @@ export default function Avatar({
     parseInt(element) ? (user_type += element) : null
   );
   return (
-    <div
-      className={`type${user_type % 3} ${size} avatar ${
-        className ? className : ""
-      }`}
-      style={style}
-    >
-      {userName[0]}
-      {userSecondname[0]}
-    </div>
+    <>
+      {!!image ? (
+        <img src={image} className={`${size} avatar`} />
+      ) : (
+        <div
+          className={`type${user_type % 3} ${size} avatar ${
+            className ? className : ""
+          }`}
+          style={style}
+        >
+          {userName[0]}
+          {userSecondname[0]}
+        </div>
+      )}
+    </>
   );
 }

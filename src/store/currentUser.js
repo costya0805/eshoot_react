@@ -1,19 +1,37 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import Cookies from "universal-cookie";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+import firebase from "../firebase";
 
 const cookies = new Cookies();
-const API_URL = "http://localhost:8080";
+const API_URL = "http://localhost:8080/users";
 
 class CurrentUser {
   user = {};
+  showModal = false;
+  showLoading = false;
+  progress = 0;
+  avatar_url = "";
   constructor() {
     this.getInfo();
     makeAutoObservable(this);
   }
 
+  openModal() {
+    this.showModal = true;
+  }
+  closeModal() {
+    this.showModal = false;
+  }
+
   getInfo = async () => {
     const userInCookies = cookies.get("currentUser");
-    const json = await fetch(API_URL + "/users/me", {
+    const json = await fetch(API_URL + "/me", {
       headers: {
         Authorization: "Bearer " + userInCookies,
       },
@@ -37,6 +55,63 @@ class CurrentUser {
     });
     return user_type % 3;
   }
+
+  updateAvatar(image, path) {
+    const storage = getStorage();
+    const metadata = {
+      contentType: "image/jpeg",
+    };
+    const storageRef = ref(storage, path);
+    const uploadTask = uploadBytesResumable(storageRef, image, metadata);
+    this.showLoading = true;
+    this.closeModal();
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        runInAction(() => {
+          this.progress = (
+            (snapshot.bytesTransferred / snapshot.totalBytes) *
+            100
+          ).toFixed(2);
+        });
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((result) => {
+          runInAction(() => {
+            this.showLoading = false;
+            this.avatar_url = result;
+          });
+          this.updateProfile();
+        });
+      }
+    );
+  }
+
+  updateProfile = async () => {
+    debugger;
+    const userInCookies = cookies.get("currentUser");
+    const paramsInfo = { avatar: this.avatar_url };
+    console.log(paramsInfo);
+    try {
+      const json = await fetch(API_URL + `/photographers/` + this.user.id, {
+        method: "PATCH",
+        headers: {
+          Authorization: "Bearer " + userInCookies,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(paramsInfo),
+      }).then((response) => response.json());
+      console.log(json);
+      runInAction(() => {
+        this.user = { ...this.user, ...json };
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export default new CurrentUser();
