@@ -7,11 +7,11 @@ import settingsSvg from "../../../images/settings.svg";
 import { useAuth } from "../../../context/AuthContext";
 import Avatar from "../../Avatar/Avatar";
 import s from "./TopProfile.module.css";
-import user from "../../../store/currentUser"
+import user from "../../../store/currentUser";
+import { observer } from "mobx-react-lite";
 
-function TopProfile() {
+const TopProfile = observer(() => {
   const [showMenu, setShowMenu] = useState(false);
-
   const { logout } = useAuth();
 
   return (
@@ -22,6 +22,7 @@ function TopProfile() {
             userName={user.user.first_name}
             userSecondname={user.user.last_name}
             userID={user.user.id}
+            image={user.user.avatar}
             size="small"
           />
         )}
@@ -37,7 +38,7 @@ function TopProfile() {
             <Link
               className={s.point}
               to={{
-                pathname: `/user/${user.user.id}`,
+                pathname: `/user`,
               }}
             >
               <img
@@ -55,7 +56,14 @@ function TopProfile() {
               />
               <span>Настройки</span>
             </NavLink>
-            <NavLink className={s.point} to="/login" onClick={() => logout()}>
+            <NavLink
+              className={s.point}
+              to="/login"
+              onClick={() => {
+                logout();
+                user.logout();
+              }}
+            >
               <img
                 src={logOutSvg}
                 style={{ height: 20, marginLeft: 9 }}
@@ -68,6 +76,6 @@ function TopProfile() {
       )}
     </div>
   );
-}
+});
 
 export default TopProfile;

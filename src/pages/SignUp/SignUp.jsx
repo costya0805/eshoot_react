@@ -5,6 +5,7 @@ import Logo from "../../components/Logo/Logo";
 import Background from "../../components/Background/Background";
 import { observer } from "mobx-react-lite";
 import signUp from "../../store/signup";
+import user from "../../store/currentUser"
 import { useAuth } from "../../context/AuthContext";
 
 import ChooseRole from "../../components/SignUp/ChooseRole/ChooseRole";
@@ -34,6 +35,7 @@ const SignUp = observer(() => {
       if(checkLogin && checkLogin.error){
         return setError(checkLogin.error);
       }
+      user.getInfo()
       history.push("/search")
     } catch (error) {
         setLoading(false);

@@ -5,6 +5,7 @@ import Logo from "../../components/Logo/Logo";
 import Background from "../../components/Background/Background";
 import { observer } from "mobx-react-lite";
 import auth from "../../store/auth";
+import user from "../../store/currentUser"
 import { useAuth } from "../../context/AuthContext";
 
 const Login = observer(() => {
@@ -13,7 +14,6 @@ const Login = observer(() => {
 
   const { login } = useAuth();
   const history = useHistory();
-  console.log(error)
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -25,7 +25,8 @@ const Login = observer(() => {
         console.log(checkLogin.error)
         return setError(checkLogin.error);
       }
-      history.push("/search");
+      user.getInfo()
+      history.push("/photographers");
     } catch (error) {
       console.log(error)
       setLoading(false);

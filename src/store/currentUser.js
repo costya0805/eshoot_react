@@ -21,7 +21,6 @@ class CurrentUser {
     this.getInfo();
     makeAutoObservable(this);
   }
-
   openModal() {
     this.showModal = true;
   }
@@ -31,14 +30,20 @@ class CurrentUser {
 
   getInfo = async () => {
     const userInCookies = cookies.get("currentUser");
-    const json = await fetch(API_URL + "/me", {
-      headers: {
-        Authorization: "Bearer " + userInCookies,
-      },
-    }).then((response) => response.json());
-    runInAction(() => {
-      this.user = { ...json };
-    });
+    if (!!userInCookies) {
+      const json = await fetch(API_URL + "/me", {
+        headers: {
+          Authorization: "Bearer " + userInCookies,
+        },
+      }).then((response) => response.json());
+      runInAction(() => {
+        this.user = { ...json };
+      });
+    }
+  };
+
+  logout = () => {
+    this.user = {};
   };
 
   get user_inizials() {
@@ -84,19 +89,19 @@ class CurrentUser {
             this.showLoading = false;
             this.avatar_url = result;
           });
-          this.updateProfile();
+          this.updateUser({ avatar: this.avatar_url });
         });
       }
     );
   }
 
-  updateProfile = async () => {
-    debugger;
+  updateUser = async (paramsInfo) => {
     const userInCookies = cookies.get("currentUser");
-    const paramsInfo = { avatar: this.avatar_url };
-    console.log(paramsInfo);
+    const currentUserRole = this.user.role;
+    const pathPart =
+      currentUserRole === "Customer" ? "customers" : "photographers";
     try {
-      const json = await fetch(API_URL + `/photographers/` + this.user.id, {
+      const json = await fetch(`${API_URL}/${pathPart}/${this.user.id}`, {
         method: "PATCH",
         headers: {
           Authorization: "Bearer " + userInCookies,
@@ -104,9 +109,8 @@ class CurrentUser {
         },
         body: JSON.stringify(paramsInfo),
       }).then((response) => response.json());
-      console.log(json);
       runInAction(() => {
-        this.user = { ...this.user, ...json };
+        this.user = { ...json };
       });
     } catch (error) {
       console.log(error);
