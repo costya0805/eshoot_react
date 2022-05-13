@@ -1,14 +1,10 @@
 import { initializeApp } from "firebase/app";
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDKkzZ669fU18YeKQmn8NQh75ZAuVBNkhs",
   authDomain: "eshoot.firebaseapp.com",
+  databaseURL: "https://eshoot-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "eshoot",
   storageBucket: "eshoot.appspot.com",
   messagingSenderId: "378610415965",

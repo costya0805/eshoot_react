@@ -37,3 +37,10 @@
 .photo:last-child {
   margin-right: 0px;
 }
+.avatar{
+  /* position: absolute; */
+  /* border-radius: 50%; */
+  /* background-color: aqua; */
+  /* width: 40px; */
+  /* height: 40px; */
+}

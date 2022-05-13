@@ -1,0 +1,108 @@
+.settingsBody form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0;
+}
+.settingsBody label {
+  margin-right: 20px;
+}
+
+.settingsBody .pageBody {
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+}
+.settingsBody form button {
+  margin: auto;
+  margin-top: 15px;
+  border: 0;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.body {
+  width: 800px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 24px;
+  column-gap: 24px;
+}
+
+.inputData {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+}
+
+.inputData label {
+  margin-bottom: 8px;
+}
+
+.inputData input {
+  height: 36px;
+  width: 100%;
+}
+
+.updateAvatar input {
+  display: none;
+}
+
+.updateAvatar label {
+  border: 1px solid grey;
+  padding: 4px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 30px;
+  margin-left: 20px;
+  line-height: 20px;
+}
+
+.updateAvatar {
+  height: auto;
+  grid-column: 1/3;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+}
+.aboutUser {
+  grid-column: 1/3;
+}
+.aboutUser textarea {
+  width: 100%;
+}
+.upgrade {
+  grid-column: 1/3;
+  align-self: center;
+  margin: auto;
+  width: 120px;
+}
+.modal {
+  position: absolute;
+  width: 720px;
+  max-height: 480px;
+  height: 100%;
+  top: 10vh;
+  background-color: white;
+  box-shadow: 0 0 10px 0 rgba(39, 60, 131, 0.3);
+  border-radius: 10px;
+  border: 0;
+}
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.cropper {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background-color: #333;
+}

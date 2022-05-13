@@ -28,6 +28,10 @@ class CurrentUser {
     this.showModal = false;
   }
 
+  get isPhotographer (){
+    return this.user.role === "Photographer";
+  }
+
   getInfo = async () => {
     const userInCookies = cookies.get("currentUser");
     if (!!userInCookies) {
@@ -45,21 +49,6 @@ class CurrentUser {
   logout = () => {
     this.user = {};
   };
-
-  get user_inizials() {
-    if (!this.user.id) return;
-    return `${this.user.first_name[0]}${this.user.last_name[0]}`;
-  }
-
-  get user_type() {
-    if (!this.user.id) return 0;
-    let user_arr = this.user.id.split("");
-    let user_type = 0;
-    user_arr.forEach((element) => {
-      if (parseInt(element)) user_type += parseInt(element);
-    });
-    return user_type % 3;
-  }
 
   updateAvatar(image, path) {
     const storage = getStorage();
