@@ -6,7 +6,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-import firebase from "../firebase";
+
 
 const cookies = new Cookies();
 const API_URL = "http://localhost:8080/users";

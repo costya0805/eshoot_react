@@ -1,0 +1,44 @@
+.body{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+.messeges{
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.fillMessege {
+  width: 100%;
+  background-color: grey;
+  height: 52px;
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+.form{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+.inputMessege{
+    margin-left: 8px;
+    width: 100%;
+    margin-right: 8px;
+    height: 32px;
+}
+
+.sendMessege{
+    margin-right: 8px;
+    height: 32px;
+    padding: 0px 4px;
+    border-radius: 5px;
+    border: 0;
+    background-color: white;
+    cursor: pointer;
+}
