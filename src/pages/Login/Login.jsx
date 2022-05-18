@@ -1,11 +1,11 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import s from "./Login.module.css";
 import Logo from "../../components/Logo/Logo";
 import Background from "../../components/Background/Background";
 import { observer } from "mobx-react-lite";
 import auth from "../../store/auth";
-import user from "../../store/currentUser"
+import user from "../../store/currentUser";
 import { useAuth } from "../../context/AuthContext";
 
 const Login = observer(() => {
@@ -19,22 +19,24 @@ const Login = observer(() => {
     try {
       setError("");
       setLoading(true);
-      const checkLogin = await login(auth.authParams.login, auth.authParams.password);
+      const checkLogin = await login(
+        auth.authParams.login,
+        auth.authParams.password
+      );
       setLoading(false);
       if (checkLogin && checkLogin.error) {
-        console.log(checkLogin.error)
+        console.log(checkLogin.error);
         return setError(checkLogin.error);
       }
-      user.getInfo()
+      user.getInfo();
       history.push("/photographers");
     } catch (error) {
-      console.log(error)
+      console.log(error);
       setLoading(false);
       setError("Ошибка при входе в систему");
     }
   }
   return (
-    
     <div className={s.wrapper}>
       <div className={s.body}>
         <header className={s.logo}>
@@ -70,7 +72,8 @@ const Login = observer(() => {
                 type="submit"
                 value="Войти"
                 className={`${s.submit} index`}
-              />{error && <div className={s.errorForm}>{error}</div>}
+              />
+              {error && <div className={s.errorForm}>{error}</div>}
               <hr className={s.hr} />
               <span>
                 Нет аккаунта? <NavLink to="/signup">Зарегистрируйтесь</NavLink>
