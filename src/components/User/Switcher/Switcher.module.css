@@ -1,0 +1,25 @@
+.switchers {
+    height: 38px;
+    display: flex;
+    border: 1px solid var(--botton);
+    width: fit-content;
+    border-radius: 10px;
+  }
+  
+  .switch {
+    display: flex;
+    height: 100%;
+    width: 128px;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid var(--botton);
+    cursor: pointer;
+  }
+  
+  .switch:first-child{
+    border: 0;
+  }
+  
+  .active{
+    color: var(--botton);
+  }

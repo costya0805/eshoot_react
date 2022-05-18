@@ -1,0 +1,82 @@
+.mainUserInfo {
+  width: 380px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 28px 20px;
+  min-height: 30px;
+  height: fit-content;
+}
+
+.topInfo {
+  display: flex;
+  align-items: center;
+}
+
+.info_near_ava {
+  margin-left: 20px;
+}
+.fio {
+  margin-bottom: 8px;
+}
+
+.city {
+  color: var(--grey);
+}
+
+.actions {
+  margin-top: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.actions button {
+  width: 100%;
+  height: 38px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.chat {
+  border: 1px solid var(--botton);
+  margin-right: 4px;
+  color: var(--botton);
+  background-color: var(--white);
+}
+
+.order {
+  background-color: var(--botton);
+  color: white;
+  border: 0;
+}
+
+.tags {
+  width: 340px;
+  min-height: 20px;
+  display: flex;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background-color: rgba(125, 148, 223, 0.15);
+  border-radius: 29px;
+  padding: 3px 8px;
+  color: var(--botton);
+  margin-left: 4px;
+  height: 30px;
+  line-height: 24px;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.text_block {
+  margin-top: 20px;
+}
+
+.header {
+  color: var(--grey);
+}
+
+.text {
+  margin-top: 4px;
+}

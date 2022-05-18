@@ -7,7 +7,7 @@ import { AuthProvider } from "./context/AuthContext";
 
 import PrivateRoute from "./components/PriveteRoute/PriveteRoute";
 
-import Orders from "./pages/OrderList/Orders";
+import Orders from "./pages/OrdersList/Orders";
 import CreateOrder from "./pages/CreateOrder/CreateOrder";
 import Messeges from "./pages/Messeges/Messeges";
 import User from "./pages/User/User";

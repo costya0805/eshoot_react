@@ -40,7 +40,6 @@ export function AuthProvider({ children }) {
     };
     const response = await fetch(API_URL + "/token", postConfig);
     const currentUser = await response.json();
-    debugger;
 
     if (!response.ok) {
       return { error: "Ошибка при входе" };
@@ -54,7 +53,6 @@ export function AuthProvider({ children }) {
   const signup = async (
     role,
     firstName,
-    middleName,
     lastName,
     email,
     password
@@ -62,9 +60,7 @@ export function AuthProvider({ children }) {
     const params = {
       first_name: firstName,
       last_name: lastName,
-      middle_name: middleName,
       email: email,
-      birthdate: new Date("1900-01-01").toISOString(),
       role: role,
       created_date: new Date().toISOString(),
       password: password,

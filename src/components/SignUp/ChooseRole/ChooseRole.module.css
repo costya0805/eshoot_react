@@ -21,7 +21,9 @@
   margin-right: 8px;
   fill: var(--botton);
 }
-
+.form_radio_group_radio{
+  display: none;
+}
 .form_radio_group_radio:checked + .form_radio_group_label,
 .form_radio_group_radio:checked:hover + .form_radio_group_label {
   outline: none;

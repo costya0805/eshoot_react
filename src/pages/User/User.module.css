@@ -1,0 +1,14 @@
+.body {
+  display: flex;
+}
+
+.dopInfo {
+  width: 780px;
+  min-height: 20px;
+  margin-left: 20px;
+  background-color: white;
+  border-radius: 10px;
+  height: fit-content;
+  padding: 28px;
+}
+

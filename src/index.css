@@ -41,11 +41,11 @@ body {
     linear-gradient(144.18deg, #ffffff -25.98%, #4568dc 185.07%);
   --white: #fff;
   --text: #141414;
-  --grey: #B5B5B5;
+  --grey: #b5b5b5;
   --dark-grey: #545454;
   --header: #273c83;
   --botton: #7d94df;
-  --red: #F46770;
+  --red: #f46770;
 }
 h1 {
   font-size: 36px;
@@ -54,25 +54,21 @@ h1 {
   color: var(--header);
 }
 
-h2{
+h2 {
   font-size: 24px;
   font-weight: 500;
   letter-spacing: 0.0044em;
   color: var(--header);
 }
 
-.index{
-  font-size: 16px;
-  letter-spacing: 0.0044em;
-  font-weight: 400;
-}
-
+.index,
 .h3 {
   font-size: 16px;
   letter-spacing: 0.0044em;
   font-weight: 400;
 }
-.small{
+
+.small_text {
   font-size: 12px;
 }
 

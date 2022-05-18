@@ -10,15 +10,9 @@ import Slider from "rc-slider";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
-import { types } from "./Filters.constans";
-
 import photographers from "../../../store/photographersList";
 
 const Filters = observer(() => {
-  const [settings, setSettings] = useState({ ageMin: 0, ageMax: 1000 });
-  const handle = (e) => {
-    setSettings({ ageMin: e[0], ageMax: e[1] });
-  };
 
   const [showCity, setShowCity] = useState(false);
   const [showPrice, setShowPrice] = useState(false);
@@ -68,12 +62,12 @@ const Filters = observer(() => {
             <Slider
               range
               min={0}
-              max={1000}
+              max={10000}
               value={[
                 photographers.filters.minCost,
                 photographers.filters.maxCost,
               ]}
-              onChange={handle}
+              onChange={(e) => photographers.setFilters("cost", e)}
               className={s.slider}
               onBlur={() => {}}
             />
@@ -111,15 +105,19 @@ const Filters = observer(() => {
         </div>
         {showTags && (
           <div className={s.checkboxs}>
-            {types.map((type) => (
-              <div key={type.id} className={s.checkbox}>
+            {photographers.tags.map((type) => (
+              <div
+                key={type.id}
+                className={s.checkbox}
+                onClick={() => photographers.setFilters("tag", type.name)}
+              >
                 <input
                   type="radio"
                   name="tag"
                   id={type.type}
                   value={type.name}
                   checked={photographers.filters.tag === type.name}
-                  onClick={(e)=>photographers.setFilters("tag", e.target.value)}
+                  readOnly
                 />
                 <label htmlFor={type.type}>{type.name}</label>
               </div>

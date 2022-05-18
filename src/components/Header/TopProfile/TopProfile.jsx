@@ -35,19 +35,6 @@ const TopProfile = observer(() => {
       {showMenu && (
         <div className={s.menu}>
           <div className={s.openMenu}>
-            <Link
-              className={s.point}
-              to={{
-                pathname: `/user`,
-              }}
-            >
-              <img
-                src={accountSvg}
-                style={{ height: 20, marginLeft: 9 }}
-                alt=""
-              />
-              <span>Личный кабинет</span>
-            </Link>
             <NavLink className={s.point} to="/settings">
               <img
                 src={settingsSvg}

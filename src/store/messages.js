@@ -20,7 +20,6 @@ class Messages {
         },
       }).then((response) => response.json());
       runInAction(() => {
-        console.log(json);
         this.choosenUser = { ...json };
         this.show_chat = true;
       });

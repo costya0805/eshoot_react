@@ -2,25 +2,13 @@ import React from "react";
 import "./Avatar.css";
 // import s from "./Avatar.module.css";
 
-export default function Avatar({
-  userName,
-  userSecondname,
-  style,
-  className,
-  size,
-  image,
-}) {
+export default function Avatar({ userName, userSecondname, size, image }) {
   return (
     <>
       {!!image ? (
         <img src={image} className={`${size} avatar`} />
       ) : (
-        <div
-          className={`${size} avatar ${
-            className ? className : ""
-          }`}
-          style={style}
-        >
+        <div className={`${size} avatar`}>
           {userName[0]}
           {userSecondname[0]}
         </div>

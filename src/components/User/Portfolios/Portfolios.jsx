@@ -1,0 +1,40 @@
+import React from "react";
+import { useParams } from "react-router-dom";
+import s from "./Portfolios.module.css";
+import { observer } from "mobx-react-lite";
+import photographer from "../../../store/photographerAccount.js";
+
+const Portfolios = observer(() => {
+  const getPhotosName = (count) => {
+    return count > 4 ? "фотографий" : "фотографии";
+  };
+  return (
+    <div className={s.portfolios}>
+      {photographer.porfolios_photos.map((portfolio_photos) => (
+        <div className={s.portfolio} key={portfolio_photos.portfolio_id}>
+          <div className={s.photos}>
+            <div className={s.first}>
+              <img src={portfolio_photos.photos[0].photo_path} />
+            </div>
+            <div>
+              <img src={portfolio_photos.photos[1].photo_path} />
+            </div>
+            <div>
+              <img src={portfolio_photos.photos[2].photo_path} />
+            </div>
+          </div>
+          <div className={s.portfolio_info}>
+            <div className={`${s.portfolio_name} h3`}>
+              {portfolio_photos.tag_name}
+            </div>
+            <div className={`${s.portfolio_stat} small_text`}>{`${
+              portfolio_photos.photos.length
+            } ${getPhotosName(portfolio_photos.photos.length)}`}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+});
+
+export default Portfolios;

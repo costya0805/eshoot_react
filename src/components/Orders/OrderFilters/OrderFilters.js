@@ -10,31 +10,10 @@ function OrderFilters() {
     { id: 4, value: "in_process", text: "Ожидается результат" },
     { id: 5, value: "done", text: "Заказ выполнен" },
   ]);
-  const [selectStatus, setSelectStatus] = useState();
 
   return (
     <div className="serchFilters" style={styles.body}>
-      <form className="filters" style={styles.form}>
-        <div className="input">
-          <input
-            type="text"
-            className="filter"
-            style={styles.input}
-            placeholder="Поиск"
-          />
-        </div>
-        <select
-          type="text"
-          className="filter"
-          style={styles.select}
-          placeholder="Статус"
-          value={selectStatus}
-          onChange={(e)=>setSelectStatus(e.target.value)}
-        >
-          <option key="0" value="" disabled selected style={{display:"none"}}>Статус</option>
-          {status.map(status => <option key={status.id} value={status.value} >{status.text}</option>)}
-        </select>
-      </form>
+
     </div>
   );
 }

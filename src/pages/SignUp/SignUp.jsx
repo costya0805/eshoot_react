@@ -26,7 +26,6 @@ const SignUp = observer(() => {
       const checkLogin = await signup(
         signUp.signUpParams.role,
         signUp.signUpParams.name,
-        "",
         signUp.signUpParams.surname,
         signUp.signUpParams.login,
         signUp.signUpParams.password

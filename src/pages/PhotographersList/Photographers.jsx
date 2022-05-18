@@ -13,15 +13,19 @@ const Photographers = observer(() => {
   return (
     <>
       <Header />
+      <h1 className={s.pageName}>Поиск </h1>
       <div className={s.body}>
-        <div>
-          <h1 className={s.pageName}>Поиск </h1>
-          <Filters />
-        </div>
+        <Filters />
         <div className={s.fotographers}>
-          {photographers.photographers.map((photographer) => (
-            <Photographer key={photographer.id} photographer={photographer} />
-          ))}
+          {photographers.photographers.map(
+            (photographer) =>
+              photographer.photos.length > 3 && (
+                <Photographer
+                  key={photographer.id}
+                  photographer={photographer}
+                />
+              )
+          )}
         </div>
       </div>
     </>
