@@ -1,6 +1,6 @@
 import s from "./Photographer.module.css";
 import { observer } from "mobx-react-lite";
-import React, { useState } from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../Avatar/Avatar";
 import messegeSVG from "../../../images/messeges_in_user.svg";
@@ -29,7 +29,7 @@ const Photographer = observer(({ photographer }) => {
           <div className={s.photos}>
             {photos.map((photo) => (
               <div className={s.photo}>
-                <img src={photo} />
+                <img src={photo} alt=""/>
               </div>
             ))}
           </div>
@@ -79,7 +79,7 @@ const Photographer = observer(({ photographer }) => {
       </Link>
       {photographer.id !== curren_user.user.id && (
         <div className={s.chat} onClick={goChat}>
-          <img src={messegeSVG} />
+          <img src={messegeSVG} alt=""/>
         </div>
       )}
       {photographer.id !== curren_user.user.id && (

@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import TopProfile from "./TopProfile/TopProfile";
-import LogoSvg from "../../images/logo.svg";
 import Logo from "../Logo/Logo";
 import Search from "../../images/search.svg";
 import messeges from "../../images/messeges.svg";

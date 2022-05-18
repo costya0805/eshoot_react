@@ -3,13 +3,13 @@ import "./OrderFilter.css";
 
 
 function OrderFilters() {
-  const [status] = useState([
-    { id: 1, value: "new", text: "Новый заказ" },
-    { id: 2, value: "agree", text: "Планируется" },
-    { id: 3, value: "notagree", text: "Заказ отменен" },
-    { id: 4, value: "in_process", text: "Ожидается результат" },
-    { id: 5, value: "done", text: "Заказ выполнен" },
-  ]);
+  // const [status] = useState([
+  //   { id: 1, value: "new", text: "Новый заказ" },
+  //   { id: 2, value: "agree", text: "Планируется" },
+  //   { id: 3, value: "notagree", text: "Заказ отменен" },
+  //   { id: 4, value: "in_process", text: "Ожидается результат" },
+  //   { id: 5, value: "done", text: "Заказ выполнен" },
+  // ]);
 
   return (
     <div className="serchFilters" style={styles.body}>

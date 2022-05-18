@@ -9,11 +9,11 @@ import s from "./Background.module.css";
 function Background() {
   return (
     <>
-      <img src={ThirdPic} className={`${s.picture} ${s.third}`} />
-      <img src={SecondPic} className={`${s.picture} ${s.second}`} />
-      <img src={FirstPic} className={`${s.picture} ${s.first}`} />
-      <img src={RightRectangle} className={s.rightRectangle} />
-      <img src={LeftRectangle} className={s.leftRectangle} />
+      <img src={ThirdPic} className={`${s.picture} ${s.third}`} alt=""/>
+      <img src={SecondPic} className={`${s.picture} ${s.second}`} alt=""/>
+      <img src={FirstPic} className={`${s.picture} ${s.first}`} alt=""/>
+      <img src={RightRectangle} className={s.rightRectangle} alt=""/>
+      <img src={LeftRectangle} className={s.leftRectangle} alt=""/>
       
     </>
   );

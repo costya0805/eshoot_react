@@ -1,4 +1,4 @@
-import s from "./ChooseRole.module.css"
+import s from "./ChooseRole.module.css";
 import signup from "../../../store/signup";
 import { observer } from "mobx-react-lite";
 
@@ -29,6 +29,7 @@ const ChooseRole = observer(() => {
                 ? userSVG_active
                 : userSVG_unactive
             }
+            alt=""
           />
           Пользователь
         </label>
@@ -48,6 +49,7 @@ const ChooseRole = observer(() => {
                 ? photographerSVG_actve
                 : photographerSVG_unactive
             }
+            alt=""
           />
           Фотограф
         </label>

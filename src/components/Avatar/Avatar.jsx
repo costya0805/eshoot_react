@@ -6,7 +6,7 @@ export default function Avatar({ userName, userSecondname, size, image }) {
   return (
     <>
       {!!image ? (
-        <img src={image} className={`${size} avatar`} />
+        <img src={image} className={`${size} avatar`} alt=""/>
       ) : (
         <div className={`${size} avatar`}>
           {userName[0]}

@@ -6,8 +6,6 @@ import {
   collection,
   query,
   orderBy,
-  limit,
-  where,
 } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import currentUser from "../../../store/currentUser";

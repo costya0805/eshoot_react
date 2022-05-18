@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import React, { useState } from "react";
+import React from "react";
 import s from "./Chat.module.css";
 import messages from "../../../store/messages";
 import Avatar from "../../Avatar/Avatar";

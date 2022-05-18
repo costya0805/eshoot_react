@@ -1,5 +1,4 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import s from "./Portfolios.module.css";
 import { observer } from "mobx-react-lite";
 import photographer from "../../../store/photographerAccount.js";
@@ -14,13 +13,13 @@ const Portfolios = observer(() => {
         <div className={s.portfolio} key={portfolio_photos.portfolio_id}>
           <div className={s.photos}>
             <div className={s.first}>
-              <img src={portfolio_photos.photos[0].photo_path} />
+              <img src={portfolio_photos.photos[0].photo_path} alt=""/>
             </div>
             <div>
-              <img src={portfolio_photos.photos[1].photo_path} />
+              <img src={portfolio_photos.photos[1].photo_path} alt=""/>
             </div>
             <div>
-              <img src={portfolio_photos.photos[2].photo_path} />
+              <img src={portfolio_photos.photos[2].photo_path} alt=""/>
             </div>
           </div>
           <div className={s.portfolio_info}>
