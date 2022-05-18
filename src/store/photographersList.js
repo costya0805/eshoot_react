@@ -14,6 +14,7 @@ class Photographers {
 
   getPhotographers = async () => {
     const userInCookies = cookies.get("currentUser");
+    this.photographers = [];
     let json = await fetch(`${API_URL}/users/photographers/`).then((response) =>
       response.json()
     );
@@ -25,7 +26,11 @@ class Photographers {
         },
       })
         .then((response) => response.json())
-        .then((json) => runInAction(()=>{this.photographers.push(json)}));
+        .then((json) =>
+          runInAction(() => {
+            this.photographers.push(json);
+          })
+        );
     });
   };
 
