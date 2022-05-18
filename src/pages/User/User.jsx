@@ -14,7 +14,7 @@ const User = observer(() => {
   const { userID } = useParams();
   useEffect(() => {
     photographer.getPhotographer(userID);
-  }, [userID]);
+  }, []);
   return (
     <>
       <Header />

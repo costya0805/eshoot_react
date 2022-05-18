@@ -1,6 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 import photographer from "../../../store/photographerAccount.js";
+import currentUser from "../../../store/currentUser.js";
 import messages from "../../../store/messages";
 import { useHistory } from "react-router-dom";
 import Avatar from "../../Avatar/Avatar";
@@ -28,15 +29,19 @@ const MainInfo = observer(() => {
           <div className={s.city}>{`г. ${photographer.main_info.city}`}</div>
         </div>
       </div>
-      <div className={s.actions}>
-        <button className={s.chat} onClick={goChat}>
-          Связаться
-        </button>
-        <button className={s.order}>Оформить заказ</button>
-      </div>
+      {currentUser.user.id !== photographer.main_info.id && (
+        <div className={s.actions}>
+          <button className={s.chat} onClick={goChat}>
+            Связаться
+          </button>
+          <button className={s.order}>Оформить заказ</button>
+        </div>
+      )}
       <div className={s.tags}>
         {photographer.tags.map((tag) => (
-          <div className={s.tag} key={tag.id}>{tag.name}</div>
+          <div className={s.tag} key={tag.id}>
+            {tag.name}
+          </div>
         ))}
       </div>
       <div className={s.text_block}>

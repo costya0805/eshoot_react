@@ -1,15 +1,17 @@
 import { observer } from "mobx-react-lite";
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import s from "./Photographers.module.css";
 import photographers from "../../store/photographersList";
-import user from "../../store/currentUser";
 
 import Header from "../../components/Header/Header";
 import Filters from "../../components/FotographersList/Filters/Filters";
 import Photographer from "../../components/FotographersList/Fotographer/Photographer";
 
 const Photographers = observer(() => {
+  useEffect(()=>{
+    photographers.getPhotographers()
+    photographers.getTags()
+  },[])
   return (
     <>
       <Header />

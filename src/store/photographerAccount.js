@@ -1,9 +1,11 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import currentUser from "./currentUser";
 import Cookies from "universal-cookie";
+
 
 const cookies = new Cookies();
 const API_URL = "http://51.250.17.207:8080";
+
+
 
 class Photographer {
   main_info = {};
@@ -19,7 +21,7 @@ class Photographer {
 
   getPhotographer = async (id) => {
     this.loading = true;
-    this.porfolios_photos = []
+    this.porfolios_photos = [];
     const userInCookies = cookies.get("currentUser");
     const json = await fetch(`${API_URL}/users/photographers/${id}`, {
       headers: {
@@ -36,6 +38,7 @@ class Photographer {
         about: json.about,
         experience: json.experience,
         city: json.city,
+        id: json.id,
       };
       this.tags = json.tags;
     });
