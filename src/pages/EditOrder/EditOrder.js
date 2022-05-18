@@ -3,7 +3,6 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 import Header from "../../components/Header/Header";
-import SideMenu from "../../components/SideMenu/SideMenu";
 import defaultPng from "../../images/default.png";
 import "./EditOrder.css";
 
@@ -13,7 +12,6 @@ function EditOrder(params) {
     <div className="editOrder">
       <Header pageName={{ pageName: "Редактирование заказа" }} />
       <div className="pageLayout">
-        <SideMenu />
         <div className="content">
           <span className="h6">
             Котик работает...

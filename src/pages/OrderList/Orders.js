@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
-import SideMenu from "../../components/SideMenu/SideMenu";
 import OrderFilters from "../../components/Orders/OrderFilters/OrderFilters";
 import OrderCard from "../../components/Orders/OrderCard/OrderCard";
 
@@ -19,7 +18,7 @@ function Orders() {
     const fetchName = async () => {
       try {
         const data = await fetch(
-          `http://localhost:8080/users/${currentUserInfo.id}/orders/`,
+          `http://51.250.17.207:8080/users/${currentUserInfo.id}/orders/`,
           {
             headers: {
               Authorization: "Bearer " + currentUser,
@@ -50,7 +49,6 @@ function Orders() {
     <div>
       <Header pageName={{ pageName: "Заказы" }} />
       <div className="pageLayout">
-        <SideMenu />
         <div className="pageBody">
           <OrderFilters />
           {loadingOrders || loading ? (

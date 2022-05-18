@@ -4,7 +4,6 @@ import { Link, useHistory } from "react-router-dom";
 import "./CreateOrder.css";
 
 import Header from "../../components/Header/Header";
-import SideMenu from "../../components/SideMenu/SideMenu";
 import SelectType from "../../components/CreateOrder/SelectType/SelectType";
 
 import { useAuth } from "../../context/AuthContext";
@@ -21,7 +20,7 @@ function CreateOrder(params) {
       try {
         debugger;
         const data = await fetch(
-          `http://localhost:8080/users/photographers/${params.location.state.data}`,
+          `http://51.250.17.207:8080/users/photographers/${params.location.state.data}`,
           {
             headers: {
               Authorization: "Bearer " + currentUser,
@@ -224,7 +223,7 @@ function CreateOrder(params) {
       setError("");
       setLoadFotograph(true);
       const response = await fetch(
-        `http://localhost:8080/users/${photgrapher.id}/orders`,
+        `http://51.250.17.207:8080/users/${photgrapher.id}/orders`,
         postConfig
       );
       setLoadFotograph(false);
@@ -241,9 +240,8 @@ function CreateOrder(params) {
 
   return (
     <div className="createOrder">
-      <Header pageName={{ pageName: "Составление заказа" }} />
+      <Header />
       <div className="pageLayout">
-        <SideMenu />
         {loading ? (
           <></>
         ) : (

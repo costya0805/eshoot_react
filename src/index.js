@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
 import 'firebase/firestore';
 
 
@@ -19,7 +18,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app)
+
 
 ReactDOM.render(
   <React.StrictMode>

@@ -3,7 +3,8 @@
   cursor: pointer;
   justify-content: right;
   align-items: center;
-  margin-left: 24px;
+  margin-left: 32px;
+  margin-right: 8px;
 }
 
 .main{
@@ -11,8 +12,8 @@
 }
 
 .arrow {
-  width: 10px;
-  height: 5px;
+  width: 15px;
+  height: 8px;
   margin-left: 8px;
   rotate: 180deg;
 }

@@ -7,9 +7,6 @@ import { AuthProvider } from "./context/AuthContext";
 
 import PrivateRoute from "./components/PriveteRoute/PriveteRoute";
 
-import Auth from "./pages/Auth/Auth";
-import Registration from "./pages/Registration/Registration";
-import Search from "./pages/Search";
 import Orders from "./pages/OrderList/Orders";
 import CreateOrder from "./pages/CreateOrder/CreateOrder";
 import Messeges from "./pages/Messeges/Messeges";
@@ -27,12 +24,9 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <Switch>
-          <Route path={"/auth"} component={Auth} />
-          <Route path={"/reg"} component={Registration} />
           <Route path={"/login"} component={Login} />
           <Route path={"/signup"} component={SignUp} />
           <PrivateRoute path={"/photographers"} component={Photographers}/>
-          <PrivateRoute path={"/search"} component={Search} />
           <PrivateRoute path={"/orders"} component={Orders} />
           <PrivateRoute path={"/order"} component={Order} />
           <PrivateRoute path={"/edit-order"} component={EditOrder}/>
@@ -41,7 +35,7 @@ function App() {
           <PrivateRoute path={"/user/:userID?"} component={User}/>
           <PrivateRoute path={"/messeges"} component={Messeges}/>
           <PrivateRoute path={"/settings"} component={Settings}/>
-          <Redirect from="*" to={'/search'}/>
+          <Redirect from="*" to={'/photographers'}/>
         </Switch>
       </AuthProvider>
     </BrowserRouter>

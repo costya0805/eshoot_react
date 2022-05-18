@@ -1,11 +1,19 @@
 .body{
     height: 100%;
     display: flex;
+    justify-content: space-between;
 }
 .fotographers{
-    margin-left: 100px;
+    margin-left: 20px;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px 50px;
+    grid-template-columns: repeat(2, 420px);
+    grid-auto-rows: minmax(min-content, max-content);
+    gap: 28px 20px;
 }
+
+.pageName{
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-size: 24px;
+  }

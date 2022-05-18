@@ -1,21 +1,18 @@
 .chatBody {
   background-color: white;
-  width: 100%;
+  width: 300px;
   height: 64px;
   display: flex;
   cursor: pointer;
   align-items: center;
 }
 .chatLogo {
-  background-color: #7d94df;
   margin: 0 8px;
   border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  flex-shrink: 0; 
+  flex-shrink: 0;
 }
 .chatInfo {
-    width: 100%;
+  width: 100%;
 }
 .headChatMessege {
   display: flex;
@@ -31,4 +28,19 @@
   display: flex;
   justify-content: space-between;
   padding-right: 8px;
+  white-space: nowrap;
+  
+}
+.lastMessege{
+  width: 200px;
+  flex: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lastMessageText {
+  display: inline;
+}
+.userMessege{
+  display: inline;
+  color: grey;
 }

@@ -1,28 +1,29 @@
 .block {
-  height: 56px;
+  height: 38px;
   background-color: var(--white);
-  /* box-shadow: 0 2px 10px rgba(39, 60, 131, 0.15); */
-  margin-top: 16px;
+  margin-top: 8px;
   width: 100%;
-  margin-bottom: 98px;
+  margin-bottom: 40px;
 }
 .content {
   display: flex;
   justify-content: flex-start;
   margin: auto;
-  height: 56px;
+  height: 38px;
   align-items: center;
 }
-.input{
-  margin-left: 61px;
+.input {
+  margin-left: 57px;
   position: relative;
   display: flex;
 }
-.search{
+.search {
   height: 38px;
   padding-left: 38px;
+  width: 280px;
+  border: 1px solid var(--botton);
 }
-.inputIcon{
+.inputIcon {
   position: absolute;
   align-self: center;
   left: 12px;
@@ -31,7 +32,18 @@
   display: flex;
 }
 
-.right{
+.orders {
   margin-left: auto;
-  margin-right: 24px;
+  margin-right: 32px;
+  font-size: 16px;
+  color: var(--botton);
+}
+
+.messages {
+  width: 30px;
+  height: 21px;
+}
+.messagesButton {
+  width: 30px;
+  height: 21px;
 }

@@ -1,8 +1,9 @@
 import { makeAutoObservable } from "mobx";
-
+import currentUser from "./currentUser";
+const API_URL = "http://51.250.17.207:8080";
 class Photographers {
   photographers = [];
-  test = true;
+  filters = { tag: "", date: null, city: "", maxCost: 10000, minCost: 0 };
 
   constructor() {
     this.getPhotographers();
@@ -10,26 +11,25 @@ class Photographers {
   }
 
   getPhotographers() {
-    this.test
-      ? (this.photographers = [
-          {
-            id: 1,
-            user: { first_name: "Константин", second_name: "Кочергин" },
-          },
-          {
-            id: 2,
-            user: { first_name: "Андрей", second_name: "Макаров" },
-          },
-        ])
-      : fetch("http://localhost:8080/users/photographers/", {
-          headers: {
-            // Authorization: "Bearer " + currentUser,
-          },
-        })
-          .then((response) => response.json())
-          .then((json) => {
-            this.photographers = [...this.photographers, ...json];
-          });
+    fetch(`${API_URL}/users/photographers/`, {
+      headers: {
+        Authorization: "Bearer " + currentUser.user.email,
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        this.photographers = [...this.photographers, ...json];
+      });
+  }
+  setFilters(filter_name, filter_value) {
+    if (filter_name === "tag") {
+      this.filters.tag === filter_value
+        ? (this.filters.tag = "")
+        : (this.filters.tag = filter_value);
+    } else {
+      this.filters[filter_name] = filter_value;
+    }
+    console.log(this.filters.tag);
   }
 }
 

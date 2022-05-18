@@ -10,14 +10,18 @@ import Filters from "../../components/FotographersList/Filters/Filters";
 import Photographer from "../../components/FotographersList/Fotographer/Photographer";
 
 const Photographers = observer(() => {
-  // console.log(user.user.id)
   return (
     <>
       <Header />
       <div className={s.body}>
-        <Filters />
+        <div>
+          <h1 className={s.pageName}>Поиск </h1>
+          <Filters />
+        </div>
         <div className={s.fotographers}>
-            {photographers.photographers.map(photographer => <Photographer key={photographer.id}/>)}
+          {photographers.photographers.map((photographer) => (
+            <Photographer key={photographer.id} photographer={photographer} />
+          ))}
         </div>
       </div>
     </>

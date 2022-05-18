@@ -9,7 +9,7 @@ body {
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #212121;
+  color: #141414;
 }
 
 code {
@@ -40,8 +40,8 @@ body {
     ),
     linear-gradient(144.18deg, #ffffff -25.98%, #4568dc 185.07%);
   --white: #fff;
-  --text: #000;
-  --grey: #909090;
+  --text: #141414;
+  --grey: #B5B5B5;
   --dark-grey: #545454;
   --header: #273c83;
   --botton: #7d94df;
@@ -71,6 +71,9 @@ h2{
   font-size: 16px;
   letter-spacing: 0.0044em;
   font-weight: 400;
+}
+.small{
+  font-size: 12px;
 }
 
 * {

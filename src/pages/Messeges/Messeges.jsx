@@ -1,37 +1,35 @@
 import React from "react";
 
 import Header from "../../components/Header/Header";
-import Chat from "../../components/Messeges/UserChat/Chat";
+import UserChats from "../../components/Messeges/UserChats/UserChats";
+import ChatUser from "../../components/Messeges/ChatHeader/ChatHeader";
 import UserMesseges from "../../components/Messeges/UserMesseges/UserMesseges";
 
 import s from "./Messeges.module.css";
+import { observer } from "mobx-react-lite";
+import messages from "../../store/messages";
 
-function Messeges() {
-  let select = true;
+const Messeges = observer(() => {
   return (
     <>
-      <Header pageName={{ pageName: "Сообщения" }} />
+      <Header />
       <div className={s.pageLayout}>
         <div className={s.pageBody}>
           <div className={s.messegesList}>
-            <Chat isFirst={true} />
-            <Chat />
-            <Chat />
+            <UserChats />
           </div>
-          {select ? (
+          {messages.show_chat ? (
             <>
-              <div className={s.messegeHeader}>
-                <span className="body2">Иванов Иван</span>
-              </div>
-              <UserMesseges/>
+              <ChatUser />
+              <UserMesseges />
             </>
           ) : (
-            <div className={s.placeholder}></div>
+            <div className={s.placeholder}>Пользователь не выбран</div>
           )}
         </div>
       </div>
     </>
   );
-}
+});
 
 export default Messeges;

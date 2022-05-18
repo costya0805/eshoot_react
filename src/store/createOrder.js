@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
 
-const API_URL = "http://localhost:8080/users";
+const API_URL = "http://51.250.17.207:8080/users";
 
 class CreateOrder {
   photographer = {};
@@ -11,13 +11,13 @@ class CreateOrder {
   }
 
   createNewOrder = async (photographer_id) => {
-    this.orderParams = {};
-    const json = await fetch(
-      `${API_URL}/photographers/${photographer_id}`
-    ).then((response) => response.json());
-    runInAction(() => {
-      this.photographer = { ...json };
-    });
+    // this.orderParams = {};
+    // const json = await fetch(
+    //   `${API_URL}/photographers/${photographer_id}`
+    // ).then((response) => response.json());
+    // runInAction(() => {
+    //   this.photographer = { ...json };
+    // });
   };
 
   uploadOrder = async () => {};

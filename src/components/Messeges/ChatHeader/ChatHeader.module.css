@@ -1,0 +1,6 @@
+.messegeHeader {
+    background-color: #f4f5f9;
+    line-height: 40px;
+    grid-row: 1;
+    grid-column: 2;
+}

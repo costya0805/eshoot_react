@@ -12,6 +12,8 @@ export default function PrivateRoute({ component: Component, ...rest }) {
       render={(props) => {
         return currentUser ? (
           <div className={s.wrapper}>
+            <div className={s.whiteBoard}/>
+            <div className={s.background}/>
             <div className={s.body}>
               <Component {...props} />
             </div>

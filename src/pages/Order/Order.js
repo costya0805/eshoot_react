@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import Header from "../../components/Header/Header";
-import SideMenu from "../../components/SideMenu/SideMenu";
 import Status from "../../components/Orders/Status/Status";
 import OrderString from "../../components/Order/OrderString/OrderString";
 import Avatar from "../../components/Avatar/Avatar";
@@ -48,7 +47,7 @@ function Order(params) {
     const fetchName = async () => {
       try {
         const data = await fetch(
-          `http://localhost:8080/users/${currentUserInfo.id}/orders/${order_id}`,
+          `http://51.250.17.207:8080/users/${currentUserInfo.id}/orders/${order_id}`,
           {
             headers: {
               Authorization: "Bearer " + currentUser,
@@ -80,7 +79,7 @@ function Order(params) {
             ? "photographers"
             : "customers";
         const userData = await fetch(
-          `http://localhost:8080/users/${secondUserRole}/${secondUserId}`,
+          `http://51.250.17.207:8080/users/${secondUserRole}/${secondUserId}`,
           {
             headers: {
               Authorization: "Bearer " + currentUser,
@@ -116,7 +115,7 @@ function Order(params) {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:8080/users/${currentUserInfo.id}/orders/${order_id}`,
+        `http://51.250.17.207:8080/users/${currentUserInfo.id}/orders/${order_id}`,
         postConfig
       );
       setNeedRefresh(true);
@@ -172,7 +171,6 @@ function Order(params) {
       )}
       <Header pageName={{ pageName: "Заказ" }} />
       <div className="pageLayout">
-        <SideMenu />
         {!loading && !loadingOrder && (
           <div className="pageBody">
             <div className="mainInfoOrder">

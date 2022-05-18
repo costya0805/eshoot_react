@@ -9,7 +9,7 @@ import {
 
 
 const cookies = new Cookies();
-const API_URL = "http://localhost:8080/users";
+const API_URL = "http://51.250.17.207:8080/users";
 
 class CurrentUser {
   user = {};

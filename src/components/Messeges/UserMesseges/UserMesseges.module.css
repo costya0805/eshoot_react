@@ -6,7 +6,11 @@
 
 .messeges{
     height: 100%;
-    overflow-y: hidden;
+    overflow-y: auto;
+    max-height: 450px;
+}
+.messeges::-webkit-scrollbar{
+    display: none;
 }
 
 .fillMessege {

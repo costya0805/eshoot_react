@@ -1,0 +1,19 @@
+.body{
+    display: flex;
+    margin-bottom: 16px;
+}
+.header{
+    display: flex;
+}
+
+.userName{
+    margin-right: 8px;
+    font-weight: bold;
+    color: grey
+}
+.avatar{
+    margin-right: 4px;
+}
+.time{
+    color: grey;
+}

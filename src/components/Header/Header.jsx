@@ -20,11 +20,11 @@ function Header() {
           <input className={s.search} placeholder="Поиск"></input>
         </div>
 
-        <NavLink to="/orders" className={s.right}>
+        <NavLink to="/orders" className={s.orders}>
           Заказы
         </NavLink>
-        <NavLink to="/messeges">
-          <img src={messeges} alt="" />
+        <NavLink to="/messeges"  className={s.messagesButton}>
+          <img src={messeges} className={s.messages} alt="" />
         </NavLink>
         <TopProfile />
         <></>

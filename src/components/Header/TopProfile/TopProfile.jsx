@@ -23,7 +23,7 @@ const TopProfile = observer(() => {
             userSecondname={user.user.last_name}
             userID={user.user.id}
             image={user.user.avatar}
-            size="small"
+            size="header"
           />
         )}
         <img

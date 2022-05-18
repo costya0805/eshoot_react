@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "./User.css";
 
 import Header from "../../components/Header/Header";
-import SideMenu from "../../components/SideMenu/SideMenu";
 import UserString from "../../components/User/UserString/UserString";
 import UserLine from "../../components/User/UserLine/UserLine";
 import UserTypePhoto from "../../components/User/UserTypePhoto/UserTypePhoto";
@@ -30,7 +29,7 @@ function User(params) {
       const fetchName = async () => {
         try {
           const data = await fetch(
-            `http://localhost:8080/users/photographers/${userID}`,
+            `http://51.250.17.207:8080/users/photographers/${userID}`,
             {
               headers: {
                 Authorization: "Bearer " + currentUser,
@@ -78,7 +77,6 @@ function User(params) {
         />
       )}
       <div className="pageLayout">
-        <SideMenu />
         <div className="pageBody">
           {loading ? (
             <div>Загрузка</div>
