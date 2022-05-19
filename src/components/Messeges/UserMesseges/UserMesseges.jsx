@@ -110,6 +110,7 @@ const UserMesseges = observer(() => {
             className={s.inputMessege}
             value={messege}
             onChange={handleChange}
+            placeholder="Введите сообщение"
           />
           <button type="submit" className={s.sendMessege}>
             Отправить
