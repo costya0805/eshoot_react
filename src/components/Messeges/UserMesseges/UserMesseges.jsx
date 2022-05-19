@@ -24,7 +24,7 @@ const UserMesseges = observer(() => {
       db,
       `userMesseges/${currentUserID}/prevUser/${secondUserID}/messeges`
     ),
-    orderBy("date")
+    orderBy("date", "desc")
   );
   const [chat_messages, loading] = useCollectionData(q);
   const handleChange = (e) => {
@@ -92,8 +92,6 @@ const UserMesseges = observer(() => {
     }
     sendMessege("");
   }
-
-  //   console.log(messages, loading)
   return (
     <div className={s.body}>
       <div className={s.messeges}>

@@ -3,8 +3,10 @@
   width: 880px;
   height: calc(100vh - 170px);
   padding-bottom: 20px;
-  grid-template-columns: 300px 1fr;
-  grid-template-rows: 40px 1fr;
+  grid-template-columns: 300px 860px;
+  grid-template-rows: 68px 1fr;
+  column-gap: 20px;
+  row-gap: 8px;
 }
 .messegesList {
   grid-row: 1 / span 3;

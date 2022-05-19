@@ -10,7 +10,7 @@ import s from "./MainInfo.module.css";
 const MainInfo = observer(() => {
   const history = useHistory();
   const goChat = async () => {
-    messages.selectChatUser(photographer.id);
+    messages.selectChatUser(photographer.main_info.id);
     history.push("/messeges");
   };
   return (

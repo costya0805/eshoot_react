@@ -2,12 +2,18 @@
     display: flex;
     height: 100%;
     flex-direction: column;
+    background-color: white;
+    border-radius: 0 0 10px 10px
 }
 
 .messeges{
     height: 100%;
     overflow-y: auto;
-    max-height: 450px;
+    margin: 0 32px;
+    display: flex;
+    flex-direction: column-reverse;
+    min-height: 10vh;
+    max-height: 65vh;
 }
 .messeges::-webkit-scrollbar{
     display: none;
@@ -15,10 +21,11 @@
 
 .fillMessege {
   width: 100%;
-  background-color: grey;
-  height: 52px;
+  height: 48px;
   flex-shrink: 0;
   align-self: flex-end;
+  border-radius: 10px;
+  border: 1px solid
 }
 
 .form{
@@ -35,6 +42,11 @@
     width: 100%;
     margin-right: 8px;
     height: 32px;
+    border: none;
+}
+
+.inputMessege:hover, .inputMessege:focus{
+    border: 0;
 }
 
 .sendMessege{

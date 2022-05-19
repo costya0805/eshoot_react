@@ -1,19 +1,34 @@
-.body{
-    display: flex;
-    margin-bottom: 16px;
-}
-.header{
-    display: flex;
+.body_current {
+  display: flex;
+  margin-bottom: 4px;
+  padding: 8px 55px 8px 12px;
+  width: fit-content;
+  border-radius: 10px 10px 10px 0px;
+  background-color: rgba(181, 181, 181, 0.4);
+  position: relative;
 }
 
-.userName{
-    margin-right: 8px;
-    font-weight: bold;
-    color: grey
+.body_not_current {
+  display: flex;
+  margin-bottom: 4px;
+  padding: 8px 55px 8px 12px;
+  width: fit-content;
+  border-radius: 10px 10px 0px 10px;
+  background-color: var(--botton);
+  color: var(--white);
+  align-self: flex-end;
+  position: relative;
 }
-.avatar{
-    margin-right: 4px;
+.body_current .time {
+  color: var(--dark-grey);
 }
-.time{
-    color: grey;
+.body_not_current .time {
+  color: rgba(255, 255, 255, 0.65);
+}
+.time {
+  position: absolute;
+  right: 8px;
+  bottom: 4px;
+  width: fit-content;
+  height: fit-content;
 }

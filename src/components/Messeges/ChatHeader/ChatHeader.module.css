@@ -1,6 +1,21 @@
 .messegeHeader {
-    background-color: #f4f5f9;
-    line-height: 40px;
+    background-color: var(--white);
+    height: 68px;
     grid-row: 1;
     grid-column: 2;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    border-radius: 10px 10px 0 0;
+}
+
+.messegeHeader span{
+    margin-left: 16px;
+}
+
+.messegeHeader a{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: var(--black);
 }
