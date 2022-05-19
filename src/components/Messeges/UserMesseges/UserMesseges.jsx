@@ -13,6 +13,7 @@ import UserMessege from "../UserMessege/UserMessege";
 import { observer } from "mobx-react-lite";
 import currentUser from "../../../store/currentUser";
 import messages from "../../../store/messages";
+import TextareaAutosize from 'react-textarea-autosize';
 
 const UserMesseges = observer(() => {
   const currentUserID = currentUser.user.id;
@@ -34,10 +35,13 @@ const UserMesseges = observer(() => {
   async function sendMessege(e) {
     e.preventDefault();
     const now = new Date();
+    const messege_to_send = messege;
+    console.log(messege_to_send);
+    setMessege("");
     try {
       const data = {
         is_current_user: true,
-        text: messege,
+        text: messege_to_send,
         date: now.toISOString(),
       };
       const userCount = {
@@ -90,8 +94,11 @@ const UserMesseges = observer(() => {
       debugger;
       return;
     }
-    sendMessege("");
   }
+
+  const textArea = document.querySelector("textarea");
+  const textRowCount = textArea ? textArea.value.split("\n").length : 0;
+
   return (
     <div className={s.body}>
       <div className={s.messeges}>
@@ -105,12 +112,19 @@ const UserMesseges = observer(() => {
           ))}
       </div>
       <div className={s.fillMessege}>
-        <form onSubmit={sendMessege} className={s.form}>
-          <input
-            className={s.inputMessege}
+        <form
+          onSubmit={(e) => {
+            sendMessege(e);
+          }}
+          className={s.form}
+        >
+          <TextareaAutosize
+            minRows={1}
+            maxRows={4}
+            placeholder="Введите сообщение"
             value={messege}
             onChange={handleChange}
-            placeholder="Введите сообщение"
+            className={s.inputMessege}
           />
           <button type="submit" className={s.sendMessege}>
             Отправить

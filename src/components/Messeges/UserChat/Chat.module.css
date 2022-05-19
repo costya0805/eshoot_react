@@ -1,11 +1,25 @@
 .chatBody {
-  background-color: white;
   width: 100%;
-  height: 52px;
+  height: 78px;
   display: flex;
   cursor: pointer;
   align-items: center;
-  margin: 8px;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(181, 181, 181, 0);
+}
+
+.chatBody:hover{
+  border: 1px solid var(--grey);
+}
+
+.select:hover{
+  border: 1px solid rgba(181, 181, 181, 0);
+}
+
+.select {
+  background-color: rgba(181, 181, 181, 0.2);
 }
 .chatLogo {
   border-radius: 50%;
@@ -18,8 +32,8 @@
 }
 .headChatMessege {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  width: 192px;
 }
 
 .botChatMessege {
@@ -28,19 +42,22 @@
   justify-content: space-between;
   padding-right: 8px;
   white-space: nowrap;
-  
 }
-.lastMessege{
-  width: 200px;
+.lastMessege {
+  width: 170px;
   flex: none;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: var(--grey)
+  color: var(--grey);
 }
 .lastMessageText {
   display: inline;
 }
-.userMessege{
+.userMessege {
   display: inline;
   color: grey;
+}
+
+.lastUpdate {
+  margin-left: auto;
 }

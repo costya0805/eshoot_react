@@ -15,7 +15,6 @@ const UserChats = observer(() => {
     orderBy("lastMessege.date", "desc")
   );
   const [users, users_loading] = useCollectionData(users_colletion);
-  console.log(users);
   return (
     <div className={s.body}>
       {!users_loading &&

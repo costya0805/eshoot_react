@@ -5,7 +5,6 @@ import messages from "../../../store/messages";
 import Avatar from "../../Avatar/Avatar";
 
 const Chat = observer(({ user_id, user_info, lastMessage }) => {
-  console.log(user_id);
   const goToChat = async (e) => {
     e.preventDefault();
     messages.selectChatUser(user_id);
@@ -17,7 +16,7 @@ const Chat = observer(({ user_id, user_info, lastMessage }) => {
   }
 
   return (
-    <div className={s.chatBody} onClick={goToChat}>
+    <div className={`${s.chatBody}${messages.choosenUser && user_id === messages.choosenUser.id ? " " + s.select : ""}`} onClick={goToChat}>
       <div className={s.chatLogo}>
         <Avatar
           userName={user_info.first_name}
@@ -32,7 +31,7 @@ const Chat = observer(({ user_id, user_info, lastMessage }) => {
           <div className={s.chatName}>
             {user_info.first_name} {user_info.last_name}
           </div>
-          <div className="lastUpdate caption">
+          <div className={`${s.lastUpdate} caption`}>
             {message_date.getHours()}:{getMessegeDate(message_date.getMinutes())}
           </div>
         </div>

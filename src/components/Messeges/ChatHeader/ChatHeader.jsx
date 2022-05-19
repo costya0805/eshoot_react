@@ -6,7 +6,6 @@ import Avatar from "../../Avatar/Avatar";
 import { Link } from "react-router-dom";
 
 const ChatHeader = observer(() => {
-  console.log(messages.choosenUser);
   return (
     <div className={s.messegeHeader}>
       <Link to={`/user/${messages.choosenUser.id}`}>
