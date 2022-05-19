@@ -29,45 +29,29 @@
 .openMenu {
   background: white;
   position: relative;
-  width: 180px;
+  min-width: 170px;
   height: auto;
-  box-shadow: 0 2px 10px rgba(39, 60, 131, 0.15);
-  margin-top: 25px;
-  z-index: 999;
-}
-.openMenu::before {
-  content: "";
-  position: absolute;
-  top: -30px;
-  right: 20px;
-  border: 14px solid transparent;
-  border-bottom: 19px solid white;
+  box-shadow: 0px 0px 10px rgba(39, 60, 131, 0.2);
+  margin-top: 12px;
+  z-index: 2;
+  border-radius: 10px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
 }
 
-.openMenu hr {
-  margin: 0 8px;
-  height: 1px;
-  border: 0;
-  color: black;
-  background-color: black;
-}
 .openMenu a {
   text-decoration: none;
-  color: black;
-  height: 40px;
-  display: flex;
-  justify-content: left;
-}
-.openMenu a img,
-.openMenu a span {
-  align-self: center;
-  line-height: 40px;
+  color: var(--header);
+  flex-wrap: nowrap;
+  padding: 8px 8px;
+  height: auto;
 }
 
-.openMenu a span {
-  position: absolute;
-  left: 36px;
+.openMenu a:hover{
+  color: var(--botton);
 }
+
 
 .open {
   transform: rotate(180deg);

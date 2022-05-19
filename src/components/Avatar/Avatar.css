@@ -41,6 +41,13 @@
   height: 38px;
 }
 
+.header_active{
+  width: 38px;
+  height: 38px;
+  background-color: var(--botton);
+  color: var(--white);
+}
+
 .user_page{
   width: 100px;
   height: 100px;
