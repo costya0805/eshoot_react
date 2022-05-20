@@ -1,3 +1,4 @@
+import React from "react"
 import s from "./ChooseRole.module.css";
 import signup from "../../../store/signup";
 import { observer } from "mobx-react-lite";

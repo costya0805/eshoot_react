@@ -63,3 +63,9 @@
   width: 52px;
   height: 52px;
 }
+
+.create_order{
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+}

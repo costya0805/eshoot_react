@@ -54,11 +54,10 @@ h1 {
   color: var(--header);
 }
 
-h2 {
+h2, .h2 {
   font-size: 24px;
   font-weight: 500;
   letter-spacing: 0.0044em;
-  color: var(--header);
 }
 
 .index,

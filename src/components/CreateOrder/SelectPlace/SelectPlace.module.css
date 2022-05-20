@@ -1,0 +1,121 @@
+.body {
+  width: 580px;
+  height: fit-content;
+  border-radius: 10px;
+  background-color: white;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.step_header {
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+.actions {
+  width: 100%;
+  display: flex;
+  margin-top: 64px;
+}
+
+.goNextPage {
+  margin-left: auto;
+}
+
+.goNextPage button {
+  cursor: pointer;
+  height: 38px;
+  width: 200px;
+  border-radius: 10px;
+  color: var(--white);
+  background-color: var(--botton);
+  border: 0;
+  line-height: 20px;
+}
+
+.goNextPage button:disabled {
+  background-color: var(--grey);
+  cursor: auto;
+}
+
+.goPrevPage button {
+  cursor: pointer;
+  height: 38px;
+  width: 120px;
+  color: var(--botton);
+  background-color: var(--white);
+  border: 1px solid var(--botton);
+  border-radius: 10px;
+}
+
+.place {
+  margin-bottom: 20px;
+}
+
+.form_name {
+  margin-bottom: 8px;
+}
+
+.input_place {
+  width: 354px;
+  height: 38px;
+  border: 1px solid var(--botton);
+}
+
+.date {
+  width: 250px;
+  font-size: 14px;
+  margin-right: 20px;
+}
+
+.date .form_name {
+  margin-bottom: 16px;
+}
+
+.input_date_time {
+    display: flex;
+    align-items: center;
+}
+
+.time input[type="time"]::-webkit-calendar-picker-indicator{
+    display: none;
+    margin: 0;
+}
+
+.time input[type="time"]{
+    padding: 0;
+    width: 60px;
+    padding-left: 10px;
+    height: 38px;
+    border: 1px solid var(--botton);
+}
+
+.block_time{
+    display: flex;
+    flex-direction: column;
+}
+
+.period{
+    margin-top: 16px;
+    position: relative;
+}
+.period input{
+    border: 1px solid var(--botton);
+    width: 60px;
+    height: 38px;
+    position: relative;
+}
+
+.period::after{
+    content: "ч.";
+    position: absolute;
+    left: 41px;
+    bottom: 10px;
+    color: var(--grey);
+}
+.period input::-webkit-outer-spin-button,
+.period input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}

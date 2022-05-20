@@ -1,120 +1,115 @@
-import React, { useState } from "react";
-import "./SelectType.css";
-import {types, fotosetTypes, reportTypes} from "./SelectType.constans"
+import React, { useEffect } from "react";
+import s from "./SelectType.module.css";
+import order from "../../../store/createOrder";
+import { observer } from "mobx-react-lite";
 
-function SelectType({ selectType }) {
-  const [type, setType] = useState("");
-  const [podType, setPodType] = useState("");
+import {
+  types,
+  photosession_types,
+  report_types,
+} from "./SelectType.consts.js";
 
-  function chengeSelectType(event) {
-    setType(event.target.value);
-    setPodType("");
-    selectType(event.target.value, "");
-  }
-
-  function chengeSelectPodType(event) {
-    setPodType(event.target.value);
-    selectType(type, event.target.value);
-  }
-
+const SelectType = observer(() => {
+  const placeholder = !!order.params.type
+    ? order.params.type === "Контентная"
+      ? "Продвижение нового кафе"
+      : order.params.type === "Интерьерная"
+      ? "Квартира на сдачу"
+      : order.params.type === "Предметная"
+      ? "Духи"
+      : "Аэросъемка"
+    : "";
   return (
-    <div className="selectType">
-      <span className="title body1 required">Вид съемки</span>
-      <div className="selectData">
-        <select
-          className="chooseType"
-          value={type}
-          onChange={chengeSelectType}
-          style={type ? { border: "1px solid #7d94df" } : { color: "#696969" }}
-        >
-          <option
-            key="0"
-            value=""
-            selected
-            disabled
-            style={{ display: "none" }}
-          >
-            Выберите тип
-          </option>
+    <div className={s.body}>
+      <div className={`${s.step_header} h2`}>Выберите вид съемки</div>
+      <div className={s.form}>
+        <div className={s.type}>
+          <div className={`${s.form_name} h3`}>Вид:</div>
           {types.map((type) => (
-            <option key={type.id} value={type.type} style={{ color: "black" }}>
-              {type.text}
-            </option>
+            <CustomRadio
+              key_id={type.key}
+              value={type.value}
+              name={"type"}
+              key={type.key}
+            />
           ))}
-        </select>
-        <div className={type ? "separator" : "noactive"}>
-          <div
-            className="circle"
-            style={type && podType ? { backgroundColor: "#7d94df" } : {}}
-          />
-          <div
-            className="circle"
-            style={type && podType ? { backgroundColor: "#7d94df" } : {}}
-          />
         </div>
-        <select
-          className={
-            type === "fotoset" || type === "report"
-              ? "active choosePodType"
-              : "noactive"
-          }
-          onChange={chengeSelectPodType}
-          value={podType}
-          style={
-            podType ? { border: "1px solid #7d94df" } : { color: "#696969" }
-          }
-        >
-          <option
-            key="0"
-            value=""
-            selected
-            disabled
-            style={{ display: "none" }}
-          >
-            {type === "fotoset"
-              ? "Какая фотосессия вам нужна?"
-              : "Какой репортаж вам нужен?"}
-          </option>
-          {type === "fotoset"
-            ? fotosetTypes.map((type) => (
-                <option
-                  key={type.id}
-                  value={type.type}
-                  style={{ color: "black" }}
-                >
-                  {type.text}
-                </option>
-              ))
-            : reportTypes.map((type) => (
-                <option
-                  key={type.id}
-                  value={type.type}
-                  style={{ color: "black" }}
-                >
-                  {type.text}
-                </option>
+        {!!order.params.type && (
+          <div className={s.subtype}>
+            <div className={`${s.form_name} h3`}>
+              {order.params.type === "Фотосессия" ||
+              order.params.type === "Репортаж"
+                ? "Подвид:"
+                : "Для чего необходима съемка:"}
+            </div>
+            {order.params.type === "Фотосессия" &&
+              photosession_types.map((type) => (
+                <CustomRadio
+                  key_id={type.key}
+                  value={type.value}
+                  name={"subtype"}
+                  key={type.key}
+                />
               ))}
-        </select>
-        <input
-          className={
-            type === "items" || type === "content" || type === "other"
-              ? "active choosePodType"
-              : "noactive"
-          }
-          placeholder={
-            type === "items"
-              ? "Какой предмет нужно отснять?"
-              : type === "content"
-              ? "Для чего вам нужна съемка?"
-              : "Какая съемка вам нужна?"
-          }
-          onChange={chengeSelectPodType}
-          value={podType}
-          style={podType ? { border: "2px solid #7d94df" } : {}}
-        ></input>
+            {order.params.type === "Репортаж" &&
+              report_types.map((type) => (
+                <CustomRadio
+                  key_id={type.key}
+                  value={type.value}
+                  name={"subtype"}
+                  key={type.key}
+                />
+              ))}
+            {order.params.type !== "Репортаж" &&
+              order.params.type !== "Фотосессия" && (
+                <input
+                  className={s.input_subtype}
+                  value={order.params.subtype}
+                  placeholder={placeholder}
+                  onChange={(e) =>
+                    order.setOrderParams("subtype", e.target.value)
+                  }
+                />
+              )}
+          </div>
+        )}
+      </div>
+      <div className={s.actions}>
+        <div className={s.goNextPage}>
+          <button
+            className="h3"
+            onClick={() => order.setStep(2)}
+            disabled={!order.can_go_second_step}
+          >
+            Далее
+          </button>
+        </div>
       </div>
     </div>
   );
-}
+});
 
+const CustomRadio = observer(({ key_id, value, name }) => {
+  return (
+    <div className={s.selet_type}>
+      <input
+        type="radio"
+        value={value}
+        id={key_id}
+        name={name}
+        className={s.radio_check}
+        onChange={() => {
+          order.setOrderParams(name, value);
+        }}
+        checked={value === order.params[name]}
+      />
+      <div className={s.radio_custom}>
+        <div className={s.checked_radio_custom}></div>
+      </div>
+      <label htmlFor={key_id} className={s.radio_label}>
+        {value}
+      </label>
+    </div>
+  );
+});
 export default SelectType;

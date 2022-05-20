@@ -1,0 +1,10 @@
+.pageName{
+  margin-top: 0;
+  margin-bottom: 32px;
+  font-size: 24px;
+}
+
+.body{
+  display: flex;
+  margin-bottom: 40px;
+}

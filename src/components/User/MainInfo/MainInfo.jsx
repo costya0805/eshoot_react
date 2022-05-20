@@ -13,6 +13,9 @@ const MainInfo = observer(() => {
     messages.selectChatUser(photographer.main_info.id);
     history.push("/messeges");
   };
+  const goOrderCreate = () =>{
+    history.push(`/create-order/${photographer.main_info.id}`)
+  }
   return (
     <div className={s.mainUserInfo}>
       <div className={s.topInfo}>
@@ -34,7 +37,7 @@ const MainInfo = observer(() => {
           <button className={s.chat} onClick={goChat}>
             Связаться
           </button>
-          <button className={s.order}>Оформить заказ</button>
+          <button className={s.order} onClick={goOrderCreate}>Оформить заказ</button>
         </div>
       )}
       <div className={s.tags}>

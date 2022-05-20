@@ -1,0 +1,47 @@
+.body {
+  width: 380px;
+  height: fit-content;
+  border-radius: 10px;
+  background-color: white;
+  margin-left: 20px;
+  min-height: 171px;
+  padding: 20px;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.photographer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.photographer_text_info {
+  height: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 16px;
+  color: var(--text);
+}
+
+.fio {
+  font-weight: 500;
+}
+
+.cost span {
+  color: var(--grey);
+}
+
+.order_param_info {
+  margin-top: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.order_param_name {
+  color: var(--grey);
+}

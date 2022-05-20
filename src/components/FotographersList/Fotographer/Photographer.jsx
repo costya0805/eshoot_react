@@ -22,6 +22,9 @@ const Photographer = observer(({ photographer }) => {
     messages.selectChatUser(photographer.id);
     history.push("/messeges");
   };
+  const goOrderCreate = () =>{
+    history.push(`/create-order/${photographer.id}`)
+  }
   return (
     <div className={s.for_buttons}>
       <Link to={`/user/${photographer.id}`}>
@@ -83,7 +86,7 @@ const Photographer = observer(({ photographer }) => {
         </div>
       )}
       {photographer.id !== curren_user.user.id && (
-        <button className={s.goToOrder}>Оформить заказ</button>
+        <button className={s.goToOrder} onClick={goOrderCreate}>Оформить заказ</button>
       )}
     </div>
   );

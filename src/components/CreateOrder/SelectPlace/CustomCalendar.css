@@ -1,0 +1,39 @@
+.date_input .react-calendar__navigation__label span{
+    font-size: 16px;
+}
+.date_input .react-calendar__month-view__days {
+    justify-items:center;
+    
+}
+.date_input .react-calendar .react-calendar__tile.react-calendar__month-view__days__day{
+    font-size: 14px;
+    margin-bottom: 8px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+}
+.date_input .react-calendar .react-calendar__navigation__prev-button{
+    font-size: 20px;
+    width: 24px;
+    height: 24px;
+}
+.date_input .react-calendar .react-calendar__navigation__next-button{
+    font-size: 20px;
+    width: 24px;
+    height: 24px;
+}
+.react-calendar .react-calendar__navigation{
+    align-items: center;
+}
+.date_input .react-calendar .react-calendar__month-view__weekdays{
+    margin-bottom: 3px;
+}
+.date_input .react-calendar .react-calendar__viewContainer{
+    padding-bottom: 0;
+}
+.date_input .react-calendar .react-calendar__navigation{
+    padding-top: 0;
+}
+.date_input .react-calendar__month-view__weekdays__weekday{
+    font-size: 14px;
+}

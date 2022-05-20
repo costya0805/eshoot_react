@@ -10,11 +10,7 @@ li {
 }
 
 input {
-  width: 222px;
-  height: 22px;
-  border-radius: 5px;
-  border: 1px solid #8a8282;
-  font-size: 14px;
+  border-radius: 10px;
   padding: 8px;
 }
 
@@ -25,12 +21,9 @@ input {
   border: 1px solid #7d94df;
 } */
 
-input:hover {
-  border: 1px solid #5c5656;
-}
+
 input:focus {
   outline: none;
-  border: 1px solid #7d94df;
 }
 
 input::placeholder {
