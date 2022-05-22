@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import Header from "../../components/Header/Header";
-import Status from "../../components/Orders/Status/Status";
 import OrderString from "../../components/Order/OrderString/OrderString";
 import Avatar from "../../components/Avatar/Avatar";
 
@@ -179,7 +178,6 @@ function Order(params) {
                   {order.type} - {order.subtype} от{" "}
                   {new Date(order.created_date).toLocaleString().slice(0, 10)}
                 </span>
-                <Status status={order.status} />
               </div>
               {currentUserInfo.role === "Customer" &&
                 !(order.status === "canceled" || order.status === "closed") && (

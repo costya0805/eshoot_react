@@ -34,12 +34,79 @@
     line-height: 20px;
 }
 
+.goNextPage button:disabled {
+    background-color: var(--grey);
+    cursor: auto;
+  }
+
 .goPrevPage button{
     cursor: pointer;
     height: 38px;
     width: 120px;
     color: var(--botton);
     background-color: var(--white);
+    border: 1px solid var(--botton);
+    border-radius: 10px;
+}
+
+.choose{
+    display: flex;
+    border: 1px solid var(--botton);
+    border-radius: 10px;
+    width: 256px;
+    margin-bottom: 16px;
+}
+.variant{
+    width: 128px;
+    height: 38px;
+    border-left: 1px solid var(--botton);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.form_name{
+    margin-bottom: 8px;
+}
+.variant:first-child{
+    border-left: 0;
+}
+
+.for_over{
+    width: fit-content;
+    position: relative;
+}
+
+.input_money{
+    border: 1px solid var(--botton);
+    height: 38px;
+    width: 180px;
+    padding-right: 28px;
+}
+
+.select{
+    color: var(--botton);
+}
+
+.input_money::-webkit-outer-spin-button,
+.input_money::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.for_over::after{
+    content: "₽";
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    color: var(--grey);
+}
+
+.input_barter{
+    width: 100%;
+    min-height: 78px;
+    max-height: 78px;
+    padding: 9px 12px;
     border: 1px solid var(--botton);
     border-radius: 10px;
 }

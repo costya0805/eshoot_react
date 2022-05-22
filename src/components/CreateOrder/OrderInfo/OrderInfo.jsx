@@ -6,6 +6,13 @@ import Avatar from "../../Avatar/Avatar";
 import { Link } from "react-router-dom";
 
 const OrderInfo = observer(() => {
+  const getCountPhoto = (count) => {
+    return count === 1
+      ? `${count} фотография`
+      : count < 5
+      ? `${count} фотографии`
+      : `${count} фотографий`;
+  };
   return (
     <div className={s.body}>
       <div className={`${s.header} h3`}>Информация о заказе</div>
@@ -37,18 +44,21 @@ const OrderInfo = observer(() => {
         <OrderInfoStr name={"Место:"} value={`${order.params.address}`} />
       )}
       {!!order.params.date && (
-        <OrderInfoStr name={"Дата:"} value={`${order.getDate}`} />
+        <OrderInfoStr name={"Дата:"} value={`${order.getStartDate}`} />
       )}
       {!!order.params.start_time && !!order.params.period && (
         <OrderInfoStr name={"Время:"} value={order.getTime} />
       )}
       {!!order.references.length > 0 && (
-        <OrderInfoStr name={"Референсы:"} value={`${"8 фотографий"}`} />
+        <OrderInfoStr
+          name={"Референсы:"}
+          value={getCountPhoto(order.references.length)}
+        />
       )}
       {!!order.params.deadline && (
         <OrderInfoStr
           name={"Дата сдачи фотографий:"}
-          value={`${"30 августа 2022"}`}
+          value={order.getEndDate}
         />
       )}
       {!!order.params.number_of_frames && (

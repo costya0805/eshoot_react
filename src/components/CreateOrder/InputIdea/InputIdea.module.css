@@ -1,64 +1,177 @@
-.body{
-    width: 580px;
-    height: fit-content;
-    border-radius: 10px;
-    background-color: white;
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.body {
+  width: 580px;
+  height: fit-content;
+  border-radius: 10px;
+  background-color: white;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.step_header{
-    font-weight: 500;
-    margin-bottom: 32px;
+.step_header {
+  font-weight: 500;
+  margin-bottom: 32px;
 }
-.actions{
-    width: 100%;
-    display: flex;
-    margin-top: 64px;
-}
-
-.goNextPage{
-    margin-left: auto;
+.actions {
+  width: 100%;
+  display: flex;
+  margin-top: 64px;
 }
 
-.goNextPage button{
-    cursor: pointer;
-    height: 38px;
-    width: 200px;
-    border-radius: 10px;
-    color: var(--white);
-    background-color: var(--botton);
-    border: 0;
-    line-height: 20px;
+.goNextPage {
+  margin-left: auto;
 }
 
-.goNextPage button:disabled{
-    background-color: var(--grey);
-    cursor: auto;
+.goNextPage button {
+  cursor: pointer;
+  height: 38px;
+  width: 200px;
+  border-radius: 10px;
+  color: var(--white);
+  background-color: var(--botton);
+  border: 0;
+  line-height: 20px;
 }
 
-.goPrevPage button{
-    cursor: pointer;
-    height: 38px;
-    width: 120px;
-    color: var(--botton);
-    background-color: var(--white);
-    border: 1px solid var(--botton);
-    border-radius: 10px;
+.goNextPage button:disabled {
+  background-color: var(--grey);
+  cursor: auto;
 }
 
-.form_name{
-    margin-bottom: 8px;
+.goPrevPage button {
+  cursor: pointer;
+  height: 38px;
+  width: 120px;
+  color: var(--botton);
+  background-color: var(--white);
+  border: 1px solid var(--botton);
+  border-radius: 10px;
 }
-.input_description{
-    width: 516px;
-    min-height: 98px;
-    max-height: 98px;
-    overflow: auto;
-    height: fit-content;
-    padding: 9px 12px;
-    border: 1px solid var(--botton);
-    border-radius: 10px;
+
+.form_name {
+  margin-bottom: 8px;
+}
+.input_description {
+  width: 516px;
+  min-height: 98px;
+  max-height: 98px;
+  overflow: auto;
+  height: fit-content;
+  padding: 9px 12px;
+  border: 1px solid var(--botton);
+  border-radius: 10px;
+}
+
+.place {
+  margin-bottom: 32px;
+}
+
+.upload_image {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.upload_image input {
+  display: none;
+}
+
+.upload_body {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 2px dashed var(--botton);
+  color: var(--botton);
+  padding-top: 59px;
+  text-align: center;
+  z-index: 2;
+}
+
+.vertical,
+.horizontal {
+  position: absolute;
+  background-color: var(--botton);
+  border-radius: 5px;
+}
+.vertical {
+  top: 29px;
+  width: 4px;
+  height: 15px;
+}
+
+.horizontal {
+  top: 34px;
+  height: 4px;
+  width: 14px;
+}
+
+.photo {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+  -webkit-user-drag: none;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+.reference {
+  display: flex;
+  margin-bottom: 20px;
+}
+.reference_about {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin-left: 20px;
+  position: relative;
+}
+.reference_text {
+  width: 100%;
+  min-height: 72px;
+  max-height: 72px;
+  border: 1px solid var(--botton);
+  padding: 9px 12px;
+}
+
+.deleate {
+  position: absolute;
+  transform: rotate(45deg);
+  top: 3px;
+  right: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  padding: 5px;
+}
+.deleate_body {
+  position: relative;
+}
+.deleate_1,
+.deleate_2 {
+  position: absolute;
+  background-color: var(--text);
+  border-radius: 5px;
+}
+
+.deleate:hover .deleate_1,
+.deleate:hover .deleate_2 {
+    background-color: var(--header);
+}
+
+.deleate_1 {
+  width: 12px;
+  height: 1.5px;
+  right: -6.5px;
+}
+
+.deleate_2 {
+  width: 1.5px;
+  height: 12px;
+  bottom: -6.5px;
 }
