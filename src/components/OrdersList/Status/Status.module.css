@@ -1,0 +1,33 @@
+.status{
+    width:200px;
+    height: 31px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.new{
+    background-color: rgba(103, 244, 168, 0.15);
+    color: rgba(137, 193, 163, 1);
+}
+
+.in_progress{
+    background-color: rgba(125, 148, 223, 0.15);;
+    color: var(--botton);
+}
+
+.waiting{
+    background-color: rgba(168, 125, 223, 0.15);
+    color: #A87DDF;
+}
+
+.closed{
+    background-color: rgba(181, 181, 181, 0.2);
+    color: #B5B5B5;
+}
+
+.canceled{
+    background-color: rgba(244, 103, 112, 0.2);
+    color: #F46770;
+}

@@ -42,6 +42,12 @@ class Orders {
         });
       });
     }
+    runInAction(() => {
+      this.orders.sort(
+        (a, b) =>
+          new Date(b.order.updated_date) - new Date(a.order.updated_date)
+      );
+    });
   };
 }
 
