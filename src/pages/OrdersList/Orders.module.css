@@ -1,0 +1,48 @@
+.pageName {
+  font-size: 24px;
+}
+.top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.placeholder {
+  width: 100%;
+  height: 148px;
+  border-radius: 10px;
+  background-color: var(--white);
+  display: flex;
+}
+.placeholder div {
+  border-radius: 10px;
+}
+.user_placeholder {
+  margin: 18px 32px;
+  width: 261px;
+  background-color: var(--grey);
+}
+
+.info_placeholder {
+  width: 618px;
+  margin: 18px 0px 18px 32px;
+  background-color: var(--grey);
+}
+
+.actions_placeholder {
+  margin: 18px 16px 18px 21px;
+  width: 200px;
+  background-color: var(--grey);
+}
+
+.emptyList{
+    width: 100%;
+    height: 148px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    font-size: 24px;
+    border-radius: 10px;
+    color: var(--grey);
+}
+

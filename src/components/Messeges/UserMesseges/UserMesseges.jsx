@@ -13,12 +13,11 @@ import UserMessege from "../UserMessege/UserMessege";
 import { observer } from "mobx-react-lite";
 import currentUser from "../../../store/currentUser";
 import messages from "../../../store/messages";
-import TextareaAutosize from 'react-textarea-autosize';
+import TextareaAutosize from "react-textarea-autosize";
 
 const UserMesseges = observer(() => {
   const currentUserID = currentUser.user.id;
   const secondUserID = messages.choosenUser.id;
-  const [messege, setMessege] = useState("");
   const db = getFirestore();
   const q = query(
     collection(
@@ -28,16 +27,12 @@ const UserMesseges = observer(() => {
     orderBy("date", "desc")
   );
   const [chat_messages, loading] = useCollectionData(q);
-  const handleChange = (e) => {
-    setMessege(e.target.value);
-  };
 
   async function sendMessege(e) {
     e.preventDefault();
     const now = new Date();
-    const messege_to_send = messege;
-    console.log(messege_to_send);
-    setMessege("");
+    const messege_to_send = messages.messege;
+    messages.setMessege("");
     try {
       const data = {
         is_current_user: true,
@@ -91,26 +86,27 @@ const UserMesseges = observer(() => {
       await setDoc(br, current_user_to_base);
     } catch (e) {
       console.log(e);
-      debugger;
       return;
     }
   }
 
-  const textArea = document.querySelector("textarea");
-  const textRowCount = textArea ? textArea.value.split("\n").length : 0;
-
   return (
     <div className={s.body}>
-      <div className={s.messeges}>
-        {!loading &&
-          chat_messages.map((message) => (
-            <UserMessege
-              text={message.text}
-              date={message.date}
-              isCurrentUser={message.is_current_user}
-            />
-          ))}
-      </div>
+      {!loading && (
+        <div className={s.messeges}>
+          {chat_messages.length > 0 ? (
+            chat_messages.map((message) => (
+              <UserMessege
+                text={message.text}
+                date={message.date}
+                isCurrentUser={message.is_current_user}
+              />
+            ))
+          ) : (
+            <div className={s.empty_messeges}>Здесь будет история переписок</div>
+          )}
+        </div>
+      )}
       <div className={s.fillMessege}>
         <form
           onSubmit={(e) => {
@@ -122,8 +118,8 @@ const UserMesseges = observer(() => {
             minRows={1}
             maxRows={4}
             placeholder="Введите сообщение"
-            value={messege}
-            onChange={handleChange}
+            value={messages.messege}
+            onChange={(e) => messages.setMessege(e.target.value)}
             className={s.inputMessege}
           />
           <button type="submit" className={s.sendMessege}>

@@ -16,17 +16,23 @@ const UserChats = observer(() => {
   );
   const [users, users_loading] = useCollectionData(users_colletion);
   return (
-    <div className={s.body}>
+    <>
       {!users_loading &&
-        users.map((user) => (
-          <Chat
-            user_id={user.user_id}
-            user_info={user.user_info}
-            lastMessage={user.lastMessege}
-            key={user.user_id}
-          />
+        (users.length > 0 ? (
+          <div className={s.body}>
+            {users.map((user) => (
+              <Chat
+                user_id={user.user_id}
+                user_info={user.user_info}
+                lastMessage={user.lastMessege}
+                key={user.user_id}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className={s.placeholder}>У вас пока нет чатов</div>
         ))}
-    </div>
+    </>
   );
 });
 

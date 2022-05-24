@@ -7,7 +7,6 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 
-
 const cookies = new Cookies();
 const API_URL = "http://51.250.17.207:8080/users";
 
@@ -28,7 +27,7 @@ class CurrentUser {
     this.showModal = false;
   }
 
-  get isPhotographer (){
+  get isPhotographer() {
     return this.user.role === "Photographer";
   }
 

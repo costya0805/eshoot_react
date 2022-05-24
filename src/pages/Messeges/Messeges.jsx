@@ -24,7 +24,7 @@ const Messeges = observer(() => {
               <UserMesseges />
             </>
           ) : (
-            <div className={s.placeholder}>Пользователь не выбран</div>
+            <div className={s.placeholder}>Выберите чат</div>
           )}
         </div>
       </div>

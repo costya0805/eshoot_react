@@ -1,16 +1,16 @@
 .block {
   height: 38px;
   background-color: var(--white);
-  margin-top: 8px;
   width: 100%;
-  margin-bottom: 42px;
+  margin-bottom: 34px;
 }
 .content {
   display: flex;
   justify-content: flex-start;
   margin: auto;
-  height: 38px;
+  height: 54px;
   align-items: center;
+  padding: 8px;
 }
 .input {
   margin-left: 57px;

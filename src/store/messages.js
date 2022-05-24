@@ -7,11 +7,13 @@ const API_URL = "http://51.250.17.207:8080";
 class Messages {
   choosenUser = null;
   show_chat = false;
+  messege = "";
   constructor() {
     makeAutoObservable(this);
   }
 
   selectChatUser = async (user_id) => {
+    this.messege = "";
     const userInCookies = cookies.get("currentUser");
     if (!!userInCookies) {
       const json = await fetch(`${API_URL}/users/customers/${user_id}`, {
@@ -24,6 +26,10 @@ class Messages {
         this.show_chat = true;
       });
     }
+  };
+
+  setMessege = (value) => {
+    this.messege = value;
   };
 }
 

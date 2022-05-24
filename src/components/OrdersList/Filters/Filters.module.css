@@ -3,7 +3,9 @@
   display: flex;
   border: 1px solid var(--botton);
   width: fit-content;
+  margin-left: auto;
   border-radius: 10px;
+  background-color: var(--white);
 }
 
 .switch {
