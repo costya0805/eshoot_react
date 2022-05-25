@@ -6,36 +6,33 @@ const Password = observer(() => {
   return (
     <div className={s.body}>
       <div className={s.inputData}>
-        <label htmlFor="old_password">Старый пароль</label>
+        <label htmlFor="old_password">Старый пароль:</label>
         <input
+          type="password"
           id="old_password"
-          className="old_password"
-          placeholder="Введите текущий пароль"
-        //   value={}
-          onChange={()=>{}}
+          //   value={}
+          onChange={() => {}}
         />
       </div>
       <div className={s.inputData}>
-        <label htmlFor="new_password">Новый пароль</label>
+        <label htmlFor="new_password">Новый пароль:</label>
         <input
           id="new_password"
-          className="new_password"
-          placeholder="Придумайте пароль"
-        //   value={}
-          onChange={()=>{}}
+          type="password"
+          //   value={}
+          onChange={() => {}}
         />
       </div>
       <div className={s.inputData}>
-        <label htmlFor="repeat_password">Повторите новый пароль</label>
+        <label htmlFor="repeat_password">Повторите новый пароль:</label>
         <input
           id="repeat_password"
-          className="repeat_password"
-          placeholder="Повторите пароль"
-        //   value={}
-          onChange={()=>{}}
+          type="password"
+          //   value={}
+          onChange={() => {}}
         />
       </div>
-      <button className={s.upgrade}>Обновить пароль</button>
+      <button className={s.upgrade}>Сохранить</button>
     </div>
   );
 });

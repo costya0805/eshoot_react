@@ -11,17 +11,29 @@ const SideBar = observer(({ currentPage, changePage }) => {
         id="main"
         onClick={changePage}
       >
-        Основные
+        Личная информация
       </div>
-      <div
-        className={`${s.title} ${currentPage === "password" ? s.current : ""}`}
-        id="password"
-        onClick={changePage}
-      >
-        Пароль
-      </div>
+      <hr />
       {user.isPhotographer && (
         <>
+          <div
+            className={`${s.title} ${
+              currentPage === "contacts" ? s.current : ""
+            }`}
+            id="contacts"
+            onClick={changePage}
+          >
+            Инфорация о съемках
+          </div>
+          <hr />
+          <div
+            className={`${s.title} ${currentPage === "dates" ? s.current : ""}`}
+            id="dates"
+            onClick={changePage}
+          >
+            Календарь доступности
+          </div>
+          <hr />
           <div
             className={`${s.title} ${
               currentPage === "portfolio" ? s.current : ""
@@ -31,24 +43,16 @@ const SideBar = observer(({ currentPage, changePage }) => {
           >
             Портфолио
           </div>
-          <div
-            className={`${s.title} ${
-              currentPage === "contacts" ? s.current : ""
-            }`}
-            id="contacts"
-            onClick={changePage}
-          >
-            Контакты
-          </div>
-          <div
-            className={`${s.title} ${currentPage === "dates" ? s.current : ""}`}
-            id="dates"
-            onClick={changePage}
-          >
-            Загруженность
-          </div>
+          <hr />
         </>
       )}
+      <div
+        className={`${s.title} ${currentPage === "password" ? s.current : ""}`}
+        id="password"
+        onClick={changePage}
+      >
+        Сменить пароль
+      </div>
     </div>
   );
 });

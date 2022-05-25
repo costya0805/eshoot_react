@@ -12,19 +12,38 @@ const API_URL = "http://51.250.17.207:8080/users";
 
 class CurrentUser {
   user = {};
+  userSettings = {
+    first_name: "",
+    last_name: "",
+    email: "",
+    phone: "",
+    experience: 0,
+    city: "",
+    about: "",
+    password: "",
+  };
   showModal = false;
   showLoading = false;
   progress = 0;
   avatar_url = "";
+  loading = true;
+
   constructor() {
     this.getInfo();
     makeAutoObservable(this);
   }
+
   openModal() {
     this.showModal = true;
   }
+
   closeModal() {
     this.showModal = false;
+  }
+
+  setUserSettings(type, value) {
+    console.log(type, value);
+    this.userSettings[type] = value;
   }
 
   get isPhotographer() {
@@ -32,6 +51,7 @@ class CurrentUser {
   }
 
   getInfo = async () => {
+    this.loading = true;
     const userInCookies = cookies.get("currentUser");
     if (!!userInCookies) {
       const json = await fetch(API_URL + "/me", {
@@ -41,6 +61,8 @@ class CurrentUser {
       }).then((response) => response.json());
       runInAction(() => {
         this.user = { ...json };
+        this.userSettings = { ...json };
+        this.loading = false;
       });
     }
   };

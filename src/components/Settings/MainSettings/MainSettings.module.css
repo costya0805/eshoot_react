@@ -22,11 +22,14 @@
 }
 
 .body {
-  width: 800px;
+  width: 880px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  row-gap: 24px;
-  column-gap: 24px;
+  grid-template-columns: 200px 200px 1fr;
+  row-gap: 20px;
+  column-gap: 20px;
+  padding: 32px 80px;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .inputData {
@@ -36,12 +39,32 @@
 }
 
 .inputData label {
+  line-height: 20px;
   margin-bottom: 8px;
+  font-size: 16px;
 }
 
 .inputData input {
-  height: 36px;
+  height: 38px;
   width: 100%;
+  border: 1px solid var(--botton);
+  padding: 9px 12px;
+}
+.shortInputData{
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+}
+.shortInputData label {
+  line-height: 20px;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+.shortInputData input{
+  height: 38px;
+  width: 80px;
+  border: 1px solid var(--botton);
+  padding: 9px 12px;
 }
 
 .updateAvatar input {
@@ -49,7 +72,7 @@
 }
 
 .updateAvatar label {
-  border: 1px solid grey;
+  color: var(--botton);
   padding: 4px 10px;
   border-radius: 5px;
   cursor: pointer;
@@ -60,23 +83,37 @@
 
 .updateAvatar {
   height: auto;
-  grid-column: 1/3;
+  grid-column: 1/4;
   min-height: 50px;
   display: flex;
   align-items: center;
 }
 .aboutUser {
-  grid-column: 1/3;
+  grid-column: 1/4;
 }
 .aboutUser textarea {
+  height: 78px;
   width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--botton);
+  padding: 9px 12px;
 }
 .upgrade {
-  grid-column: 1/3;
-  align-self: center;
+  grid-column: 1;
   margin: auto;
-  width: 120px;
+  width: 100%;
+  height: 48px;
+  background-color: var(--botton);
+  border-radius: 10px;
+  border: 0;
+  color: var(--white);
+  cursor: pointer;
 }
+
+.upgrade:hover{
+  background-color: #748BD6;
+}
+
 .modal {
   position: absolute;
   width: 720px;
@@ -105,4 +142,33 @@
   width: 100%;
   height: 400px;
   background-color: #333;
+}
+.phone{
+  grid-column: 2;
+}
+.vk{
+  grid-column: 1;
+}
+.tg{
+  grid-column: 2;
+}
+.city{
+  grid-column: 1;
+}
+.email{
+  grid-column: 1;
+}
+.date{
+  grid-column: 1;
+  position: relative;
+}
+.date label{
+  position: absolute;
+  white-space: nowrap;
+}
+.date input{
+  margin-top: 28px;
+}
+.experience{
+  grid-column: 2;
 }

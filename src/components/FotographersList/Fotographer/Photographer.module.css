@@ -199,3 +199,6 @@
   bottom: 16px;
   right: 16px;
 }
+.goToOrder:hover {
+  background-color: #748bd6;
+}

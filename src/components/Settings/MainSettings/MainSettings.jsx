@@ -12,27 +12,19 @@ import "react-circular-progressbar/dist/styles.css";
 import Avatar from "../../Avatar/Avatar";
 import getCroppedImg from "../../../store/cropImage";
 
+const about_placeholder =
+  "Учту все Ваши пожелания и покажу что получается во время съемки, чтобы вы могли сразу подкорректировать нюансы. Всегда рад творческим эксперементам. Фотографии сдаю вовремя и с качественной обработкой. При желании возможен торг.";
+
 const MainSettings = observer(() => {
   const { currentUserInfo } = useAuth();
   const [userSettings, setUserSettings] = useState();
 
   useEffect(() => {
     if (!!currentUserInfo.id) {
-      let birthdate_user = null;
-      console.log(currentUserInfo.role);
-      if (
-        !!currentUserInfo.birthdate &&
-        currentUserInfo.birthdate.split("T")[0] !== "1900-01-01"
-      ) {
-        birthdate_user = formatDate(new Date(currentUserInfo.birthdate));
-      }
-
       setUserSettings({
-        birthdate: birthdate_user,
         about: currentUserInfo.about,
         first_name: currentUserInfo.first_name,
         last_name: currentUserInfo.last_name,
-        middle_name: currentUserInfo.middle_name,
         city: currentUserInfo.city,
         experience: currentUserInfo.experience,
         contact_time: currentUserInfo.contact_time,
@@ -40,21 +32,7 @@ const MainSettings = observer(() => {
     }
   }, [currentUserInfo]);
 
-  const maxDate = formatDate(new Date());
-
-  function formatDate(date) {
-    let month = "" + (date.getMonth() + 1),
-      day = "" + date.getDate(),
-      year = date.getFullYear();
-
-    if (month.length < 2) month = "0" + month;
-    if (day.length < 2) day = "0" + day;
-
-    return [year, month, day].join("-");
-  }
-
   const onHandler = (e) => {
-    console.log(e.target.id);
     setUserSettings((actual) => {
       return {
         ...actual,
@@ -96,9 +74,7 @@ const MainSettings = observer(() => {
 
   const updateUser = async (e) => {
     e.preventDefault();
-    const birthdate = new Date(userSettings.birthdate).toISOString();
-    console.log({ ...userSettings, birthdate: birthdate });
-    user.updateUser(userSettings);
+    user.updateUser(user.userSettings);
     try {
     } catch (e) {
       console.log(e);
@@ -106,7 +82,7 @@ const MainSettings = observer(() => {
   };
   return (
     <div className={s.body}>
-      {userSettings && (
+      {!!userSettings && (
         <>
           <div className={s.updateAvatar}>
             {user.showLoading ? (
@@ -121,7 +97,7 @@ const MainSettings = observer(() => {
                 userName={user.user.first_name}
                 userSecondname={user.user.last_name}
                 userID={user.user.id}
-                size="big"
+                size="user_settings"
                 image={user.user.avatar}
               />
             )}
@@ -129,9 +105,12 @@ const MainSettings = observer(() => {
               className={s.updateAvatar}
               id="avatar"
               type="file"
+              accept=".jpg,.jpeg,.png"
               onChange={getImage}
             />
-            <label htmlFor="avatar">Обновить аватар</label>
+            <label htmlFor="avatar" className="h3">
+              Обновить аватар
+            </label>
           </div>
           <Modal
             isOpen={user.showModal}
@@ -167,80 +146,104 @@ const MainSettings = observer(() => {
             <button onClick={handleUpload}>Обновить аватар</button>
           </Modal>
 
-          <div className={s.inputData}>
-            <label htmlFor="first_name">Имя</label>
+          <div className={`${s.inputData} ${s.first_name}`}>
+            <label htmlFor="first_name">Имя:</label>
             <input
               id="first_name"
-              className="first_name"
               placeholder="Имя"
-              value={userSettings.first_name}
-              onChange={onHandler}
+              value={user.userSettings.first_name}
+              onChange={(e) =>
+                user.setUserSettings("first_name", e.target.value)
+              }
             />
           </div>
-          <div className={s.inputData}>
-            <label htmlFor="last_name">Фамилия</label>
+          <div className={`${s.inputData} ${s.last_name}`}>
+            <label htmlFor="last_name">Фамилия:</label>
             <input
               id="last_name"
-              className="last_name"
               placeholder="Фамилия"
-              value={userSettings.last_name}
-              onChange={onHandler}
+              value={user.userSettings.last_name}
+              onChange={(e) =>
+                user.setUserSettings("last_name", e.target.value)
+              }
             />
           </div>
-          <div className={s.inputData}>
-            <label htmlFor="middle_name">Отчество</label>
+          {user.isPhotographer && (
+            <>
+              <div className={`${s.shortInputData} ${s.date}`}>
+                <label htmlFor="date">Срок сдачи фотографий, д.</label>
+                <input id="date" placeholder="от 7" disabled />
+              </div>
+              <div className={`${s.shortInputData} ${s.experience}`}>
+                <label htmlFor="experience">Опыт работы г.</label>
+                <input
+                  type="number"
+                  id="experience"
+                  placeholder="7"
+                  value={user.userSettings.experience}
+                  onChange={(e) =>
+                    user.setUserSettings("experience", e.target.value)
+                  }
+                />
+              </div>
+            </>
+          )}
+          <div className={`${s.inputData} ${s.email}`}>
+            <label htmlFor="email">Почта:</label>
             <input
-              id="middle_name"
-              className="middle_name"
-              placeholder="Отчество"
-              value={userSettings.middle_name}
-              onChange={onHandler}
+              id="email"
+              placeholder="your_mail@mail.com"
+              value={user.userSettings.email}
+              onChange={(e) => user.setUserSettings("email", e.target.value)}
             />
           </div>
-          <div className={s.inputData}>
-            <label htmlFor="birthdate">Дата рождения</label>
-            <input
-              type="date"
-              id="birthdate"
-              className="birthdate"
-              value={userSettings.birthdate}
-              max={maxDate}
-              min={"1900-01-01"}
-              onChange={onHandler}
-            />
-          </div>
-          <div className={s.inputData}>
-            <label htmlFor="city">Город</label>
-            <input
-              id="city"
-              className="city"
-              placeholder="Город"
-              value={userSettings.city}
-              onChange={onHandler}
-            />
-          </div>
-          <div className={s.inputData}>
-            <label htmlFor="contact_time">Время свзяи</label>
-            <input
-              id="contact_time"
-              value={userSettings.contact_time}
-              className="contact_time"
-              onChange={onHandler}
-              placeholder="Время, когда вы сможете связаться"
-            />
-          </div>
-          <div className={`${s.aboutUser} ${s.inputData}`}>
-            <label htmlFor="about">О себе</label>
-            <textarea
-              id="about"
-              className="about"
-              value={userSettings.about}
-              onChange={onHandler}
-              placeholder="Расскажите о себе"
-            />
-          </div>
+          {user.isPhotographer && (
+            <>
+              <div className={`${s.inputData} ${s.phone}`}>
+                <label htmlFor="phone">Номер телефона:</label>
+                <input
+                  type="number"
+                  id="phone"
+                  placeholder="89647154373"
+                  value={user.userSettings.phone}
+                  onChange={(e) => {
+                    user.setUserSettings("phone", e.target.value);
+                  }}
+                />
+              </div>
+              <div className={`${s.inputData} ${s.vk}`}>
+                <label htmlFor="vk">Страница Вконтакте:</label>
+                <input id="vk" placeholder="vk.com/kosty200" disabled />
+              </div>
+              <div className={`${s.inputData} ${s.tg}`}>
+                <label htmlFor="tg">Телеграмм:</label>
+                <input id="tg" placeholder="@costya_co4ergin" disabled />
+              </div>
+              <div className={`${s.inputData} ${s.city}`}>
+                <label htmlFor="city">Город:</label>
+                <input
+                  id="city"
+                  placeholder="Город"
+                  value={user.userSettings.city}
+                  onChange={(e) => user.setUserSettings("city", e.target.value)}
+                />
+              </div>
+              <div className={`${s.aboutUser} ${s.inputData}`}>
+                <label htmlFor="about">О себе:</label>
+                <textarea
+                  id="about"
+                  className="about"
+                  value={user.userSettings.about}
+                  onChange={(e) =>
+                    user.setUserSettings("about", e.target.value)
+                  }
+                  placeholder={about_placeholder}
+                />
+              </div>
+            </>
+          )}
           <button className={s.upgrade} onClick={updateUser}>
-            Обновить
+            Сохранить
           </button>
         </>
       )}
