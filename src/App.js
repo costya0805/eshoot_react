@@ -28,7 +28,7 @@ function App() {
           <Route path={"/signup"} component={SignUp} />
           <PrivateRoute path={"/photographers"} component={Photographers}/>
           <PrivateRoute path={"/orders"} component={Orders} />
-          <PrivateRoute path={"/order"} component={Order} />
+          <PrivateRoute path={"/order/:orderID?"} component={Order} />
           <PrivateRoute path={"/edit-order"} component={EditOrder}/>
           <PrivateRoute path={"/messeges"} component={Messeges} />
           <PrivateRoute path={"/create-order/:userID?"} component={CreateOrder} />

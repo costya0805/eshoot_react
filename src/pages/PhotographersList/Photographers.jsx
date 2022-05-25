@@ -15,7 +15,7 @@ const Photographers = observer(() => {
   return (
     <>
       <Header />
-      <h1 className={s.pageName}>Поиск </h1>
+      <h1 className={s.pageName}>Поиск</h1>
       <div className={s.body}>
         <Filters />
         <div className={s.fotographers}>

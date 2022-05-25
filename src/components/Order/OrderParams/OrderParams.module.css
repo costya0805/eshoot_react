@@ -1,0 +1,76 @@
+.body {
+  display: flex;
+  width: 880px;
+  height: fit-content;
+  padding: 32px 38px;
+  background-color: var(--white);
+  border-radius: 10px;
+  flex-direction: column;
+}
+.text_info {
+  display: grid;
+  grid-template-columns: repeat(4, 186px);
+  row-gap: 28px;
+  column-gap: 20px;
+  margin-bottom: 28px;
+}
+.text_name {
+  color: var(--grey);
+  margin-bottom: 8px;
+}
+.cost {
+  grid-column: 1/5;
+}
+.description {
+  grid-column: 1/5;
+}
+
+.references {
+  display: grid;
+  grid-template-columns: repeat(3, 180px);
+  row-gap: 40px;
+  column-gap: 132px;
+  margin-bottom: 28px;
+}
+
+.reference .photo img {
+  object-fit: cover;
+  height: 180px;
+  width: 180px;
+  border-radius: 10px;
+}
+
+.reference .photo {
+  margin-bottom: 8px;
+}
+
+.actions {
+  display: flex;
+  height: 48px;
+}
+
+.actions button {
+  width: 200px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.agree {
+  background-color: var(--botton);
+  color: var(--white);
+  border: 0;
+}
+.cancel {
+  background-color: var(--white);
+  color: #f46770;
+  border: 1px solid #f46770;
+}
+
+.add_link_result {
+  background-color: var(--white);
+  color: var(--botton);
+  border: 1px solid var(--botton);
+}
+.agree, .finish{
+    margin-left: auto;
+}

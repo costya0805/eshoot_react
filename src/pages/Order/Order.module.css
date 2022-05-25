@@ -1,0 +1,16 @@
+.pageName {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 24px;
+  margin-right: 16px;
+}
+
+.topOrder{
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.body{
+  display: flex;
+}

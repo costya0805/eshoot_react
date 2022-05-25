@@ -1,0 +1,53 @@
+.body {
+  width: 280px;
+  height: fit-content;
+  background-color: var(--white);
+  border-radius: 10px;
+  margin-left: 20px;
+  position: relative;
+}
+.showUser {
+  cursor: pointer;
+}
+.showUser:hover {
+  filter: drop-shadow(0px 0px 10px rgba(39, 60, 131, 0.2));
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 56px;
+  width: 100%;
+}
+
+.fio {
+  margin-top: 16px;
+  text-align: center;
+  color: var(--text);
+}
+
+.role {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: 54px;
+}
+
+.role_name {
+  margin-left: 8px;
+  color: var(--botton);
+}
+.chat {
+  position: absolute;
+  bottom: 20px;
+  width: 168px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--botton);
+  border: 1px solid var(--botton);
+  left: 56px;
+  border-radius: 10px;
+  cursor: pointer;
+}
