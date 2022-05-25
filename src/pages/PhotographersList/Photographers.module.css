@@ -1,19 +1,31 @@
-.body{
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
+.body {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
 }
-.fotographers{
-    margin-left: 20px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 420px);
-    grid-auto-rows: minmax(min-content, max-content);
-    gap: 28px 20px;
+.fotographers {
+  margin-left: 20px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 420px);
+  grid-auto-rows: minmax(min-content, max-content);
+  gap: 28px 20px;
 }
 
-.pageName{
-    margin-top: 0;
-    margin-bottom: 32px;
-    font-size: 24px;
+.pageName {
+  margin-top: 0;
+  margin-bottom: 32px;
+  font-size: 24px;
+}
+
+.photographersEmpty {
+  grid-column: 1/3;
+  height: 120px;
+  background-color: var(--white);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--grey);
 }

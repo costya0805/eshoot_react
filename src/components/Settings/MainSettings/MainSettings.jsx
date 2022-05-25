@@ -195,6 +195,7 @@ const MainSettings = observer(() => {
               placeholder="your_mail@mail.com"
               value={user.userSettings.email}
               onChange={(e) => user.setUserSettings("email", e.target.value)}
+              disabled
             />
           </div>
           {user.isPhotographer && (

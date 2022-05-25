@@ -5,11 +5,38 @@ const cookies = new Cookies();
 
 class Photographers {
   photographers = [];
-  filters = { tag: null, date: null, city: "", maxCost: 10000, minCost: 0 };
+  filters = {
+    tag: null,
+    date: null,
+    city: "",
+    maxCost: 10000,
+    minCost: 0,
+    fio: "",
+  };
   tags = [];
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  get filtersFotographer() {
+    let showFotographers = this.photographers;
+    showFotographers = showFotographers.filter(
+      (photographer) => photographer.photos.length > 3
+    );
+    if (!!this.filters.city) {
+      showFotographers = showFotographers.filter(
+        (photographer) =>
+          !!photographer.city && photographer.city.includes(this.filters.city)
+      );
+    }
+    if (!!this.filters.tag) {
+      showFotographers = showFotographers.filter((photographer) =>
+        photographer.tags.find((tag) => tag.name === this.filters.tag)
+      );
+    }
+
+    return showFotographers;
   }
 
   getPhotographers = async () => {

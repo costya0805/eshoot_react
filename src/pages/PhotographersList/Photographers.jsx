@@ -8,10 +8,10 @@ import Filters from "../../components/FotographersList/Filters/Filters";
 import Photographer from "../../components/FotographersList/Fotographer/Photographer";
 
 const Photographers = observer(() => {
-  useEffect(()=>{
-    photographers.getPhotographers()
-    photographers.getTags()
-  },[])
+  useEffect(() => {
+    photographers.getPhotographers();
+    photographers.getTags();
+  }, []);
   return (
     <>
       <Header />
@@ -19,14 +19,12 @@ const Photographers = observer(() => {
       <div className={s.body}>
         <Filters />
         <div className={s.fotographers}>
-          {photographers.photographers.map(
-            (photographer) =>
-              photographer.photos.length > 3 && (
-                <Photographer
-                  key={photographer.id}
-                  photographer={photographer}
-                />
-              )
+          {photographers.filtersFotographer.length > 0 ? (
+            photographers.filtersFotographer.map((photographer) => (
+              <Photographer key={photographer.id} photographer={photographer} />
+            ))
+          ) : (
+            <div className={s.photographersEmpty}>Фотографы не найдены</div>
           )}
         </div>
       </div>
