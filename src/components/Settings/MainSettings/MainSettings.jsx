@@ -243,7 +243,7 @@ const MainSettings = observer(() => {
               </div>
             </>
           )}
-          <button className={s.upgrade} onClick={updateUser}>
+          <button className={`${s.upgrade} h3`} onClick={updateUser}>
             Сохранить
           </button>
         </>

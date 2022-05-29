@@ -18,9 +18,9 @@ const SideBar = observer(({ currentPage, changePage }) => {
         <>
           <div
             className={`${s.title} ${
-              currentPage === "contacts" ? s.current : ""
+              currentPage === "tags" ? s.current : ""
             }`}
-            id="contacts"
+            id="tags"
             onClick={changePage}
           >
             Инфорация о съемках

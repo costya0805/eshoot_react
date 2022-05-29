@@ -7,7 +7,7 @@ import MainSettings from "../../components/Settings/MainSettings/MainSettings";
 import SideBar from "../../components/Settings/SideBar/SideBar";
 import Password from "../../components/Settings/Password/Password";
 import Portfolio from "../../components/Settings/Portfolio/Portfolio";
-import Contacts from "../../components/Settings/Contacts/Contacts";
+import Tags from "../../components/Settings/Tags/Tags";
 import Dates from "../../components/Settings/Dates/Dates";
 
 const Settings = observer(() => {
@@ -15,7 +15,9 @@ const Settings = observer(() => {
   const changePage = (e) => {
     setCurrentPage(e.target.id);
   };
-
+  useEffect(() => {
+    user.getTags();
+  }, []);
   return (
     <div className={s.settingsBody}>
       <Header />
@@ -26,7 +28,7 @@ const Settings = observer(() => {
           {currentPage === "main" && <MainSettings />}
           {currentPage === "password" && <Password />}
           {user.isPhotographer && currentPage === "portfolio" && <Portfolio />}
-          {user.isPhotographer && currentPage === "contacts" && <Contacts />}
+          {user.isPhotographer && currentPage === "tags" && <Tags />}
           {user.isPhotographer && currentPage === "dates" && <Dates />}
         </div>
       )}
