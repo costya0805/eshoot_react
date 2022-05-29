@@ -8,14 +8,27 @@ import Avatar from "../../Avatar/Avatar";
 import s from "./MainInfo.module.css";
 
 const MainInfo = observer(() => {
+  const get_expirience = (count) => {
+    if (count % 10 === 1 && count % 100 !== 11) return `${count} год`;
+    else if (
+      count % 10 > 1 &&
+      count % 10 < 5 &&
+      count % 100 !== 12 &&
+      count % 100 !== 13 &&
+      count % 100 !== 14
+    )
+      return `${count} года`;
+    else return `${count} лет`;
+  };
+
   const history = useHistory();
   const goChat = async () => {
     messages.selectChatUser(photographer.main_info.id);
     history.push("/messeges");
   };
-  const goOrderCreate = () =>{
-    history.push(`/create-order/${photographer.main_info.id}`)
-  }
+  const goOrderCreate = () => {
+    history.push(`/create-order/${photographer.main_info.id}`);
+  };
   return (
     <div className={s.mainUserInfo}>
       <div className={s.topInfo}>
@@ -37,7 +50,9 @@ const MainInfo = observer(() => {
           <button className={s.chat} onClick={goChat}>
             Связаться
           </button>
-          <button className={s.order} onClick={goOrderCreate}>Оформить заказ</button>
+          <button className={s.order} onClick={goOrderCreate}>
+            Оформить заказ
+          </button>
         </div>
       )}
       <div className={s.tags}>
@@ -60,7 +75,9 @@ const MainInfo = observer(() => {
       {photographer.main_info.experience !== 0 && (
         <div className={s.text_block}>
           <div className={s.header}>Опыт работы:</div>
-          <div className={s.text}>{photographer.main_info.experience}</div>
+          <div className={s.text}>
+            {get_expirience(photographer.main_info.experience)}
+          </div>
         </div>
       )}
       {photographer.main_info.work_dates && (

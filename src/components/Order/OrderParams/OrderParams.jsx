@@ -21,7 +21,6 @@ const OrderParams = observer(() => {
   const start_time = order.info.start_time.slice(0, 5);
   const end_time = order.info.end_time.slice(0, 5);
   const show_period = `${start_time}–${end_time}`;
-  console.log(order.info.references);
   return (
     <div className={s.body}>
       <div className={s.text_info}>
@@ -102,23 +101,26 @@ const OrderParams = observer(() => {
         </>
       )}
       <div className={s.actions}>
-        {order.info.status === "new" && (
-          <button className={s.cancel}>
+        {(order.info.status === "new" ||
+          order.info.status === "in_progress") && (
+          <button className={s.cancel} onClick={()=>{order.changeStatus("canceled")}}>
             {order.user_role === "customer" ? "Отменить" : "Отказаться"}
           </button>
         )}
         {order.user_role === "performer" && order.info.status === "new" && (
-          <button className={s.agree}>Принять</button>
+          <button className={s.agree} onClick={()=>{order.changeStatus("in_progress")}}>Принять</button>
         )}
         {order.user_role === "customer" && order.info.status === "waiting" && (
-          <button className={s.finish}>Завершить заказ</button>
+          <button className={s.finish} onClick={()=>{order.changeStatus("canceled")}}>Завершить заказ</button>
         )}
         {order.user_role === "performer" && order.info.status === "waiting" && (
           <button className={s.add_link_result}>Прикрепить результат</button>
         )}
-        {order.user_role === "customer" && (
-          <button className={s.patch_order}>Отредактировать</button>
-        )}
+        {order.user_role === "customer" &&
+          (order.info.status === "new" ||
+            order.info.status === "in_progress") && (
+            <button className={s.patch_order}>Отредактировать</button>
+          )}
       </div>
     </div>
   );

@@ -29,7 +29,6 @@ const CreateOrder = observer(() => {
           {create_order.step === 3 && <InputIdea />}
           {create_order.step === 4 && <SelectSettings />}
           {create_order.step === 5 && <SelectCost />}
-          {console.log(create_order.progress)}
           <OrderInfo />
         </div>
       )}

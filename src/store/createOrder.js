@@ -36,6 +36,7 @@ class CreateOrder {
   progress = 0;
   order_id = "";
   load_order = false;
+  photo_loading = {};
 
   constructor() {
     makeAutoObservable(this);
@@ -125,7 +126,7 @@ class CreateOrder {
     this.order_id = response.id;
     if (this.references.length > 0)
       for (let reference in this.references)
-        await this.uploadReference(
+        this.uploadReference(
           this.references[reference].photo,
           this.references[reference].about
         );
@@ -145,7 +146,7 @@ class CreateOrder {
       "state_changed",
       (snapshot) => {
         runInAction(() => {
-          this.progress = (
+          this.photo_loading[image.name] = (
             (snapshot.bytesTransferred / snapshot.totalBytes) *
             100
           ).toFixed(2);
@@ -164,7 +165,15 @@ class CreateOrder {
       }
     );
   };
-  
+
+  get showProcentUpload(){
+    let result = []
+    for (let key in this.photo_loading){
+      result.push(`${this.photo_loading[key]}%`)
+    }
+    return result.join(" ")
+  }
+
   uploadReferenceToOrder = async (params) => {
     const userInCookies = cookies.get("currentUser");
     const postConfig = {

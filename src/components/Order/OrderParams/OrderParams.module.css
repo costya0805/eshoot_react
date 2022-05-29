@@ -74,3 +74,9 @@
 .agree, .finish{
     margin-left: auto;
 }
+.patch_order{
+  background-color: white;
+  border: 1px solid var(--botton);
+  color: var(--botton);
+  margin-left: auto;
+}

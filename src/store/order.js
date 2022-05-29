@@ -66,6 +66,10 @@ class Order {
     });
     return date.slice(0, date.length - 2);
   }
+
+  changeStatus(new_status) {
+    console.log(new_status);
+  }
 }
 
 export default new Order();

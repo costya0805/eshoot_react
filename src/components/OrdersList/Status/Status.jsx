@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import s from "./Status.module.css";
 
-const Status = observer(({ status, size }) => {
+const Status = observer(({ status }) => {
   const status_dict = {
     new: "Новый",
     in_progress: "Планируется съемка",

@@ -10,16 +10,23 @@ const Portfolios = observer(() => {
   return (
     <div className={s.portfolios}>
       {photographer.porfolios_photos.map((portfolio_photos) => (
-        <div className={s.portfolio} key={portfolio_photos.portfolio_id}>
+        <div
+          className={s.portfolio}
+          key={portfolio_photos.portfolio_id}
+          onClick={() => {
+            photographer.setPortfolioId(portfolio_photos.portfolio_id);
+            photographer.setCurrentPage("portfolio_photos");
+          }}
+        >
           <div className={s.photos}>
             <div className={s.first}>
-              <img src={portfolio_photos.photos[0].photo_path} alt=""/>
+              <img src={portfolio_photos.photos[0].photo_path} alt="" />
             </div>
             <div>
-              <img src={portfolio_photos.photos[1].photo_path} alt=""/>
+              <img src={portfolio_photos.photos[1].photo_path} alt="" />
             </div>
             <div>
-              <img src={portfolio_photos.photos[2].photo_path} alt=""/>
+              <img src={portfolio_photos.photos[2].photo_path} alt="" />
             </div>
           </div>
           <div className={s.portfolio_info}>

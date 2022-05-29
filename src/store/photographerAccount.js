@@ -1,11 +1,8 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import Cookies from "universal-cookie";
 
-
 const cookies = new Cookies();
 const API_URL = "http://51.250.17.207:8080";
-
-
 
 class Photographer {
   main_info = {};
@@ -14,6 +11,7 @@ class Photographer {
   busy_dates = [];
   loading = true;
   current_page = "portfolio";
+  select_portfolio_id = "";
 
   constructor() {
     makeAutoObservable(this);
@@ -22,6 +20,7 @@ class Photographer {
   getPhotographer = async (id) => {
     this.loading = true;
     this.porfolios_photos = [];
+    this.current_page = "portfolio";
     const userInCookies = cookies.get("currentUser");
     const json = await fetch(`${API_URL}/users/photographers/${id}`, {
       headers: {
@@ -67,6 +66,16 @@ class Photographer {
 
   setCurrentPage(current_page) {
     this.current_page = current_page;
+  }
+
+  setPortfolioId(portfolio_id) {
+    this.select_portfolio_id = portfolio_id;
+  }
+
+  get getPortfolioPhotos() {
+    return this.porfolios_photos.find(
+      (photo) => photo.portfolio_id === this.select_portfolio_id
+    );
   }
 }
 
