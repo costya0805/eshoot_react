@@ -1,3 +1,4 @@
+import React from "react";
 import RightRectangle from "../../images/rightRectangle.svg";
 import LeftRectangle from "../../images/leftRectangle.svg";
 import FirstPic from "../../images/login_signup/first.png";
