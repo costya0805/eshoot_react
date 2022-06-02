@@ -2,7 +2,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
-const API_URL = "http://51.250.17.207:8080";
+const API_URL = "http://51.250.111.181:8080";
 
 class Order {
   info = {};

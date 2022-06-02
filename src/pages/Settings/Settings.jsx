@@ -11,7 +11,7 @@ import Tags from "../../components/Settings/Tags/Tags";
 import Dates from "../../components/Settings/Dates/Dates";
 
 const Settings = observer(() => {
-  const [currentPage, setCurrentPage] = useState("main");
+  const [currentPage, setCurrentPage] = useState("portfolio");
   const changePage = (e) => {
     setCurrentPage(e.target.id);
   };

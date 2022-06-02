@@ -32,14 +32,6 @@ const MainSettings = observer(() => {
     }
   }, [currentUserInfo]);
 
-  const onHandler = (e) => {
-    setUserSettings((actual) => {
-      return {
-        ...actual,
-        [e.target.id]: e.target.value,
-      };
-    });
-  };
 
   const [image, setImage] = useState();
   const [showImage, setShowImage] = useState();
@@ -47,7 +39,7 @@ const MainSettings = observer(() => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
       setShowImage(URL.createObjectURL(e.target.files[0]));
-      user.openModal();
+      user.openModal("avatar");
     }
   };
 
@@ -63,6 +55,7 @@ const MainSettings = observer(() => {
     e.preventDefault();
     try {
       const croppedImage = await getCroppedImg(showImage, croppedAreaPixels, 0);
+      console.log(croppedImage)
       user.updateAvatar(
         croppedImage.file,
         `${currentUserInfo.id}/avatar/${image.name}`
@@ -113,9 +106,9 @@ const MainSettings = observer(() => {
             </label>
           </div>
           <Modal
-            isOpen={user.showModal}
+            isOpen={user.showModal.avatar}
             onRequestClose={() => {
-              user.closeModal();
+              user.closeModal("avatar");
               setImage();
             }}
             shouldCloseOnOverlayClick={true}

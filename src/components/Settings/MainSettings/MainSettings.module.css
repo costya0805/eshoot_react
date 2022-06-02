@@ -124,6 +124,7 @@
   box-shadow: 0 0 10px 0 rgba(39, 60, 131, 0.3);
   border-radius: 10px;
   border: 0;
+  outline: 0;
 }
 .overlay {
   display: flex;

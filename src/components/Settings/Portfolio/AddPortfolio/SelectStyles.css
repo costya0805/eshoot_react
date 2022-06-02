@@ -1,0 +1,46 @@
+.select_tag .select {
+  width: 200px;
+}
+.select_tag .react-select__indicator-separator {
+  display: none;
+}
+
+.select_tag .react-select__control,
+.select_tag .react-select__control:hover,
+.select_tag .react-select__control--is-focused {
+  border: 1px solid var(--botton);
+  box-shadow: none;
+  border-radius: 10px;
+}
+.select_tag .react-select__menu {
+  box-shadow: none;
+  border-radius: 10px;
+  border: 1px solid var(--botton);
+  max-height: 149px;
+}
+.select_tag .react-select__menu-list::-webkit-scrollbar {
+  width: 0;
+}
+.select_tag .react-select__option {
+  width: 190px;
+  margin: 5px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 7px;
+  color: var(--text);
+}
+.select_tag .react-select__option:hover,
+.select_tag .react-select__option--is-selected {
+  background-color: rgba(125, 148, 223, 0.15);
+}
+.select_tag .react-select__menu-list{
+    overflow-x: hidden;
+    max-height: 149px;
+}
+.select_tag .react-select__option--is-focused{
+    background-color: none;
+}

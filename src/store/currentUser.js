@@ -8,7 +8,7 @@ import {
 } from "firebase/storage";
 
 const cookies = new Cookies();
-const API_URL = "http://51.250.17.207:8080";
+const API_URL = "http://51.250.111.181:8080";
 
 class CurrentUser {
   user = {};
@@ -22,7 +22,7 @@ class CurrentUser {
     about: "",
     password: "",
   };
-  showModal = false;
+  showModal = { avatar: false, add_portfolio: false, edit_portfolio: false };
   showLoading = false;
   progress = 0;
   avatar_url = "";
@@ -32,18 +32,19 @@ class CurrentUser {
   add_tags = [];
   remove_tags = [];
   loading_tags = false;
+  user_portfolios = [];
 
   constructor() {
     this.getInfo();
     makeAutoObservable(this);
   }
 
-  openModal() {
-    this.showModal = true;
+  openModal(page) {
+    this.showModal[page] = true;
   }
 
-  closeModal() {
-    this.showModal = false;
+  closeModal(page) {
+    this.showModal[page] = false;
   }
 
   setUserSettings(type, value) {
@@ -57,6 +58,7 @@ class CurrentUser {
 
   getInfo = async () => {
     this.loading = true;
+    await this.getTags();
     const userInCookies = cookies.get("currentUser");
     if (!!userInCookies) {
       const json = await fetch(API_URL + "/users/me", {
@@ -67,7 +69,6 @@ class CurrentUser {
       runInAction(() => {
         this.user = { ...json };
         this.userSettings = { ...json };
-        this.loading = false;
       });
     }
     if (this.user.role === "Photographer") {
@@ -80,9 +81,32 @@ class CurrentUser {
         }
       ).then((response) => response.json());
       runInAction(() => {
+        this.add_tags = [];
+        this.remove_tags = [];
         this.user_tags = json.tags;
+        this.user_portfolios = [];
       });
+      for (const portfolio of json.portfolios) {
+        const photos = await fetch(
+          `${API_URL}/users/porftfolios/${portfolio.id}/photos`,
+          {
+            headers: {
+              Authorization: "Bearer " + userInCookies,
+            },
+          }
+        ).then((response) => response.json());
+        runInAction(() => {
+          this.user_portfolios.push({
+            tag_name: this.tags.find((tag) => tag.id === portfolio.tag_id).name,
+            portfolio_id: portfolio.id,
+            photos: photos,
+          });
+        });
+      }
     }
+    runInAction(() => {
+      this.loading = false;
+    });
   };
 
   getTags = async () => {
@@ -105,7 +129,7 @@ class CurrentUser {
     const storageRef = ref(storage, path);
     const uploadTask = uploadBytesResumable(storageRef, image, metadata);
     this.showLoading = true;
-    this.closeModal();
+    this.closeModal("avatar");
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -201,6 +225,33 @@ class CurrentUser {
       });
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  getPotfolios = async () => {
+    const userInCookies = cookies.get("currentUser");
+    this.user_portfolios = [];
+    const json = await fetch(`${API_URL}/users/photographers/${this.user.id}`, {
+      headers: {
+        Authorization: "Bearer " + userInCookies,
+      },
+    }).then((response) => response.json());
+    for (const portfolio of json.portfolios) {
+      const photos = await fetch(
+        `${API_URL}/users/porftfolios/${portfolio.id}/photos`,
+        {
+          headers: {
+            Authorization: "Bearer " + userInCookies,
+          },
+        }
+      ).then((response) => response.json());
+      runInAction(() => {
+        this.user_portfolios.push({
+          tag_name: this.tags.find((tag) => tag.id === portfolio.tag_id).name,
+          portfolio_id: portfolio.id,
+          photos: photos,
+        });
+      });
     }
   };
 }
