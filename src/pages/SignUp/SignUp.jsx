@@ -11,7 +11,7 @@ import { useAuth } from "../../context/AuthContext";
 import ChooseRole from "../../components/SignUp/ChooseRole/ChooseRole";
 
 const SignUp = observer(() => {
-  const [error, setError] = useState("");
+  const [, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const { signup } = useAuth();
