@@ -31,7 +31,7 @@ const Portfolio_card = observer(({ portfolio_photos }) => {
     return count > 4 ? `${count} фотографий` : `${count} фотографии`;
   };
   return (
-    <div className={s.portfolio}>
+    <div className={s.portfolio} onClick={()=>{console.log(portfolio_photos)}}>
       <div className={s.photos}>
         <div className={s.first}>
           <img src={portfolio_photos.photos[0].photo_path} alt="" />
