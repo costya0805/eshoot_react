@@ -5,6 +5,7 @@ import {
   ref,
   uploadBytesResumable,
   getDownloadURL,
+  deleteObject,
 } from "firebase/storage";
 
 const cookies = new Cookies();
@@ -33,6 +34,7 @@ class CurrentUser {
   remove_tags = [];
   loading_tags = false;
   user_portfolios = [];
+  remove_avatar = "";
 
   constructor() {
     this.getInfo();
@@ -148,12 +150,24 @@ class CurrentUser {
           runInAction(() => {
             this.showLoading = false;
             this.avatar_url = result;
+            if (this.user.avatar)
+              this.remove_avatar = this.user.avatar
+                .split("/o/")[1]
+                .split("?alt=")[0]
+                .replaceAll("%2F", "/");
           });
           this.updateUser({ avatar: this.avatar_url });
+          if (this.remove_avatar && path !== this.remove_avatar)
+            this.removeStorageAvatar();
         });
       }
     );
   }
+  removeStorageAvatar = () => {
+    const storage = getStorage();
+    const desertRef = ref(storage, this.remove_avatar);
+    deleteObject(desertRef);
+  };
 
   selectTag = (tag) => {
     if (this.user_tags.find((user_tag) => user_tag.id === tag.id)) {

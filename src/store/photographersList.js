@@ -75,7 +75,6 @@ class Photographers {
 
   getTags = async () => {
     let tags = [];
-    console.log(API_URL)
     await fetch(`${API_URL}/tags`)
       .then((response) => response.json())
       .then((json) =>

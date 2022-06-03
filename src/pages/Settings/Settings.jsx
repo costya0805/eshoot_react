@@ -18,6 +18,10 @@ const Settings = observer(() => {
   useEffect(() => {
     user.getTags();
   }, []);
+  user.user.avatar &&
+    console.log(
+      user.user.avatar.split("/o/")[1].split("?alt=")[0].replaceAll("%2F", "/")
+    );
   return (
     <div className={s.settingsBody}>
       <Header />
