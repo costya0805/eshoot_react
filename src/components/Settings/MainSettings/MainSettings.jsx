@@ -32,7 +32,6 @@ const MainSettings = observer(() => {
     }
   }, [currentUserInfo]);
 
-
   const [image, setImage] = useState();
   const [showImage, setShowImage] = useState();
   const getImage = (e) => {
@@ -55,7 +54,7 @@ const MainSettings = observer(() => {
     e.preventDefault();
     try {
       const croppedImage = await getCroppedImg(showImage, croppedAreaPixels, 0);
-      console.log(croppedImage)
+      console.log(croppedImage);
       user.updateAvatar(
         croppedImage.file,
         `${currentUserInfo.id}/avatar/${image.name}`
@@ -116,6 +115,7 @@ const MainSettings = observer(() => {
             overlayClassName={s.overlay}
             ariaHideApp={false}
           >
+            <div className={`${s.modal_name} h2`}>Обновление фотографии</div>
             <div className={s.cropper}>
               <Cropper
                 image={showImage}
@@ -135,8 +135,16 @@ const MainSettings = observer(() => {
               max={3}
               step={0.1}
               onChange={(e) => setZoom(e.target.value)}
+              className={s.zoom_avatar}
+              style={{
+                background: `-webkit-linear-gradient(left, var(--botton) 0%, var(--botton) ${
+                  (zoom - 1) * 50
+                }%, #273c83 ${(zoom - 1) * 50}%, #273c83 100%)`,
+              }}
             ></input>
-            <button onClick={handleUpload}>Обновить аватар</button>
+            <button onClick={handleUpload} className={`${s.update_avatar} h3`}>
+              Обновить
+            </button>
           </Modal>
 
           <div className={`${s.inputData} ${s.first_name}`}>
@@ -207,17 +215,17 @@ const MainSettings = observer(() => {
               </div>
               <div className={`${s.inputData} ${s.vk}`}>
                 <label htmlFor="vk">Страница Вконтакте:</label>
-                <input id="vk" placeholder="vk.com/kosty200" disabled />
+                <input id="vk" placeholder="vk.com/" disabled />
               </div>
               <div className={`${s.inputData} ${s.tg}`}>
                 <label htmlFor="tg">Телеграмм:</label>
-                <input id="tg" placeholder="@costya_co4ergin" disabled />
+                <input id="tg" placeholder="@" disabled />
               </div>
               <div className={`${s.inputData} ${s.city}`}>
                 <label htmlFor="city">Город:</label>
                 <input
                   id="city"
-                  placeholder="Город"
+                  placeholder="Екатеринбург"
                   value={user.userSettings.city}
                   onChange={(e) => user.setUserSettings("city", e.target.value)}
                 />
