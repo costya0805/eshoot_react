@@ -40,7 +40,7 @@ const AddPortfolio = observer(() => {
     >
       <div className={`${s.title} h2`}>Создание нового альбома</div>
       <div className={`${s.select_tag} select_tag`}>
-        <label className={`${s.select_title} h3`}>Жанр альбома</label>
+        <label className={`${s.select_title} h3`}>Жанр альбома:</label>
         <Select
           placeholder={"Жанр"}
           options={options}

@@ -2,7 +2,9 @@ import React from "react";
 import s from "./Portfolio.module.css";
 import { observer } from "mobx-react-lite";
 import user from "../../../store/currentUser";
+import portfolio_edit from "../../../store/portfolio_edit";
 import AddPortfolio from "./AddPortfolio/AddPortfolio";
+import EditPortfolio from "./EditPortfolio/EditPortfolio";
 
 const Portfolio = observer(() => {
   return (
@@ -22,6 +24,7 @@ const Portfolio = observer(() => {
           />
         ))}
       </div>
+      {user.showModal.edit_portfolio && <EditPortfolio />}
     </div>
   );
 });
@@ -31,7 +34,12 @@ const Portfolio_card = observer(({ portfolio_photos }) => {
     return count > 4 ? `${count} фотографий` : `${count} фотографии`;
   };
   return (
-    <div className={s.portfolio} onClick={()=>{console.log(portfolio_photos)}}>
+    <div
+      className={s.portfolio}
+      onClick={() => {
+        portfolio_edit.openPortfolioEdit(portfolio_photos);
+      }}
+    >
       <div className={s.photos}>
         <div className={s.first}>
           <img src={portfolio_photos.photos[0].photo_path} alt="" />

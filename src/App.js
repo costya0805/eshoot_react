@@ -5,7 +5,7 @@ import "./App.css";
 
 import { AuthProvider } from "./context/AuthContext";
 
-import PrivateRoute from "./components/PriveteRoute/PriveteRoute";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute"
 
 import Orders from "./pages/OrdersList/Orders";
 import CreateOrder from "./pages/CreateOrder/CreateOrder";

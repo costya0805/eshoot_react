@@ -1,0 +1,147 @@
+.modal {
+  position: absolute;
+  width: 648px;
+  height: fit-content;
+  top: 10vh;
+  background-color: white;
+  box-shadow: 0 0 10px 0 rgba(39, 60, 131, 0.3);
+  border-radius: 10px;
+  border: 0;
+  outline: 0;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.title {
+  color: var(--header);
+  text-align: center;
+  width: 100%;
+  margin-bottom: 40px;
+}
+.portfolio_tag {
+  margin-bottom: 20px;
+}
+.tag_name {
+  color: var(--dark-grey);
+  text-transform: lowercase;
+}
+.addPhotos {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.photos_inputs {
+  margin-top: 8px;
+}
+.photos_title {
+  color: var(--dark-grey);
+}
+
+.uploaded_photos {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
+  grid-gap: 8px 20px;
+}
+.photo_box {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+.remove_photo {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  background-color: rgba(20, 20, 20, 0.7);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-user-drag: none;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+
+.upload_image {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+.upload_image input {
+  display: none;
+}
+.upload_body {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 2px dashed var(--botton);
+  color: var(--botton);
+  padding-top: 59px;
+  text-align: center;
+  z-index: 2;
+}
+.vertical,
+.horizontal {
+  position: absolute;
+  background-color: var(--botton);
+  border-radius: 5px;
+}
+.vertical {
+  top: 29px;
+  width: 2px;
+  height: 15px;
+}
+
+.horizontal {
+  top: 35px;
+  height: 2px;
+  width: 14px;
+}
+.actions {
+  margin-top: 40px;
+  display: flex;
+}
+.actions button {
+  width: 200px;
+  height: 48px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.delete_portfolio {
+  background-color: white;
+  border: 1px solid #f46770;
+  color: #f46770;
+}
+.create_portfolio {
+  background-color: var(--botton);
+  border: none;
+  color: var(--white);
+  margin-left: auto;
+}
+.create_portfolio:disabled {
+  background-color: var(--grey);
+  cursor: auto;
+}
