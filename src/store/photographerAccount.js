@@ -12,6 +12,8 @@ class Photographer {
   loading = true;
   current_page = "portfolio";
   select_portfolio_id = "";
+  current_photo_show = {};
+  show_photo = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -38,6 +40,7 @@ class Photographer {
         experience: json.experience,
         city: json.city,
         id: json.id,
+        min_cost: json.min_cost,
       };
       this.tags = json.tags;
     });
@@ -76,6 +79,48 @@ class Photographer {
     return this.porfolios_photos.find(
       (photo) => photo.portfolio_id === this.select_portfolio_id
     );
+  }
+
+  setShowPhoto(photo) {
+    this.current_photo_show = photo;
+    this.show_photo = true;
+  }
+
+  closePhoto() {
+    this.show_photo = false;
+    this.current_photo_show = {};
+  }
+
+  get getPhotoIndex() {
+    return (
+      this.porfolios_photos
+        .find((photo) => photo.portfolio_id === this.select_portfolio_id)
+        .photos.map((photo) => photo.id)
+        .indexOf(this.current_photo_show.id) + 1
+    );
+  }
+
+  goNextPhoto() {
+    const current_portfolio_photos = this.porfolios_photos.find(
+      (photo) => photo.portfolio_id === this.select_portfolio_id
+    ).photos;
+    const current_index = current_portfolio_photos
+      .map((photo) => photo.id)
+      .indexOf(this.current_photo_show.id);
+    const nextIndex = (current_index + 1) % current_portfolio_photos.length;
+    this.current_photo_show = current_portfolio_photos[nextIndex];
+  }
+  goPrevPhoto() {
+    const current_portfolio_photos = this.porfolios_photos.find(
+      (photo) => photo.portfolio_id === this.select_portfolio_id
+    ).photos;
+    const current_index = current_portfolio_photos
+      .map((photo) => photo.id)
+      .indexOf(this.current_photo_show.id);
+    const nextIndex =
+      (current_index - 1 + current_portfolio_photos.length) %
+      current_portfolio_photos.length;
+    this.current_photo_show = current_portfolio_photos[nextIndex];
   }
 }
 

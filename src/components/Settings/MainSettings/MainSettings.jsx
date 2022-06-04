@@ -54,7 +54,6 @@ const MainSettings = observer(() => {
     e.preventDefault();
     try {
       const croppedImage = await getCroppedImg(showImage, croppedAreaPixels, 0);
-      console.log(croppedImage);
       user.updateAvatar(
         croppedImage.file,
         `${currentUserInfo.id}/avatar/${image.name}`

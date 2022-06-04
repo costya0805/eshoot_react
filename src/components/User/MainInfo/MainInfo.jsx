@@ -62,14 +62,16 @@ const MainInfo = observer(() => {
           </div>
         ))}
       </div>
-      <div className={s.text_block}>
-        <div className={s.header}>Обо мне:</div>
-        <div className={s.text}>{photographer.main_info.about}</div>
-      </div>
+      {photographer.main_info.about && (
+        <div className={s.text_block}>
+          <div className={s.header}>Обо мне:</div>
+          <div className={s.text}>{photographer.main_info.about}</div>
+        </div>
+      )}
       {photographer.main_info.min_cost && (
         <div className={s.text_block}>
           <div className={s.header}>Стоимость:</div>
-          <div className={s.text}>{photographer.main_info.min_cost}</div>
+          <div className={s.text}>{`От ${photographer.main_info.min_cost} ₽/час`}</div>
         </div>
       )}
       {photographer.main_info.experience !== 0 && (
@@ -80,10 +82,10 @@ const MainInfo = observer(() => {
           </div>
         </div>
       )}
-      {photographer.main_info.work_dates && (
+      {photographer.main_info.min_date && (
         <div className={s.text_block}>
           <div className={s.header}>Срок сдачи заказа:</div>
-          <div className={s.text}>{photographer.main_info.work_dates}</div>
+          <div className={s.text}>{photographer.main_info.min_date}</div>
         </div>
       )}
     </div>

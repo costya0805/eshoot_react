@@ -13,14 +13,17 @@ input {
   border-radius: 10px;
   padding: 8px;
 }
-
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 /* input[type="radio"]:hover + label {
   outline: none;
   background-color: #e8ecfa;
   border: 1px solid #7d94df;
 } */
-
 
 input:focus {
   outline: none;
@@ -127,23 +130,23 @@ a {
   color: black;
 }
 
-.new{
-  background-color: #B1F4B9;
+.new {
+  background-color: #b1f4b9;
   color: #269734;
 }
-.in_progress{
-  background-color: #FFE9B9;
-  color: #A67F2A;
+.in_progress {
+  background-color: #ffe9b9;
+  color: #a67f2a;
 }
-.canceled{
-  background-color: #FFBDB9;
-  color: #A6302A;
+.canceled {
+  background-color: #ffbdb9;
+  color: #a6302a;
 }
-.waiting{
-  background-color: #B5C3EF;
+.waiting {
+  background-color: #b5c3ef;
   color: #294191;
 }
-.closed{
-  background-color: #B5C3EF;
+.closed {
+  background-color: #b5c3ef;
   color: #294191;
 }

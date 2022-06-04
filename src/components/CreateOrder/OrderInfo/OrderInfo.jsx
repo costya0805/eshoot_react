@@ -29,7 +29,7 @@ const OrderInfo = observer(() => {
               className={`${s.fio} h3`}
             >{`${order.photographer.first_name} ${order.photographer.last_name}`}</div>
             <div className={s.cost}>
-              <span>Стоимость:</span> {`от ${1000} ₽/час`}
+              <span>Стоимость:</span> {`от ${order.photographer.min_cost} ₽/час`}
             </div>
           </div>
         </div>

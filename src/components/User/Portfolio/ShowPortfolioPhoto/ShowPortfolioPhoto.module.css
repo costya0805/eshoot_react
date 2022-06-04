@@ -1,0 +1,100 @@
+.modal {
+  position: absolute;
+  width: 1149px;
+  height: 826px;
+  top: 10vh;
+  background-color: white;
+  box-shadow: 0 0 10px 0 rgba(39, 60, 131, 0.3);
+  border-radius: 10px;
+  border: 0;
+  outline: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.showing_image {
+  width: 1149px;
+  height: 766px;
+  background: #545454;
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image {
+  max-height: 100%;
+  max-width: 100%;
+}
+.portfolio_info {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 74px;
+}
+.photo_number {
+  margin-left: 18px;
+  color: var(--grey);
+}
+.go_prev_photo ,
+.go_next_photo {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  padding-top: 383px;
+  padding-bottom: 383px;
+}
+.go_prev_photo:hover .first,
+.go_next_photo:hover .first,
+.go_prev_photo:hover .second,
+.go_next_photo:hover .second {
+  background-color: var(--white);
+}
+
+.go_prev_photo {
+  left: 0;
+  padding-left: 32px;
+  padding-right: 100px;
+}
+.go_next_photo {
+  right: 0;
+  padding-right: 32px;
+  padding-left: 100px;
+}
+
+.go_prev_photo .wrapper {
+  transform: rotate(-45deg);
+}
+.go_next_photo .wrapper {
+  transform: rotate(135deg);
+}
+
+.wrapper {
+  position: relative;
+}
+.first,
+.second {
+  position: absolute;
+  filter: drop-shadow(0px 0px 10px rgba(39, 60, 131, 0.2));
+  background-color: #a9a9a9;
+  border-radius: 5px;
+}
+.first {
+  width: 45px;
+  height: 4px;
+}
+.second {
+  width: 4px;
+  height: 45px;
+}

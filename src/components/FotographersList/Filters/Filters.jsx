@@ -62,14 +62,13 @@ const Filters = observer(() => {
             <Slider
               range
               min={0}
-              max={10000}
+              max={30000}
               value={[
                 photographers.filters.minCost,
                 photographers.filters.maxCost,
               ]}
               onChange={(e) => photographers.setFilters("cost", e)}
               className={s.slider}
-              onBlur={() => {}}
             />
             <div className={s.setPrice}>
               <input

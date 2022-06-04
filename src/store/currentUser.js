@@ -50,7 +50,7 @@ class CurrentUser {
   }
 
   setUserSettings(type, value) {
-    console.log(type, value);
+    if ((type === "min_cost" || type === "experience") && value < 0) return;
     this.userSettings[type] = value;
   }
 
@@ -170,6 +170,11 @@ class CurrentUser {
   };
 
   selectTag = (tag) => {
+    if (
+      this.user_portfolios.find((portfolio) => tag.name === portfolio.tag_name)
+    ) {
+      return;
+    }
     if (this.user_tags.find((user_tag) => user_tag.id === tag.id)) {
       this.remove_tags.find((remove_tag) => remove_tag.id === tag.id)
         ? (this.remove_tags = this.remove_tags.filter(
@@ -187,6 +192,9 @@ class CurrentUser {
 
   updateTags = async () => {
     this.loading_tags = true;
+    if (this.user.min_cost !== this.userSettings.min_cost) {
+      await this.updateUser({ min_cost: this.userSettings.min_cost });
+    }
     const userInCookies = cookies.get("currentUser");
     if (this.add_tags.length > 0) {
       this.add_tags.forEach((add_tag) => {

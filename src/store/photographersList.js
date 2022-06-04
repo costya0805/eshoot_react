@@ -9,7 +9,7 @@ class Photographers {
     tag: null,
     date: null,
     city: "",
-    maxCost: 10000,
+    maxCost: 30000,
     minCost: 0,
     fio: "",
   };
@@ -33,6 +33,20 @@ class Photographers {
     if (!!this.filters.tag) {
       showFotographers = showFotographers.filter((photographer) =>
         photographer.tags.find((tag) => tag.name === this.filters.tag)
+      );
+    }
+    if (this.filters.minCost !== 0) {
+      showFotographers = showFotographers.filter(
+        (photographer) =>
+          !!photographer.min_cost &&
+          photographer.min_cost >= this.filters.minCost
+      );
+    }
+    if (this.filters.maxCost !== 30000){
+      showFotographers = showFotographers.filter(
+        (photographer) =>
+          !!photographer.min_cost &&
+          photographer.min_cost <= this.filters.maxCost
       );
     }
     return showFotographers;

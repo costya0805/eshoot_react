@@ -76,7 +76,7 @@ const Photographer = observer(({ photographer }) => {
             {photographer.about ? photographer.about : placeholder_about}
           </div>
           <div className={s.makeOrder}>
-            <div className={s.minCost}>{`От 1000 ₽/час`}</div>
+            <div className={s.minCost}>{`От ${photographer.min_cost} ₽/час`}</div>
           </div>
         </div>
       </Link>

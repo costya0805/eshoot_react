@@ -6,6 +6,19 @@ import user from "../../../store/currentUser";
 const Tags = observer(() => {
   return (
     <div className={s.body}>
+      <div className={`${s.cost_name} h3`}>Стоимость съемки в час:</div>
+      <div className={s.input_container}>
+        <input
+          className={s.input_cost}
+          placeholder="10000"
+          type="number"
+          value={user.userSettings.min_cost}
+          onChange={(e) =>
+            user.setUserSettings("min_cost", e.target.value)
+          }
+        />
+        <div className={`${s.prefix_input} h3`}>₽</div>
+      </div>
       <div className={`${s.tags_name} h3`}>
         Выберите жанры в которых вы снимаете:
       </div>

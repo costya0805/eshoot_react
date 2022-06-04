@@ -9,6 +9,10 @@
   grid-gap: 16px 20px;
 }
 
+.photo{
+  cursor: pointer;
+}
+
 .photo img {
   object-fit: cover;
   width: 100%;
