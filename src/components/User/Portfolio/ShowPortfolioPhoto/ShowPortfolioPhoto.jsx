@@ -5,7 +5,6 @@ import photographer from "../../../../store/photographerAccount.js";
 import Modal from "react-modal";
 
 const PortfolioPhoto = observer(() => {
-  console.log(photographer.getPhotoIndex);
   return (
     <Modal
       isOpen={photographer.show_photo}

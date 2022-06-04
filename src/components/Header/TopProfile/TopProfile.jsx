@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import arrowSvg from "../../../images/arrow.svg";
-import logOutSvg from "../../../images/logOut.svg";
-import settingsSvg from "../../../images/settings.svg";
 import { useAuth } from "../../../context/AuthContext";
 import Avatar from "../../Avatar/Avatar";
 import s from "./TopProfile.module.css";

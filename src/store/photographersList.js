@@ -42,11 +42,19 @@ class Photographers {
           photographer.min_cost >= this.filters.minCost
       );
     }
-    if (this.filters.maxCost !== 30000){
+    if (this.filters.maxCost !== 30000) {
       showFotographers = showFotographers.filter(
         (photographer) =>
           !!photographer.min_cost &&
           photographer.min_cost <= this.filters.maxCost
+      );
+    }
+    if (!!this.filters.fio) {
+      showFotographers = showFotographers.filter(
+        (photographer) =>
+          `${photographer.first_name} ${photographer.last_name}`
+            .toLowerCase()
+            .indexOf(this.filters.fio.toLowerCase()) !== -1
       );
     }
     return showFotographers;

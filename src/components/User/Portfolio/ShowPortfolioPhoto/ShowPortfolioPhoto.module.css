@@ -1,8 +1,8 @@
 .modal {
   position: absolute;
-  width: 1149px;
-  height: 826px;
-  top: 10vh;
+  min-width: 1120px;
+  max-height: 826px;
+  height: fit-content;
   background-color: white;
   box-shadow: 0 0 10px 0 rgba(39, 60, 131, 0.3);
   border-radius: 10px;
@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  z-index: 100;
 }
 .overlay {
   display: flex;
@@ -22,10 +23,11 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.2);
+  z-index: 100;
 }
 .showing_image {
-  width: 1149px;
-  height: 766px;
+  width: 100%;
+  height: 100%;
   background: #545454;
   position: relative;
   flex-shrink: 0;
@@ -34,11 +36,10 @@
   justify-content: center;
 }
 .image {
-  max-height: 100%;
-  max-width: 100%;
+  height: 70vh;
 }
 .portfolio_info {
-  height: 100%;
+  height: 60px;
   display: flex;
   align-items: center;
   padding-left: 74px;
@@ -52,8 +53,8 @@
   position: absolute;
   cursor: pointer;
   top: 0;
-  padding-top: 383px;
-  padding-bottom: 383px;
+  padding-top: 35vh;
+  padding-bottom: 35vh;
 }
 .go_prev_photo:hover .first,
 .go_next_photo:hover .first,
@@ -91,10 +92,10 @@
   border-radius: 5px;
 }
 .first {
-  width: 45px;
+  width: 4vh;
   height: 4px;
 }
 .second {
   width: 4px;
-  height: 45px;
+  height: 4vh;
 }

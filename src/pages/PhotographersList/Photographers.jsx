@@ -18,7 +18,7 @@ const Photographers = observer(() => {
       <h1 className={s.pageName}>Поиск</h1>
       <div className={s.body}>
         <Filters />
-        <div className={s.fotographers}>
+        <div className={s.photographers}>
           {photographers.filtersFotographer.length > 0 ? (
             photographers.filtersFotographer.map((photographer) => (
               <Photographer key={photographer.id} photographer={photographer} />

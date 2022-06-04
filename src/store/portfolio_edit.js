@@ -207,6 +207,16 @@ class PortfolioEdit {
   };
 
   deletePortfolio = async () => {
+    this.prev_photos.map((photo) => {
+      this.removePhotoFromStorage(
+        decodeURI(
+          photo.photo_path
+            .split("/o/")[1]
+            .split("?alt=")[0]
+            .replaceAll("%2F", "/")
+        )
+      );
+    });
     const userInCookies = cookies.get("currentUser");
     const postConfig = {
       method: "DELETE",

@@ -17,6 +17,7 @@
   border-radius: 10px;
   border: 1px solid var(--botton);
   max-height: 149px;
+  z-index: 4;
 }
 .select_tag .react-select__menu-list::-webkit-scrollbar {
   width: 0;
