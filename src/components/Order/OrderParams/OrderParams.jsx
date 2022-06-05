@@ -105,47 +105,54 @@ const OrderParams = observer(() => {
           </div>
         </>
       )}
-      <div className={s.actions}>
-        {(order.info.status === "new" ||
-          order.info.status === "in_progress") && (
-          <button
-            className={s.cancel}
-            onClick={() => {
-              order.changeStatus("canceled");
-            }}
-          >
-            {order.user_role === "customer" ? "Отменить" : "Отказаться"}
-          </button>
-        )}
-        {order.user_role === "performer" && order.info.status === "new" && (
-          <button
-            className={s.agree}
-            onClick={() => {
-              order.changeStatus("in_progress");
-            }}
-          >
-            Принять
-          </button>
-        )}
-        {order.user_role === "customer" && order.info.status === "waiting" && (
-          <button
-            className={s.finish}
-            onClick={() => {
-              order.changeStatus("canceled");
-            }}
-          >
-            Завершить заказ
-          </button>
-        )}
-        {order.user_role === "performer" && order.info.status === "waiting" && (
-          <button className={s.add_link_result}>Прикрепить результат</button>
-        )}
-        {order.user_role === "customer" &&
-          (order.info.status === "new" ||
+      {!(
+        order.info.status === "canceled" || order.info.status === "closed"
+      ) && (
+        <div className={s.actions}>
+          {(order.info.status === "new" ||
             order.info.status === "in_progress") && (
-            <button className={s.patch_order}>Отредактировать</button>
+            <button
+              className={s.cancel}
+              onClick={() => {
+                order.changeStatus("canceled");
+              }}
+            >
+              {order.user_role === "customer" ? "Отменить" : "Отказаться"}
+            </button>
           )}
-      </div>
+          {order.user_role === "performer" && order.info.status === "new" && (
+            <button
+              className={s.agree}
+              onClick={() => {
+                order.changeStatus("in_progress");
+              }}
+            >
+              Принять
+            </button>
+          )}
+          {order.user_role === "customer" && order.info.status === "waiting" && (
+            <button
+              className={s.finish}
+              onClick={() => {
+                order.changeStatus("closed");
+              }}
+            >
+              Завершить заказ
+            </button>
+          )}
+          {order.user_role === "performer" &&
+            order.info.status === "waiting" && (
+              <button className={s.add_link_result}>
+                Прикрепить результат
+              </button>
+            )}
+          {order.user_role === "customer" &&
+            (order.info.status === "new" ||
+              order.info.status === "in_progress") && (
+              <button className={s.patch_order}>Отредактировать</button>
+            )}
+        </div>
+      )}
     </div>
   );
 });

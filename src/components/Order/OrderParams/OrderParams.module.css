@@ -67,11 +67,17 @@
   color: #f46770;
   border: 1px solid #f46770;
 }
+.finish{
+  background-color: var(--botton);
+  color: var(--white);
+  border: 0;
+}
 
 .add_link_result {
   background-color: var(--white);
   color: var(--botton);
   border: 1px solid var(--botton);
+  margin-left: auto;
 }
 .agree, .finish{
     margin-left: auto;

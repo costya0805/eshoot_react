@@ -36,9 +36,29 @@ class Orders {
           },
         }
       ).then((response) => response.json());
+      const order_date = new Date(
+        `${json[order].date}T${json[order].start_time}`
+      );
+      let order_params = {};
+      if (order_date < new Date()) {
+        if (json[order].status === "new") {
+          order_params = await this.updateOrder(user_id, json[order].id, {
+            status: "canceled",
+            reason_for_rejection: "Прошла установленная дата съемки",
+          });
+        } else if (json[order].status === "in_progress") {
+          order_params = await this.updateOrder(user_id, json[order].id, {
+            status: "waiting",
+          });
+        } else {
+          order_params = json[order];
+        }
+      } else {
+        order_params = json[order];
+      }
       runInAction(() => {
         orders.push({
-          order: json[order],
+          order: order_params,
           role_in_card: another_user_role,
           another_user_info: another_user_info,
         });
@@ -52,6 +72,26 @@ class Orders {
       this.orders = orders;
       this.loading = false;
     });
+  };
+
+  updateOrder = async (user_id, order_id, paramsInfo) => {
+    const userInCookies = cookies.get("currentUser");
+    try {
+      const json = await fetch(
+        `${API_URL}/users/${user_id}/orders/${order_id}`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: "Bearer " + userInCookies,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(paramsInfo),
+        }
+      ).then((response) => response.json());
+      return json;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   setFiltesStatus = (status) => {

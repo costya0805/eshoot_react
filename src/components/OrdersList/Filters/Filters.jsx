@@ -44,10 +44,10 @@ const OrderFilters = observer(() => {
       </div>
       <div
         className={`${s.switch} ${
-          ordersList.status === "canceled" ? s.active : ""
+          ordersList.status === "closed" ? s.active : ""
         }`}
         onClick={() => {
-          ordersList.setFiltesStatus("canceled");
+          ordersList.setFiltesStatus("closed");
         }}
       >
         Завершенные

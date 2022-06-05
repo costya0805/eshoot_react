@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Header from "../../components/Header/Header";
 
 import { useAuth } from "../../context/AuthContext";
 import { observer } from "mobx-react-lite";
 import ordersList from "../../store/ordersList";
-import createOrder from "../../store/createOrder";
 import OrderCard from "../../components/OrdersList/OrderCard/OrderCard";
 import s from "./Orders.module.css";
 import OrderFilters from "../../components/OrdersList/Filters/Filters";
@@ -17,7 +16,6 @@ const Orders = observer(() => {
       ordersList.getOrders(currentUserInfo.id);
     }
   }, [currentUserInfo]);
-  console.log(createOrder.showProcentUpload)
   return (
     <div>
       <Header />
