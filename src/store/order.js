@@ -9,6 +9,8 @@ class Order {
   another_user = {};
   loading = true;
   user_role = "";
+  modals = { photo: false };
+  showPhoto = {};
 
   constructor() {
     makeAutoObservable(this);
@@ -69,6 +71,35 @@ class Order {
 
   changeStatus(new_status) {
     console.log(new_status);
+  }
+
+  openPhoto(photo) {
+    this.modals.photo = true;
+    this.showPhoto = photo;
+  }
+
+  closePhoto() {
+    this.modals.photo = false;
+    this.showPhoto = {};
+  }
+
+  goNextPhoto() {
+    const current_index = this.info.references
+      .map((photo) => photo.id)
+      .indexOf(this.showPhoto.id);
+    this.showPhoto =
+      this.info.references[(current_index + 1) % this.info.references.length];
+  }
+
+  goPrevPhoto() {
+    const current_index = this.info.references
+      .map((photo) => photo.id)
+      .indexOf(this.showPhoto.id);
+    this.showPhoto =
+      this.info.references[
+        (current_index - 1 + this.info.references.length) %
+          this.info.references.length
+      ];
   }
 }
 

@@ -15,9 +15,10 @@ const InputIdea = observer(() => {
             maxRows={6}
             placeholder="Напишите ваши пожелания, идеи и всё что вы желаете нужным для фотографа"
             value={order.params.description}
-            onChange={(e) =>
-              order.setOrderParams("description", e.target.value)
-            }
+            onChange={(e) => {
+              if (e.target.value.length < 250)
+                order.setOrderParams("description", e.target.value);
+            }}
             className={s.input_description}
           />
         </div>
@@ -85,7 +86,10 @@ const Reference = observer(({ reference }) => {
           placeholder="Хорошая поза, хочу повторить"
           value={reference.about}
           className={s.reference_text}
-          onChange={(e) => order.addReferenceText(e.target.value, reference.id)}
+          onChange={(e) => {
+            if (e.target.value.length < 100)
+              order.addReferenceText(e.target.value, reference.id);
+          }}
         />
         <div
           className={s.deleate}

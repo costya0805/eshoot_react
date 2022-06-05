@@ -6,6 +6,7 @@
   background-color: var(--white);
   border-radius: 10px;
   flex-direction: column;
+  margin-bottom: 50px;
 }
 .text_info {
   display: grid;
@@ -42,6 +43,7 @@
 
 .reference .photo {
   margin-bottom: 8px;
+  cursor: pointer;
 }
 
 .actions {

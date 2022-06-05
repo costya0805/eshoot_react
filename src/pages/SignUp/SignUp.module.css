@@ -52,6 +52,7 @@
   height: 50px;
   padding: 14px 12px;
   border: 1px solid var(--grey);
+  border-radius: 5px;
 }
 
 .formInput {
@@ -64,6 +65,10 @@
 .formInput label {
   margin-bottom: 12px;
   color: var(--dark-grey);
+}
+
+.password_input{
+  margin-bottom: 8px;
 }
 .doubleInput {
   display: flex;

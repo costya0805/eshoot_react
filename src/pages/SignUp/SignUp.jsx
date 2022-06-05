@@ -5,7 +5,7 @@ import Logo from "../../components/Logo/Logo";
 import Background from "../../components/Background/Background";
 import { observer } from "mobx-react-lite";
 import signUp from "../../store/signup";
-import user from "../../store/currentUser"
+import user from "../../store/currentUser";
 import { useAuth } from "../../context/AuthContext";
 
 import ChooseRole from "../../components/SignUp/ChooseRole/ChooseRole";
@@ -31,14 +31,14 @@ const SignUp = observer(() => {
         signUp.signUpParams.password
       );
       setLoading(false);
-      if(checkLogin && checkLogin.error){
+      if (checkLogin && checkLogin.error) {
         return setError(checkLogin.error);
       }
-      user.getInfo()
-      history.push("/search")
+      user.getInfo();
+      history.push("/search");
     } catch (error) {
-        setLoading(false);
-        setError("Ошибка при регистрации")
+      setLoading(false);
+      setError("Ошибка при регистрации");
     }
   }
 
@@ -61,7 +61,22 @@ const SignUp = observer(() => {
               }}
             >
               <ChooseRole />
+
               <div className={s.doubleInput}>
+                <div className={s.formInput}>
+                  <label>Имя</label>
+                  <input
+                    placeholder="Имя"
+                    name="name"
+                    value={signUp.signUpParams.name}
+                    onChange={(e) => signUp.changeParams(e)}
+                    className={
+                      signUp.showFill && signUp.signUpParams.name.length === 0
+                        ? s.errorInput
+                        : ""
+                    }
+                  />
+                </div>
                 <div className={s.formInput}>
                   <label>Фамилия</label>
                   <input
@@ -72,20 +87,6 @@ const SignUp = observer(() => {
                     className={
                       signUp.showFill &&
                       signUp.signUpParams.surname.length === 0
-                        ? s.errorInput
-                        : ""
-                    }
-                  />
-                </div>
-                <div className={s.formInput}>
-                  <label>Имя</label>
-                  <input
-                    placeholder="Имя"
-                    name="name"
-                    value={signUp.signUpParams.name}
-                    onChange={(e) => signUp.changeParams(e)}
-                    className={
-                      signUp.showFill && signUp.signUpParams.name.length === 0
                         ? s.errorInput
                         : ""
                     }
@@ -107,7 +108,7 @@ const SignUp = observer(() => {
                   }
                 />
               </div>
-              <div className={s.formInput}>
+              <div className={`${s.formInput} ${s.password_input}`}>
                 <label>Пароль</label>
                 <input
                   type="password"
@@ -128,7 +129,7 @@ const SignUp = observer(() => {
                 />
               </div>
               {!signUp.correctPassword && (
-                <span className={s.error}>
+                <span className={s.error} style={{ marginTop: 0 }}>
                   Пароль должен быть больше 6 символов
                 </span>
               )}
@@ -156,7 +157,7 @@ const SignUp = observer(() => {
               <input
                 disabled={loading}
                 type="submit"
-                value="Регистрация"
+                value="Зарегестрироваться"
                 className={`${s.submit} index`}
               />
               {signUp.showModal && (

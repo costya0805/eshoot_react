@@ -9,6 +9,7 @@ import s from "./Order.module.css";
 import { observer } from "mobx-react-lite";
 import order from "../../store/order";
 import OrderParams from "../../components/Order/OrderParams/OrderParams";
+import OrderPhoto from "../../components/Order/OrderPhoto/OrderPhoto";
 import AnotherUserCard from "../../components/Order/AnotherUserCard/AnotherUserCard";
 
 const Order = observer(() => {
@@ -28,6 +29,7 @@ const Order = observer(() => {
           <div className={s.body}>
             <OrderParams />
             <AnotherUserCard/>
+            <OrderPhoto/>
           </div>
         </>
       )}

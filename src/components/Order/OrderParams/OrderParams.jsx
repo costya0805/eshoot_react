@@ -91,7 +91,12 @@ const OrderParams = observer(() => {
           <div className={s.references}>
             {order.info.references.map((reference) => (
               <div className={s.reference} key={reference.id}>
-                <div className={s.photo}>
+                <div
+                  className={s.photo}
+                  onClick={() => {
+                    order.openPhoto(reference);
+                  }}
+                >
                   <img src={reference.photo} />
                 </div>
                 <div className={s.photo_description}>{reference.about}</div>
@@ -103,15 +108,34 @@ const OrderParams = observer(() => {
       <div className={s.actions}>
         {(order.info.status === "new" ||
           order.info.status === "in_progress") && (
-          <button className={s.cancel} onClick={()=>{order.changeStatus("canceled")}}>
+          <button
+            className={s.cancel}
+            onClick={() => {
+              order.changeStatus("canceled");
+            }}
+          >
             {order.user_role === "customer" ? "Отменить" : "Отказаться"}
           </button>
         )}
         {order.user_role === "performer" && order.info.status === "new" && (
-          <button className={s.agree} onClick={()=>{order.changeStatus("in_progress")}}>Принять</button>
+          <button
+            className={s.agree}
+            onClick={() => {
+              order.changeStatus("in_progress");
+            }}
+          >
+            Принять
+          </button>
         )}
         {order.user_role === "customer" && order.info.status === "waiting" && (
-          <button className={s.finish} onClick={()=>{order.changeStatus("canceled")}}>Завершить заказ</button>
+          <button
+            className={s.finish}
+            onClick={() => {
+              order.changeStatus("canceled");
+            }}
+          >
+            Завершить заказ
+          </button>
         )}
         {order.user_role === "performer" && order.info.status === "waiting" && (
           <button className={s.add_link_result}>Прикрепить результат</button>
