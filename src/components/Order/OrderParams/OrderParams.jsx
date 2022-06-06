@@ -2,8 +2,10 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import s from "./OrderParams.module.css";
 import order from "../../../store/order";
+import { useHistory } from "react-router-dom";
 
 const OrderParams = observer(() => {
+  const history = useHistory();
   const type =
     order.info.type === "Фотосессия" || order.info.type === "Репортаж"
       ? order.info.subtype
@@ -149,7 +151,14 @@ const OrderParams = observer(() => {
           {order.user_role === "customer" &&
             (order.info.status === "new" ||
               order.info.status === "in_progress") && (
-              <button className={s.patch_order}>Отредактировать</button>
+              <button
+                className={s.patch_order}
+                onClick={() => {
+                  history.push(`/edit-order/${order.info.id}`);
+                }}
+              >
+                Отредактировать
+              </button>
             )}
         </div>
       )}

@@ -29,7 +29,7 @@ function App() {
           <PrivateRoute path={"/photographers"} component={Photographers}/>
           <PrivateRoute path={"/orders"} component={Orders} />
           <PrivateRoute path={"/order/:orderID?"} component={Order} />
-          <PrivateRoute path={"/edit-order"} component={EditOrder}/>
+          <PrivateRoute path={"/edit-order/:orderID?"} component={EditOrder}/>
           <PrivateRoute path={"/messeges"} component={Messeges} />
           <PrivateRoute path={"/create-order/:userID?"} component={CreateOrder} />
           <PrivateRoute path={"/user/:userID?"} component={User}/>

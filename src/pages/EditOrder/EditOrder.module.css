@@ -1,0 +1,8 @@
+.page_name {
+  color: var(--header);
+  margin-bottom: 32px;
+}
+
+.body {
+  display: flex;
+}

@@ -60,6 +60,7 @@ const InputFill = observer(() => {
         onChange={(e) => {
           order.addReference(e.target.files[0]);
         }}
+        accept="image/*"
       ></input>
       <label htmlFor="reference" className={s.upload_body}>
         Загрузить

@@ -1,0 +1,88 @@
+.body {
+  width: 880px;
+  padding: 32px 38px;
+  background-color: var(--white);
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+.text_info {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  grid-gap: 20px 28px;
+}
+.fill_input {
+  display: flex;
+  flex-direction: column;
+}
+.text_label {
+  margin-bottom: 8px;
+}
+.fill_input input {
+  border: 1px solid var(--botton);
+  height: 38px;
+}
+.input_short {
+  width: 60px;
+}
+.input_long {
+  width: 200px;
+}
+.photo_count {
+  grid-column: 2 / span 2;
+}
+.taps {
+  grid-column: 1 / span 3;
+}
+.actions {
+  margin-top: 32px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.time input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;
+  margin: 0;
+}
+
+.time input[type="time"] {
+  padding: 0;
+  width: 60px;
+  padding-left: 10px;
+  height: 38px;
+  border: 1px solid var(--botton);
+}
+.actions button {
+  height: 48px;
+  width: 200px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.about_input {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.input_description {
+  width: 516px;
+  min-height: 98px;
+  max-height: 98px;
+  overflow: auto;
+  height: fit-content;
+  padding: 9px 12px;
+  border: 1px solid var(--botton);
+  border-radius: 10px;
+}
+.back_order {
+  border: 1px solid var(--botton);
+  background-color: var(--white);
+  color: var(--botton);
+}
+.save_changes {
+  background-color: var(--botton);
+  color: var(--white);
+  border: 0;
+}
+
+.save_changes:disabled {
+  background-color: var(--grey);
+}

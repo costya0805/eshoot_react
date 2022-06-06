@@ -1,12 +1,12 @@
 import { observer } from "mobx-react-lite";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Avatar from "../../Avatar/Avatar";
 import s from "./AnotherUserCard.module.css";
 import order from "../../../store/order";
 import messages from "../../../store/messages";
 import CustomerSVG from "../../../images/customer_order_icon.svg";
 import PerformerSVG from "../../../images/pervormer_order_icon.svg";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const AnotherUserCard = observer(() => {
   const history = useHistory();
