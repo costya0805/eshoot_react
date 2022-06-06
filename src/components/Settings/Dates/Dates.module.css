@@ -1,0 +1,44 @@
+.body {
+  width: 880px;
+  padding: 32px 80px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+}
+
+.uploadChanges {
+  display: flex;
+  flex-direction: column;
+}
+.actions {
+  margin-top: 20px;
+}
+.save {
+  border-radius: 10px;
+  width: 200px;
+  height: 48px;
+  border: 0;
+  background-color: var(--botton);
+  color: var(--white);
+  cursor: pointer;
+}
+.save:disabled,
+.save:disabled:hover {
+  background-color: var(--grey);
+  cursor: auto;
+}
+.save:hover {
+  background-color: #748bd6;
+}
+.dates_list {
+  margin-left: 24px;
+  padding: 20px;
+  max-width: 100%;
+  height: fit-content;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(39, 60, 131, 0.2);
+}
+.title {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
