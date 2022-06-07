@@ -71,7 +71,9 @@ const MainInfo = observer(() => {
       {photographer.main_info.min_cost && (
         <div className={s.text_block}>
           <div className={s.header}>Стоимость:</div>
-          <div className={s.text}>{`От ${photographer.main_info.min_cost} ₽/час`}</div>
+          <div
+            className={s.text}
+          >{`От ${photographer.main_info.min_cost} ₽/час`}</div>
         </div>
       )}
       {photographer.main_info.experience !== 0 && (
@@ -82,10 +84,13 @@ const MainInfo = observer(() => {
           </div>
         </div>
       )}
+      {console.log(photographer.main_info)}
       {photographer.main_info.min_date && (
         <div className={s.text_block}>
           <div className={s.header}>Срок сдачи заказа:</div>
-          <div className={s.text}>{photographer.main_info.min_date}</div>
+          <div
+            className={s.text}
+          >{`от ${photographer.main_info.min_date} дней`}</div>
         </div>
       )}
     </div>

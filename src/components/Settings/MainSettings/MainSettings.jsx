@@ -171,8 +171,16 @@ const MainSettings = observer(() => {
           {user.isPhotographer && (
             <>
               <div className={`${s.shortInputData} ${s.date}`}>
-                <label htmlFor="date">Срок сдачи фотографий, д.</label>
-                <input id="date" placeholder="от 7" disabled />
+                <label htmlFor="min_date">Срок сдачи фотографий, д.</label>
+                <input
+                  type="number"
+                  id="min_date"
+                  placeholder="7"
+                  value={user.userSettings.min_date}
+                  onChange={(e) => {
+                    user.setUserSettings("min_date", e.target.value);
+                  }}
+                />
               </div>
               <div className={`${s.shortInputData} ${s.experience}`}>
                 <label htmlFor="experience">Опыт работы г.</label>

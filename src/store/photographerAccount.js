@@ -41,6 +41,7 @@ class Photographer {
         city: json.city,
         id: json.id,
         min_cost: json.min_cost,
+        min_date: json.min_date,
       };
       this.tags = json.tags;
     });
