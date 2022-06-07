@@ -25,7 +25,7 @@
 
 .goNextPage button {
   cursor: pointer;
-  height: 38px;
+  height: 48px;
   width: 200px;
   border-radius: 10px;
   color: var(--white);
@@ -34,19 +34,26 @@
   line-height: 20px;
 }
 
-.goNextPage button:disabled {
+.goNextPage button:disabled,
+.goNextPage button:disabled:hover {
   background-color: var(--grey);
   cursor: auto;
+}
+.goNextPage button:hover {
+  background-color: #6c82cd;
 }
 
 .goPrevPage button {
   cursor: pointer;
-  height: 38px;
+  height: 48px;
   width: 120px;
   color: var(--botton);
   background-color: var(--white);
   border: 1px solid var(--botton);
   border-radius: 10px;
+}
+.goPrevPage button:hover {
+  background-color: #ebeffa;
 }
 
 .place {
@@ -74,48 +81,52 @@
 }
 
 .input_date_time {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-.time input[type="time"]::-webkit-calendar-picker-indicator{
-    display: none;
-    margin: 0;
+.time input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;
+  margin: 0;
 }
 
-.time input[type="time"]{
-    padding: 0;
-    width: 60px;
-    padding-left: 10px;
-    height: 38px;
-    border: 1px solid var(--botton);
+.time input[type="time"] {
+  padding: 0;
+  width: 60px;
+  padding-left: 10px;
+  height: 38px;
+  border: 1px solid var(--botton);
 }
 
-.block_time{
-    display: flex;
-    flex-direction: column;
+.block_time {
+  display: flex;
+  flex-direction: column;
 }
 
-.period{
-    margin-top: 16px;
-    position: relative;
+.period {
+  margin-top: 16px;
+  position: relative;
 }
-.period input{
-    border: 1px solid var(--botton);
-    width: 60px;
-    height: 38px;
-    position: relative;
+.period input {
+  border: 1px solid var(--botton);
+  width: 60px;
+  height: 38px;
+  position: relative;
 }
 
-.period::after{
-    content: "ч.";
-    position: absolute;
-    left: 41px;
-    bottom: 10px;
-    color: var(--grey);
+.period::after {
+  content: "ч.";
+  position: absolute;
+  left: 41px;
+  bottom: 10px;
+  color: var(--grey);
 }
 .period input::-webkit-outer-spin-button,
-.period input::-webkit-inner-spin-button{
-    -webkit-appearance: none;
-    margin: 0;
+.period input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.necessary::after {
+  content: "*";
+  color: #f46770;
 }

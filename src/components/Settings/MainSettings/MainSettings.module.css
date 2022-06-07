@@ -80,7 +80,9 @@
   margin-left: 20px;
   line-height: 20px;
 }
-
+.updateAvatar label:hover{
+  color: var(--header)
+}
 .updateAvatar {
   height: auto;
   grid-column: 1/4;

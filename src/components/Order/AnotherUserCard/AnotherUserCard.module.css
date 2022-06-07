@@ -42,12 +42,13 @@
   bottom: 20px;
   width: 168px;
   height: 38px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: var(--botton);
   border: 1px solid var(--botton);
   left: 56px;
   border-radius: 10px;
   cursor: pointer;
+  background-color: white;
+}
+.chat:hover {
+  background-color: #ebeffa;
 }

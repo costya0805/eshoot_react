@@ -42,11 +42,16 @@
   color: var(--botton);
   background-color: var(--white);
 }
-
+.chat:hover {
+  background-color: #ebeffa;
+}
 .order {
   background-color: var(--botton);
   color: white;
   border: 0;
+}
+.orde:hover {
+  background-color: #6C82CD;
 }
 
 .tags {

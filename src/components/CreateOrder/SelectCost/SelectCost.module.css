@@ -1,112 +1,121 @@
-.body{
-    width: 580px;
-    height: fit-content;
-    border-radius: 10px;
-    background-color: white;
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.body {
+  width: 580px;
+  height: fit-content;
+  border-radius: 10px;
+  background-color: white;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.step_header{
-    font-weight: 500;
-    margin-bottom: 32px;
+.step_header {
+  font-weight: 500;
+  margin-bottom: 32px;
 }
-.actions{
-    width: 100%;
-    display: flex;
-    margin-top: 64px;
-}
-
-.goNextPage{
-    margin-left: auto;
+.actions {
+  width: 100%;
+  display: flex;
+  margin-top: 64px;
 }
 
-.goNextPage button{
-    cursor: pointer;
-    height: 38px;
-    width: 200px;
-    border-radius: 10px;
-    color: var(--white);
-    background-color: var(--botton);
-    border: 0;
-    line-height: 20px;
+.goNextPage {
+  margin-left: auto;
 }
 
-.goNextPage button:disabled {
-    background-color: var(--grey);
-    cursor: auto;
-  }
-
-.goPrevPage button{
-    cursor: pointer;
-    height: 38px;
-    width: 120px;
-    color: var(--botton);
-    background-color: var(--white);
-    border: 1px solid var(--botton);
-    border-radius: 10px;
+.goNextPage button {
+  cursor: pointer;
+  height: 48px;
+  width: 200px;
+  border-radius: 10px;
+  color: var(--white);
+  background-color: var(--botton);
+  border: 0;
+  line-height: 20px;
 }
 
-.choose{
-    display: flex;
-    border: 1px solid var(--botton);
-    border-radius: 10px;
-    width: 256px;
-    margin-bottom: 16px;
-}
-.variant{
-    width: 128px;
-    height: 38px;
-    border-left: 1px solid var(--botton);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-.form_name{
-    margin-bottom: 8px;
-}
-.variant:first-child{
-    border-left: 0;
+.goNextPage button:disabled,
+.goNextPage button:hover:disabled {
+  background-color: var(--grey);
+  cursor: auto;
 }
 
-.for_over{
-    width: fit-content;
-    position: relative;
+.goNextPage button:hover {
+  background-color: #6c82cd;
 }
 
-.input_money{
-    border: 1px solid var(--botton);
-    height: 38px;
-    width: 180px;
-    padding-right: 28px;
+.goPrevPage button {
+  cursor: pointer;
+  height: 48px;
+  width: 120px;
+  color: var(--botton);
+  background-color: var(--white);
+  border: 1px solid var(--botton);
+  border-radius: 10px;
 }
 
-.select{
-    color: var(--botton);
+.goPrevPage button:hover {
+  background-color: #ebeffa;
+}
+
+.choose {
+  display: flex;
+  border: 1px solid var(--botton);
+  border-radius: 10px;
+  width: 256px;
+  margin-bottom: 16px;
+}
+.variant {
+  width: 128px;
+  height: 38px;
+  border-left: 1px solid var(--botton);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.form_name {
+  margin-bottom: 8px;
+}
+.variant:first-child {
+  border-left: 0;
+}
+
+.for_over {
+  width: fit-content;
+  position: relative;
+}
+
+.input_money {
+  border: 1px solid var(--botton);
+  height: 38px;
+  width: 180px;
+  padding-right: 28px;
+}
+
+.select {
+  color: var(--botton);
 }
 
 .input_money::-webkit-outer-spin-button,
-.input_money::-webkit-inner-spin-button{
-    -webkit-appearance: none;
-    margin: 0;
+.input_money::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.for_over::after{
-    content: "₽";
-    position: absolute;
-    right: 12px;
-    bottom: 10px;
-    color: var(--grey);
+.for_over::after {
+  content: "₽";
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  color: var(--grey);
 }
 
-.input_barter{
-    width: 100%;
-    min-height: 78px;
-    max-height: 78px;
-    padding: 9px 12px;
-    border: 1px solid var(--botton);
-    border-radius: 10px;
+.input_barter {
+  width: 100%;
+  min-height: 78px;
+  max-height: 78px;
+  padding: 9px 12px;
+  border: 1px solid var(--botton);
+  border-radius: 10px;
 }

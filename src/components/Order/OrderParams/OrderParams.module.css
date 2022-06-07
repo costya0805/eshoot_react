@@ -67,10 +67,17 @@
   color: #f46770;
   border: 1px solid #f46770;
 }
+
+.cancel:hover{
+  background-color: #FDE8E9;
+}
 .finish{
   background-color: var(--botton);
   color: var(--white);
   border: 0;
+}
+.finish:hover{
+  background-color: #6C82CD;
 }
 
 .add_link_result {
@@ -78,6 +85,9 @@
   color: var(--botton);
   border: 1px solid var(--botton);
   margin-left: auto;
+}
+.add_link_result:hover{
+  background-color: #EBEFFA;
 }
 .agree, .finish{
     margin-left: auto;
@@ -87,4 +97,7 @@
   border: 1px solid var(--botton);
   color: var(--botton);
   margin-left: auto;
+}
+.patch_order:hover{
+  background-color: #EBEFFA;
 }

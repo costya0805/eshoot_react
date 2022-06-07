@@ -18,7 +18,11 @@ const AnotherUserCard = observer(() => {
     if (order.another_user.role === "Photographer") history.push(`order`);
   };
   return (
-    <div className={`${s.body} ${order.another_user.role === "Photographer"? s.showUser : ""}`}>
+    <div
+      className={`${s.body} ${
+        order.another_user.role === "Photographer" ? s.showUser : ""
+      }`}
+    >
       <div className={s.wrapper} onClick={goUser}>
         <Avatar
           userName={order.another_user.first_name}
@@ -43,9 +47,9 @@ const AnotherUserCard = observer(() => {
         </div>
       </div>
 
-      <div className={s.chat} onClick={goChat}>
+      <button className={s.chat} onClick={goChat}>
         Связаться
-      </div>
+      </button>
     </div>
   );
 });

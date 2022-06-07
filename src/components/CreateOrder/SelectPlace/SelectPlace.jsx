@@ -26,7 +26,7 @@ const SelectPlace = observer(() => {
         </div>
         <div className={s.input_date_time}>
           <div className={`${s.date} date_input`}>
-            <div className={`${s.form_name} h3`}>Дата:</div>
+            <div className={`${s.form_name} ${s.necessary} h3`}>Дата:</div>
             <Calendar
               minDate={new Date()}
               value={order.params.date}
@@ -39,7 +39,7 @@ const SelectPlace = observer(() => {
           </div>
           <div className={s.block_time}>
             <div className={s.time}>
-              <div className={`${s.form_name} h3`}>Время начала съемки:</div>
+              <div className={`${s.form_name} ${s.necessary} h3`}>Время начала съемки:</div>
               <input
                 type="time"
                 value={order.params.start_time}
@@ -50,7 +50,7 @@ const SelectPlace = observer(() => {
               />
             </div>
             <div className={s.period}>
-              <div className={`${s.form_name} h3`}>Продолжительность:</div>
+              <div className={`${s.form_name} ${s.necessary} h3`}>Продолжительность:</div>
               <input
                 type="number"
                 value={order.params.period}

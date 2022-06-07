@@ -40,7 +40,7 @@ const SelectSettings = observer(() => {
       </div>
       <div className={s.form}>
         <div className={s.deadline}>
-          <div className={`${s.form_name} h3`}>
+          <div className={`${s.form_name} ${s.necessary} h3`}>
             К какому числу нужны фотографии:
           </div>
           <div className={s.sd_container}>
@@ -60,7 +60,7 @@ const SelectSettings = observer(() => {
           </div>
         </div>
         <div className={s.photoCount}>
-          <div className={`${s.form_name} h3`}>Желаемое количество кадров:</div>
+          <div className={`${s.form_name} ${s.necessary} h3`}>Желаемое количество кадров:</div>
           <input
             type="number"
             className={s.input_count}
