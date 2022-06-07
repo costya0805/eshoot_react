@@ -44,6 +44,11 @@ class Photographer {
       };
       this.tags = json.tags;
     });
+    runInAction(() => {
+      this.busy_dates = [
+        ...json.busy_dates.map((res) => new Date(res.date)),
+      ].sort((a, b) => a - b);
+    });
     for (const portfolio of json.portfolios) {
       const photos = await fetch(
         `${API_URL}/users/porftfolios/${portfolio.id}/photos`,
@@ -71,6 +76,20 @@ class Photographer {
     this.current_page = current_page;
   }
 
+  get busy_dates_calendar() {
+    return this.busy_dates.map((date) => date.toISOString());
+  }
+
+  get busy_dates_list() {
+    return this.busy_dates
+      .map((date) =>
+        date.toLocaleString("ru", {
+          month: "long",
+          day: "numeric",
+        })
+      )
+      .join(", ");
+  }
   setPortfolioId(portfolio_id) {
     this.select_portfolio_id = portfolio_id;
   }

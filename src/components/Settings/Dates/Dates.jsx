@@ -10,38 +10,34 @@ const Dates = observer(() => {
     dates.getUserBusyDates();
   }, []);
   return (
-    <>
-      {!dates.loading && (
-        <div className={s.body}>
-          <div className={s.uploadChanges}>
-            <Calendar
-              minDate={new Date()}
-              className={`${s.calendar} settings`}
-              value={!!dates.selected_day ? dates.selected_day : new Date()}
-              onChange={(e) => dates.setDate(e)}
-              tileDisabled={({ activeStartDate, date, view }) =>
-                dates.getList.includes(date.toISOString())
-              }
-            />
-            <div className={s.actions}>
-              <button
-                className={s.save}
-                onClick={() => {
-                  dates.setNewBusyDate();
-                }}
-                disabled={!dates.selected_day}
-              >
-                Сохранить
-              </button>
-            </div>
-          </div>
-          <div className={s.dates_list}>
-            <div className={s.title}>Выходные дни</div>
-            <div className={s.list}>{dates.getDates}</div>
-          </div>
+    <div className={s.body}>
+      <div className={s.uploadChanges}>
+        <Calendar
+          minDate={new Date()}
+          className={`${s.calendar} settings`}
+          value={!!dates.selected_day ? dates.selected_day : null}
+          onChange={(e) => dates.setDate(e)}
+          tileDisabled={({ activeStartDate, date, view }) =>
+            dates.getList.includes(date.toISOString())
+          }
+        />
+        <div className={s.actions}>
+          <button
+            className={s.save}
+            onClick={() => {
+              dates.setNewBusyDate();
+            }}
+            disabled={!dates.selected_day}
+          >
+            Сохранить
+          </button>
         </div>
-      )}
-    </>
+      </div>
+      <div className={s.dates_list}>
+        <div className={s.title}>Выходные дни</div>
+        <div className={s.list}>{dates.getDates}</div>
+      </div>
+    </div>
   );
 });
 

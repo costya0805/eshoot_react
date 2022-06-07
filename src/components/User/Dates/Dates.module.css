@@ -1,0 +1,20 @@
+.body {
+  margin-top: 28px;
+  display: flex;
+}
+.calendar {
+  border-radius: 10px !important;
+}
+.dates_list {
+  margin-left: 24px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(39, 60, 131, 0.2);
+  height: fit-content;
+  padding: 20px;
+}
+.title {
+  margin-bottom: 16px;
+}
+.list {
+  line-height: 150%;
+}

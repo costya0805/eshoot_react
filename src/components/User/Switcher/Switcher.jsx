@@ -10,7 +10,9 @@ const Switcher = observer(() => {
         className={`${s.switch} ${
           photographer.current_page === "portfolio" ? s.active : ""
         }`}
-        onClick={()=>{photographer.setCurrentPage("portfolio")}}
+        onClick={() => {
+          photographer.setCurrentPage("portfolio");
+        }}
       >
         Портфолио
       </div>
@@ -18,18 +20,20 @@ const Switcher = observer(() => {
         className={`${s.switch} ${
           photographer.current_page === "dates" ? s.active : ""
         }`}
-        onClick={()=>{photographer.setCurrentPage("dates")}}
+        onClick={() => {
+          photographer.setCurrentPage("dates");
+        }}
       >
         Календарь
       </div>
-      <div
+      {/* <div
         className={`${s.switch} ${
           photographer.current_page === "feedbacks" ? s.active : ""
         }`}
         onClick={()=>{photographer.setCurrentPage("feedbacks")}}
       >
         Отзывы
-      </div>
+      </div> */}
     </div>
   );
 });

@@ -34,6 +34,7 @@ class PhotographerDates {
 
   getUserBusyDates = async () => {
     this.loading = true;
+    this.selected_day = "";
     const userInCookies = cookies.get("currentUser");
     const config = {
       method: "GET",
@@ -70,6 +71,7 @@ class PhotographerDates {
       body: JSON.stringify(params),
     };
     await fetch(`${API_URL}/users/${user.user.id}/busy_dates`, config);
+    await this.getUserBusyDates()
   };
 }
 

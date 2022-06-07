@@ -10,6 +10,7 @@ import MainInfo from "../../components/User/MainInfo/MainInfo";
 import Switcher from "../../components/User/Switcher/Switcher";
 import Portfolios from "../../components/User/Portfolios/Portfolios";
 import Portfolio from "../../components/User/Portfolio/Portfolio";
+import Dates from "../../components/User/Dates/Dates";
 
 const User = observer(() => {
   const { userID } = useParams();
@@ -26,6 +27,7 @@ const User = observer(() => {
             <Switcher />
             {photographer.current_page === "portfolio" && <Portfolios />}
             {photographer.current_page === "portfolio_photos" && <Portfolio />}
+            {photographer.current_page === "dates" && <Dates />}
           </div>
         </div>
       )}
