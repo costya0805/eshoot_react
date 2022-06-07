@@ -62,22 +62,25 @@
   color: var(--white);
   border: 0;
 }
+.agree:hover {
+  background-color: #6c82cd;
+}
 .cancel {
   background-color: var(--white);
   color: #f46770;
   border: 1px solid #f46770;
 }
 
-.cancel:hover{
-  background-color: #FDE8E9;
+.cancel:hover {
+  background-color: #fde8e9;
 }
-.finish{
+.finish {
   background-color: var(--botton);
   color: var(--white);
   border: 0;
 }
-.finish:hover{
-  background-color: #6C82CD;
+.finish:hover {
+  background-color: #6c82cd;
 }
 
 .add_link_result {
@@ -86,18 +89,89 @@
   border: 1px solid var(--botton);
   margin-left: auto;
 }
-.add_link_result:hover{
-  background-color: #EBEFFA;
+.add_link_result:hover {
+  background-color: #ebeffa;
 }
-.agree, .finish{
-    margin-left: auto;
+.agree,
+.finish {
+  margin-left: auto;
 }
-.patch_order{
+.patch_order {
   background-color: white;
   border: 1px solid var(--botton);
   color: var(--botton);
   margin-left: auto;
 }
-.patch_order:hover{
-  background-color: #EBEFFA;
+.patch_order:hover {
+  background-color: #ebeffa;
+}
+.modal button {
+  width: 200px;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 48px;
+}
+.send {
+  background-color: var(--botton);
+  color: var(--white);
+  border: 0;
+}
+.send:hover {
+  background-color: #6c82cd;
+}
+
+.modal {
+  position: absolute;
+  width: 600px;
+  height: fit-content;
+  top: 30vh;
+  background-color: white;
+  box-shadow: 0 0 10px 0 rgba(39, 60, 131, 0.3);
+  border-radius: 10px;
+  border: 0;
+  outline: 0;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.header {
+  color: var(--header);
+}
+.about {
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  height: 76px;
+  border: 1px solid var(--botton);
+  border-radius: 10px;
+}
+.modal_text {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.link {
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  height: fit-content;
+  border: 1px solid var(--botton);
+  border-radius: 10px;
+  padding: 10px;
+}
+.text_undeground {
+  margin-bottom: 32px;
 }

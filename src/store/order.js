@@ -17,12 +17,13 @@ class Order {
   another_user = {};
   loading = true;
   user_role = "";
-  modals = { photo: false };
+  modals = { photo: false, cancel: false, close: false, res: false };
   showPhoto = {};
   user = {};
   references_to_edit = [];
   removed_references = [];
   added_references = [];
+  modals_inputs = { reason_for_rejection: null, link_for_result: null };
 
   constructor() {
     makeAutoObservable(this);
@@ -52,6 +53,7 @@ class Order {
       ).then((response) => response.json());
       runInAction(() => {
         this.info = { ...order_info };
+        this.modals_inputs.link_for_result = order_info.link_for_result;
         this.references_to_edit = order_info.references;
         this.settings = {
           ...order_info,
@@ -95,6 +97,9 @@ class Order {
       path: file,
       about: "",
     });
+  }
+  changeModalText(name, value) {
+    this.modals_inputs[name] = value;
   }
 
   changeReferenceText(text, id) {
@@ -254,6 +259,12 @@ class Order {
       }
     }
   };
+  closeModal(modal) {
+    this.modals[modal] = false;
+  }
+  openModal(modal) {
+    this.modals[modal] = true;
+  }
 
   changeStatus = async (new_status) => {
     await this.updateOrder({ status: new_status });
@@ -290,7 +301,6 @@ class Order {
 
   updateOrder = async (paramsInfo) => {
     const userInCookies = cookies.get("currentUser");
-    console.log(paramsInfo);
     try {
       const json = await fetch(
         `${API_URL}/users/${this.user.id}/orders/${this.info.id}`,

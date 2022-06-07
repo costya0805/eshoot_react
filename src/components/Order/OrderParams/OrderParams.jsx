@@ -3,6 +3,7 @@ import React from "react";
 import s from "./OrderParams.module.css";
 import order from "../../../store/order";
 import { useHistory } from "react-router-dom";
+import Modal from "react-modal";
 
 const OrderParams = observer(() => {
   const history = useHistory();
@@ -107,6 +108,22 @@ const OrderParams = observer(() => {
           </div>
         </>
       )}
+      {!!order.info.reason_for_rejection && (
+        <div className={`${s.text_undeground}`}>
+          <div className={s.text_name}>Причина отказа:</div>
+          <div className={s.text}>{order.info.reason_for_rejection}</div>
+        </div>
+      )}
+      {!!order.info.link_for_result && (
+        <div className={`${s.text_undeground}`}>
+          <div className={s.text_name}>Ссылка на результат съемки:</div>
+          <div className={s.text}>
+            <a href={order.info.link_for_result} target="_blank">
+              {order.info.link_for_result}
+            </a>
+          </div>
+        </div>
+      )}
       {!(
         order.info.status === "canceled" || order.info.status === "closed"
       ) && (
@@ -114,9 +131,9 @@ const OrderParams = observer(() => {
           {(order.info.status === "new" ||
             order.info.status === "in_progress") && (
             <button
-              className={s.cancel}
+              className={`${s.cancel} h3`}
               onClick={() => {
-                order.changeStatus("canceled");
+                order.openModal("cancel");
               }}
             >
               {order.user_role === "customer" ? "Отменить" : "Отказаться"}
@@ -124,7 +141,7 @@ const OrderParams = observer(() => {
           )}
           {order.user_role === "performer" && order.info.status === "new" && (
             <button
-              className={s.agree}
+              className={`${s.agree} h3`}
               onClick={() => {
                 order.changeStatus("in_progress");
               }}
@@ -134,20 +151,22 @@ const OrderParams = observer(() => {
           )}
           {order.user_role === "customer" && order.info.status === "waiting" && (
             <button
-              className={s.finish}
+              className={`${s.finish} h3`}
               onClick={() => {
-                order.changeStatus("closed");
+                order.openModal("close");
               }}
             >
               Завершить заказ
             </button>
           )}
-          {order.user_role === "performer" &&
-            order.info.status === "waiting" && (
-              <button className={s.add_link_result}>
-                Прикрепить результат
-              </button>
-            )}
+          {order.user_role === "performer" && order.info.status === "waiting" && (
+            <button
+              className={`${s.add_link_result} h3`}
+              onClick={() => order.openModal("res")}
+            >
+              Прикрепить результат
+            </button>
+          )}
           {order.user_role === "customer" &&
             (order.info.status === "new" ||
               order.info.status === "in_progress") && (
@@ -162,6 +181,114 @@ const OrderParams = observer(() => {
             )}
         </div>
       )}
+      {
+        <>
+          <Modal
+            isOpen={order.modals.close}
+            onRequestClose={() => {
+              order.closeModal("close");
+            }}
+            shouldCloseOnOverlayClick={true}
+            className={s.modal}
+            overlayClassName={s.overlay}
+            ariaHideApp={false}
+          >
+            <div className={`${s.header} h2`}>Завершение заказа</div>
+            <div className={s.modal_text}>
+              Завершая заказ вы подтверждаете, что получили фотографии, качество
+              которых вас устраивает
+            </div>
+            <button
+              className={`${s.send} h3`}
+              onClick={() => {
+                order.changeStatus("closed");
+                order.closeModal("close");
+              }}
+            >
+              Завершить
+            </button>
+          </Modal>
+          <Modal
+            isOpen={order.modals.cancel}
+            onRequestClose={() => {
+              order.closeModal("cancel");
+            }}
+            shouldCloseOnOverlayClick={true}
+            className={s.modal}
+            overlayClassName={s.overlay}
+            ariaHideApp={false}
+          >
+            <div className={`${s.header} h2`}>
+              {order.user_role === "customer"
+                ? "Отмена заказа"
+                : "Отказ от заказа"}
+            </div>
+            <textarea
+              id="about"
+              className={s.about}
+              value={order.modals_inputs.reason_for_rejection}
+              onChange={(e) =>
+                order.changeModalText("reason_for_rejection", e.target.value)
+              }
+              placeholder={
+                order.user_role === "customer"
+                  ? "Напишите причину отмены"
+                  : "Напишите причину отказа"
+              }
+            />
+            <button
+              className={`${s.send} h3`}
+              onClick={() => {
+                order.updateOrder({
+                  reason_for_rejection:
+                    order.modals_inputs.reason_for_rejection,
+                  status: "canceled",
+                });
+                order.closeModal("cancel");
+              }}
+            >
+              Отправить
+            </button>
+          </Modal>
+          <Modal
+            isOpen={order.modals.res}
+            onRequestClose={() => {
+              order.closeModal("res");
+            }}
+            shouldCloseOnOverlayClick={true}
+            className={s.modal}
+            overlayClassName={s.overlay}
+            ariaHideApp={false}
+          >
+            {" "}
+            <div className={`${s.header} h2`}>Ссылка на результат</div>
+            <input
+              id="about"
+              className={s.link}
+              value={order.modals_inputs.link_for_result}
+              onChange={(e) =>
+                order.changeModalText("link_for_result", e.target.value)
+              }
+              placeholder={"https://disk.yandex.ru"}
+            />
+            <button
+              className={`${s.send} h3`}
+              onClick={() => {
+                if (
+                  order.modals_inputs.link_for_result !==
+                  order.info.link_for_result
+                )
+                  order.updateOrder({
+                    link_for_result: order.modals_inputs.link_for_result,
+                  });
+                order.closeModal("res");
+              }}
+            >
+              Отправить
+            </button>
+          </Modal>
+        </>
+      }
     </div>
   );
 });

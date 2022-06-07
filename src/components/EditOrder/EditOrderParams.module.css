@@ -86,3 +86,7 @@
 .save_changes:disabled {
   background-color: var(--grey);
 }
+.necessary::after{
+  color: #F46770;
+  content: "*";
+}

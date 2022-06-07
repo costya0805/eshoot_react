@@ -15,7 +15,7 @@ const EditOrderParams = observer(() => {
     <div className={s.body}>
       <div className={s.text_info}>
         <div className={s.fill_input}>
-          <label className={s.text_label}>Вид:</label>
+          <label className={`${s.text_label} ${s.necessary}`}>Вид:</label>
           <input
             id="type"
             className={s.input_long}
@@ -24,7 +24,7 @@ const EditOrderParams = observer(() => {
           />
         </div>
         <div className={s.fill_input}>
-          <label className={s.text_label}>Подвид:</label>
+          <label className={`${s.text_label} ${s.necessary}`}>Подвид:</label>
           <input
             id="type"
             className={s.input_long}
@@ -44,7 +44,7 @@ const EditOrderParams = observer(() => {
           />
         </div>
         <div className={s.fill_input}>
-          <label className={s.text_label}>Дата:</label>
+          <label className={`${s.text_label} ${s.necessary}`}>Дата:</label>
           <input
             id="type"
             type="date"
@@ -57,7 +57,7 @@ const EditOrderParams = observer(() => {
           />
         </div>
         <div className={`${s.fill_input} ${s.time}`}>
-          <label className={s.text_label}>Время начала съемки:</label>
+          <label className={`${s.text_label} ${s.necessary}`}>Время начала съемки:</label>
           <input
             id="type"
             type="time"
@@ -69,7 +69,7 @@ const EditOrderParams = observer(() => {
           />
         </div>
         <div className={s.fill_input}>
-          <label className={s.text_label}>Продолжительность:</label>
+          <label className={`${s.text_label} ${s.necessary}`}>Продолжительность:</label>
           <input
             id="type"
             className={s.input_short}
@@ -91,7 +91,7 @@ const EditOrderParams = observer(() => {
           />
         </div>
         <div className={s.fill_input}>
-          <label className={s.text_label}>Дата сдачи фотографий:</label>
+          <label className={`${s.text_label} ${s.necessary}`}>Дата сдачи фотографий:</label>
           <input
             id="type"
             type="date"
@@ -104,7 +104,7 @@ const EditOrderParams = observer(() => {
           />
         </div>
         <div className={`${s.fill_input} ${s.photo_count}`}>
-          <label className={s.text_label}>Колличество фотографий:</label>
+          <label className={`${s.text_label} ${s.necessary}`}>Колличество фотографий:</label>
           <input
             id="type"
             type="number"
@@ -119,7 +119,7 @@ const EditOrderParams = observer(() => {
       </div>
       <SelectCost />
       <div className={s.about_input}>
-        <label className={s.text_label}>Описание:</label>
+        <label className={`${s.text_label} ${s.necessary}`}>Описание:</label>
         <TextareaAutosize
           minRows={1}
           maxRows={6}
