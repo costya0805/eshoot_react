@@ -13,11 +13,16 @@ import "react-calendar/dist/Calendar.css";
 import photographers from "../../../store/photographersList";
 
 const Filters = observer(() => {
-
   const [showCity, setShowCity] = useState(false);
   const [showPrice, setShowPrice] = useState(false);
   const [showTags, setShowTags] = useState(false);
   const [showDates, setShowDates] = useState(false);
+  // console.log(
+  //   photographers.photographers.length > 0 &&
+  //     photographers.photographers[0].busy_dates.includes(
+  //       photographers.filters.date.toISOString()
+  //     )
+  // );
 
   return (
     <div className={s.body}>

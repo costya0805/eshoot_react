@@ -57,6 +57,13 @@ class Photographers {
             .indexOf(this.filters.fio.toLowerCase()) !== -1
       );
     }
+    if (!!this.filters.date) {
+      showFotographers = showFotographers.filter(
+        (phototographer) =>
+          !phototographer.busy_dates.includes(this.filters.date.toISOString())
+      );
+    }
+
     return showFotographers;
   }
 
@@ -76,6 +83,9 @@ class Photographers {
         .then((response) => response.json())
         .then((json) =>
           runInAction(() => {
+            json.busy_dates = json.busy_dates.map((date) =>
+              new Date(date.date).toISOString()
+            );
             this.photographers.push(json);
           })
         );
