@@ -17,12 +17,6 @@ const Filters = observer(() => {
   const [showPrice, setShowPrice] = useState(false);
   const [showTags, setShowTags] = useState(false);
   const [showDates, setShowDates] = useState(false);
-  // console.log(
-  //   photographers.photographers.length > 0 &&
-  //     photographers.photographers[0].busy_dates.includes(
-  //       photographers.filters.date.toISOString()
-  //     )
-  // );
 
   return (
     <div className={s.body}>

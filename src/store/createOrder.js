@@ -52,6 +52,9 @@ class CreateOrder {
         Authorization: "Bearer " + userInCookies,
       },
     }).then((response) => response.json());
+    json.busy_dates = json.busy_dates.map((date) =>
+      new Date(date.date).toISOString()
+    );
     runInAction(() => {
       this.params = {
         type: null,
@@ -166,12 +169,12 @@ class CreateOrder {
     );
   };
 
-  get showProcentUpload(){
-    let result = []
-    for (let key in this.photo_loading){
-      result.push(`${this.photo_loading[key]}%`)
+  get showProcentUpload() {
+    let result = [];
+    for (let key in this.photo_loading) {
+      result.push(`${this.photo_loading[key]}%`);
     }
-    return result.join(" ")
+    return result.join(" ");
   }
 
   uploadReferenceToOrder = async (params) => {

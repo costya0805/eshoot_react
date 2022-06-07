@@ -8,8 +8,8 @@ import "./CustomCalendar.css";
 const SelectPlace = observer(() => {
   const setCorrectPeriod = (e) => {
     let time = e.target.value;
-    time = time < 0? 1 : time > 12 ? 12 : Math.round(time*10)/10
-    order.setOrderParams("period", time)
+    time = time < 0 ? 1 : time > 12 ? 12 : Math.round(time * 10) / 10;
+    order.setOrderParams("period", time);
   };
   return (
     <div className={s.body}>
@@ -31,6 +31,10 @@ const SelectPlace = observer(() => {
               minDate={new Date()}
               value={order.params.date}
               onChange={(e) => order.setOrderParams("date", e)}
+              tileDisabled={
+                ({ activeStartDate, date, view }) =>
+                  order.photographer.busy_dates.includes(date.toISOString())
+              }
             />
           </div>
           <div className={s.block_time}>
@@ -39,7 +43,9 @@ const SelectPlace = observer(() => {
               <input
                 type="time"
                 value={order.params.start_time}
-                onChange={(e) => order.setOrderParams("start_time", e.target.value)}
+                onChange={(e) =>
+                  order.setOrderParams("start_time", e.target.value)
+                }
                 defaultValue={"00:00"}
               />
             </div>
